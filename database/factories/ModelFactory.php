@@ -31,18 +31,26 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 		];
 	});
 	
-		$factory->define(App\Producto::class, function (Faker\Generator $faker) {
-			return [
-						'name' => $faker->word,
-				      'precpu' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 8),
-				      'costo' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 8),
-				      'categoria' => 1,
-				      'ReferenciaOEM' => $faker->randomNumber($nbDigits = 6),
-				      'Descripcion' => $faker->text($maxNbChars =30),
-				      'foto' => $faker->url,
-				      'fechaRetiro' => $faker->date($format = 'Y-m-d', $max = 'now'),
-				      'ivap' => $faker->randomDigit,
-				      'iva' => 'SI',
-				      'activo' => 'SI',
-			];
-		});
+$factory->define(App\Producto::class, function (Faker\Generator $faker) {
+	return [
+		'name' => $faker->word,
+      'precpu' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 8),
+      'costo' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 8),
+      'categoria' => 1,
+      'ReferenciaOEM' => $faker->randomNumber($nbDigits = 6),
+      'Descripcion' => $faker->text($maxNbChars =30),
+      'foto' => $faker->url,
+      'fechaRetiro' => $faker->date($format = 'Y-m-d', $max = 'now'),
+      'ivap' => $faker->randomDigit,
+      'iva' => 'SI',
+      'activo' => 'SI',
+	];
+});
+
+	$factory->define(App\Categoria::class, function (Faker\Generator $faker) {
+		return [
+				'name' => $faker->word,
+				'Descripcion' => $faker->text($maxNbChars =30),
+				'foto' => $faker->url,
+		];
+	});

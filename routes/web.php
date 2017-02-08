@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/','ShopController@index');
+
+Route::get('/categoria/{id}', 'ShopController@show')->where(['id' => '[0-9]+']);;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+
