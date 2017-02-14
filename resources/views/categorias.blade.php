@@ -2,25 +2,24 @@
 <html>
 <head>
 <title>Softecol</title>
-
+@includeIf('layouts.header')
 </head>
 <body> 
-@includeIf('layouts.header')
-
-
 	<!-- start content -->
 	<div class="container">
-		
 	<div class="women-product">
 		<div class=" w_content">
 			<div class="women">
-				<a href="#"><h4>Enthecwear - <span>4449 itemms</span> </h4></a>
+				<!-- <a href="#"><h4>Enthecwear - <span>4449 itemms</span> </h4></a> -->
 				<ul class="w_nav">
 					<li>Sort : </li>
 			     	<li><a class="active" href="#">popular</a></li> |
-			     	<li><a href="#">new </a></li> |
-			     	<li><a href="#">discount</a></li> |
-			     	<li><a href="#">price: Low High </a></li> 
+			     	@php
+			     		$expre = array("/\/asc/","/\/dsc/");
+			     		$urlor = preg_replace($expre,'', url()->current());
+			     	@endphp
+			     	<li><a href="{{  $urlor }}/asc">price: Low </a></li> |
+			     	<li><a href="{{  $urlor }}/dsc">price: High </a></li> 
 			     <div class="clearfix"> </div>	
 			     </ul>
 			     <div class="clearfix"> </div>	
@@ -30,7 +29,11 @@
 		<div class="grid-product">
 		@foreach ($categorias as $categorie)
 		  <div class="  product-grid">
-			<div class="content_box"><a href="single.html">
+		    @php
+			    $expre = array("/\/asc/","/\/dsc/" ,"/\/\d+/");
+			    $urlpr = preg_replace($expre,'', url()->current());
+			@endphp
+			<div class="content_box"><a href="{{ $urlpr }}/single/{{ $categorie->id }}">
 			   	<div class="left-grid-view grid-view-left">
 			   	   	 <img src="{{  asset('images/pic13.jpg') }}" class="img-responsive watch-right" alt=""/>
 				   	   	<div class="mask">
@@ -72,63 +75,6 @@
 			</div>
 	<div class="clearfix"> </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @includeIf('layouts.footer')	
 </body>
 </html>

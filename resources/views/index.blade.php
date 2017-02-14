@@ -2,11 +2,9 @@
 <html>
 <head>
 <title>Softecol</title>
-
+@includeIf('layouts.header')
 </head>
 <body> 
-
-@includeIf('layouts.header')
    <!-- Inicio fotos de descuento -->
 	  <div class="container"> 
 			<div class="shoes-grid">
@@ -105,7 +103,7 @@
 			<ul class="menu">
 			@foreach ($lists as $list)
 				<ul class="kid-menu">
-						<li><a href="categoria/{{ $list->id }}"> {{ $list->name }} </a></li>
+						<li><a href="categoria/{{$list->id}}"> {{ $list->name }} </a></li>
 				</ul>
 			@endforeach	
 			</ul>

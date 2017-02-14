@@ -49,11 +49,29 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $asc = 'asc')
+    {
+    	if($asc == 'asc')
+    	{
+    		$sort = 'asc';	
+    	}
+    	else 
+    	{
+    		$sort = 'desc';
+    	}
+    	$lists 		= Categoria::all();
+       	$categories	= Producto::where('categoria', $id)->orderBy('precpu',$sort)->paginate(15);
+       	return view('categorias')->with('lists', $lists)
+       							 ->with('categorias', $categories);
+    }
+    
+    //*Metodo para mostrar la descripcion de un solo producto
+    public function showprod($id)
     {
     	$lists 		= Categoria::all();
-       	$categories	= Producto::where('categoria', $id)->paginate(15);
-       	return view('categorias')->with('lists', $lists)->with('categorias', $categories);
+    	$products	= Producto::where('id', $id)->get()->first();;
+    	return view('single')->with('lists', $lists)
+    						 ->with('productos', $products);
     }
 
     /**
