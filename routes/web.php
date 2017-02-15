@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','ShopController@index');
+
+Route::get('/categoria/{id}/{asc?}', 'ShopController@show')->where(['id' => '[0-9]+'],['asc' => '[a-zA-Z]+']);
+
+Route::get('/categoria/single/{id}', 'ShopController@showprod')->where(['id' => '[0-9]+']);
+
+Auth::routes();
+
+
