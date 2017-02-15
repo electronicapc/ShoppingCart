@@ -68,23 +68,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					
 					<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
 				<div class="cart-b">
-				<form class="form-inline" role="form">
+				{!! Form::open(['url' => 'foo/bar']) !!}
+    //
+				
+					<form class="form-inline" role="form">
+						<div class="form-group">
+					 		<div class="left-n ">${{ $productos->precpu }}</div>
+						 </div>
+						  <div class="form-group">
+						  <!--    <label for="cantidad" >Cantidad :</label>
+						    <input type="number" value="1" id="cantidad" class="form-control" onkeydown="return false" min="1" max="20" style="width: 65px;">  -->
+						   
+					        <div class="col-xs-3">
+					        	<label for="cantidad" >Cant:</label>
+					            <select id="cantidad" class="form-control">
+					             	@for ($i = 1; $i < $productos->cantidadex +1; $i++)
+    									<option>{{ $i }}</option>
+									@endfor
+					                
+					            </select>
+					        </div>
 
-					  <div class="left-n ">{{ $productos->precpu }}</div>
-
-						  <div class="form-group col-xs-offset-2">
-						     <label for="cantidad" >Cantidad :</label>
-						    <input type="number" value="1" id="cantidad" class="form-control" onkeydown="return false" min="1" max="20" style="width: 65px;">
 						  </div>
-					
-					    <a class="now-get get-cart-in" href="#">ADD TO CART</a> 
+						<div class="form-group">
+					    	<input type="submit" class="btn btn-primary" value="Comprar">
+					    </div>
 
 				</form>
+			{!! Form::close() !!}	
 				<div class="clearfix"></div>
 				 </div>
 				 
-				 <h6>100 items in stock</h6>
-			   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				 <h6>{{ $productos->cantidadex }} productos en existencia</h6>
+			   	<p>{{ $productos->Descripcion }}</p>
 			   	<div class="share">
 							<h5>Share Product :</h5>
 							<ul class="share_nav">
