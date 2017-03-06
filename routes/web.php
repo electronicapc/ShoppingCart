@@ -17,6 +17,8 @@ Route::get('/categoria/{id}/{asc?}', 'ShopController@show')->where(['id' => '[0-
 
 Route::get('/categoria/single/{id}', 'ShopController@showprod')->where(['id' => '[0-9]+']);
 
+Route::post('/checkout', 'CheckoutController@addprod');
+
 Auth::routes();
 
 

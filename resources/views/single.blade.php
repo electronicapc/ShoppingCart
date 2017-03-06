@@ -68,10 +68,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					
 					<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
 				<div class="cart-b">
-				{!! Form::open(['url' => 'foo/bar']) !!}
-    //
-				
-					<form class="form-inline" role="form">
+				{!! Form::open(['url' => 'checkout'], ['method' => 'post'], ['class' => 'form-inline'], ['role'=> 'form'] ) !!}
+					
 						<div class="form-group">
 					 		<div class="left-n ">${{ $productos->precpu }}</div>
 						 </div>
@@ -80,22 +78,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						    <input type="number" value="1" id="cantidad" class="form-control" onkeydown="return false" min="1" max="20" style="width: 65px;">  -->
 						   
 					        <div class="col-xs-3">
-					        	<label for="cantidad" >Cant:</label>
-					            <select id="cantidad" class="form-control">
+					           <label for="cantidad" >Cant:</label>
+					           <select id="cantidad" name="cantidad" class="form-control">
 					             	@for ($i = 1; $i < $productos->cantidadex +1; $i++)
     									<option>{{ $i }}</option>
 									@endfor
 					                
-					            </select>
+					            </select> 
 					        </div>
-
+							{{ Form::hidden('id_prod', $productos->id) }}
+							{{ Form::hidden('pre_pu', $productos->precpu) }}
 						  </div>
 						<div class="form-group">
 					    	<input type="submit" class="btn btn-primary" value="Comprar">
 					    </div>
 
-				</form>
-			{!! Form::close() !!}	
+				
+				{!! Form::close() !!}
 				<div class="clearfix"></div>
 				 </div>
 				 
