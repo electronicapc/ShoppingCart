@@ -17,21 +17,27 @@ class CheckoutController extends Controller
 		
 		//Por seguridad verificamos que no se han anadido productos malintencionados
 		//$request->session()->flush();
-		$procom	= Producto::where('id', $idp)->select('precpu','Descripcion','foto')->first();
+		$procom	= Producto::where('id', $idp)->select('precpu','Descripcion','foto','cantidadex')->first();
 		
 		if($procom->precpu == $precp )
 		{
 			$total	=  $precp * $cant;	
-			$desc	 = $procom->Descripcion;
-			$foto	 = $procom->foto;
-			$arreglo = array('precio' => $precp,'descripcion' => $desc,'foto' => $foto,'cantidad' => $cant, 'total' => $total);
+			$desc	= $procom->Descripcion;
+			$foto	= $procom->foto;
+			$exis	= $procom->cantidadex;
+			$arreg  = array('precio' => $precp,'descripcion' => $desc,'foto' => $foto,'cantidad' => $cant, 'total' => $total, 'existencia' => $exis);
 			//$request->session()->push('cart',$arreglo); Tambien sepuede hacer de esta forma
-			session(['cart.'.$idp => $arreglo]);
+			session(['cart.'.$idp => $arreg]);
 			//Session::save(); Esto toca caherlo si se pone el dd, puesto que no deja gardar la sesion
 			//$data = $request->session()->all();
 			//$data = Session::get('cart');
 			//dd($data);
 			return view('cart');
 		}
+	}
+	
+	public function addcant($can,$id)
+	{
+		echo $can;
 	}
 }

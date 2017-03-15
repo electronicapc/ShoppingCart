@@ -10,6 +10,7 @@
 <!--fonts-->
 
 <script src="{{ asset('js/jquery.etalage.min.js') }}"></script>
+
 <body> 
 
 @php
@@ -17,7 +18,7 @@
 	$total = 0;
 @endphp
 
-<div class="row">
+<div class="row" id='cart'>
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <table class="table table-hover">
                 <thead>
@@ -43,8 +44,18 @@
 		                            </div></td>
 		                        <td class="col-sm-1 col-md-1" style="text-align: center">
 		                        </td>
-		                        <td class="col-sm-1 col-md-1 text-center"></td>
-		                        <td class="col-sm-1 col-md-1 text-center">{{ $value['cantidad'] }}</td>
+		                        <td class="col-sm-1 col-md-1 text-center">	                        
+			                        	<select id="cantidad" name="cantidad" class="form-control input-sm">
+							             	@for ($i = 1; $i < $value['existencia'] + 1; $i++)
+							             		@if($i == $value['cantidad'])
+		    										<option selected="selected">{{ $i }}</option>
+		    									@else
+		    										<option value="{{ $key }}">{{ $i }}</option>	
+		    									@endif	
+											@endfor					                
+						            	</select>
+						            	{{ Form::hidden('idprod', $key, array('id' => 'inv_id')) }}
+					            </td>
 		                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ $value['precio'] }}</strong></td>
 		                        <td class="col-sm-1 col-md-1">
 		                            <a href="/removeItem/{{ $key }}"> <button type="button" class="btn btn-danger">
@@ -57,7 +68,7 @@
 		                    	$total = ($value['cantidad']*$value['precio']) + $total;
 		                    @endphp
 			@endforeach
- 
+ 				
                 <tr>
                     <td>   </td>
                     <td>   </td>
@@ -84,5 +95,18 @@
         </div>
     </div>
     @includeIf('layouts.footer')
+    
+    <!--Scriot para llenar la cantidad en el carrito-->
+<script>
+$(document).ready(function(){
+	$( "select" ).change(function (){
+		var idt = $(this).val();
+        alert(idt);
+        alert($(this).find('option:selected').text());
+
+	})
+})
+.change();
+</script>
 </body>
 </html>-

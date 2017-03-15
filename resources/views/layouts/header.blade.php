@@ -1,4 +1,8 @@
 	@section('header')
+	@php
+		$data = Session::get('cart');
+		$total = count($data);
+	@endphp
 	<!--header-->
 	<div class="header">
 		<div class="top-header">
@@ -43,11 +47,11 @@
 					<div class="logo">
 						<a href="index.html"><img src="{{  asset('images/logo.png') }}" alt=" " /></a>
 					</div>
-					<div class="search">
+					<!-- <div class="search">
 						<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
 						<input type="submit"  value="SEARCH">
 
-					</div>
+					</div> -->
 					<div class="clearfix"> </div>
 				</div>
 				<div class="header-bottom-right">					
@@ -56,14 +60,13 @@
 								<li><a href="login.html"><span> </span>LOGIN</a></li> |
 								<li ><a href="register.html">SIGNUP</a></li>
 							</ul>
-						<div class="cart"><a href="#"><span> </span>CART</a></div>
+						<div class="cart"><a href="#"><span></span></a>@if($total > 0) <span class="badge"> {{ $total }} </span>@endif</div>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="clearfix"> </div>	
 			</div>
 		</div>
 	</div>
-	
 	
 	<link href="{{  asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<!--theme-style-->
