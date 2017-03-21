@@ -5,20 +5,22 @@
 
 @includeIf('layouts.header')
 <link rel="stylesheet" href="{{ asset('css/etalage.css') }}" type="text/css" media="all" />
-<!--//theme-style-->
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--fonts-->
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <script src="{{ asset('js/jquery.etalage.min.js') }}"></script>
+    <!--Scriot para llenar la cantidad en el carrito-->
 
 <body> 
 
 @php
 	$data = Session::get('cart');
+	
 	$total = 0;
+	
 @endphp
 
-<div class="row" id='cart'>
+<div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <table class="table table-hover">
                 <thead>
@@ -54,7 +56,7 @@
 		    									@endif	
 											@endfor					                
 						            	</select>
-						            	{{ Form::hidden('idprod', $key, array('id' => 'inv_id')) }}
+						            	
 					            </td>
 		                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ $value['precio'] }}</strong></td>
 		                        <td class="col-sm-1 col-md-1">
@@ -74,7 +76,7 @@
                     <td>   </td>
                     <td>   </td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>${{$total}}</strong></h3></td>
+                    <td class="text-right"><h3><strong>$<div id="totalc">${{$total}}</div></strong></h3></td>
                 </tr>
                 <tr>
                     <td>   </td>
@@ -86,27 +88,38 @@
                             </button>
                         </a></td>
                     <td>
-                        <button type="button" class="btn btn-success">
+                    {!! Form::open(['url' => 'foo/bar']) !!}
+                        <button type="submit" class="btn btn-success">
                             Comprar <span class="fa fa-play"></span>
                         </button></td>
+                    {!! Form::close() !!}    
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
     @includeIf('layouts.footer')
-    
-    <!--Scriot para llenar la cantidad en el carrito-->
+
 <script>
-$(document).ready(function(){
+    $(document).ready(function(){
+	
 	$( "select" ).change(function (){
 		var idt = $(this).val();
-        alert(idt);
-        alert($(this).find('option:selected').text());
-
-	})
+		var nca = $(this).find('option:selected').text();
+		/*alert(idt);*/
+		alert(nca);
+		$.ajax({
+			type:'post',
+			url:'checkout/' + idt + '/' + nca,
+		    headers: {
+		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		    success:function(html){
+                location.reload();
+            }
+		});
+        });
+	  
 })
-.change();
-</script>
+</script>    
 </body>
 </html>-

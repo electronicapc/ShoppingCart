@@ -36,8 +36,17 @@ class CheckoutController extends Controller
 		}
 	}
 	
-	public function addcant($can,$id)
+	public function addcant($id, $can)
 	{
-		echo $can;
+		$procom	= Producto::where('id', $id)->select('precpu','Descripcion','foto','cantidadex')->first();
+		$precp	= $procom->precpu;
+		$total	= $precp * $can;
+		$desc	= $procom->Descripcion;
+		$foto	= $procom->foto;
+		$exis	= $procom->cantidadex;
+		$arreg  = array('precio' => $precp,'descripcion' => $desc,'foto' => $foto,'cantidad' => $can, 'total' => $total, 'existencia' => $exis);
+		//dd($arreg);
+		session(['cart.'.$id => $arreg]);
+		
 	}
 }
