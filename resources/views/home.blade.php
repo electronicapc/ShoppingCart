@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+{{ Auth::logout() }}
 @section('content')
 <div class="container">
     <div class="row">

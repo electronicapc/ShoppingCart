@@ -24,6 +24,50 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('documento') ? ' has-error' : '' }}">
+                            <label for="documento" class="col-md-4 control-label">Documento ID</label>
+
+                            <div class="col-md-6">
+                                <input id="documento" type="text" class="form-control" name="documento" value="{{ old('documento') }}" required>
+
+                                @if ($errors->has('documento'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('documento') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+                      <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Direccion</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+                       <div class="form-group{{ $errors->has('phonen') ? ' has-error' : '' }}">
+                            <label for="phonen" class="col-md-4 control-label">Telefono</label>
+
+                            <div class="col-md-6">
+                                <input id="phonen" type="text" class="form-control" name="phonen" value="{{ old('phonen') }}" required>
+
+                                @if ($errors->has('phonen'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phonen') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 

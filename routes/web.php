@@ -20,6 +20,11 @@ Route::get('/categoria/single/{id}', 'ShopController@showprod')->where(['id' => 
 Route::post('/checkout', 'CheckoutController@addprod');
 Route::post('/checkout/{id}/{can}', 'CheckoutController@addcant')->where(['can' => '[0-9]+'],['id' => '[0-9]+']);
 
+Route::get('/vrfauth', 'ShopController@showprod')->where(['id' => '[0-9]+']);
+
 Auth::routes();
 
 
+Route::get('/home', function () {
+    return view('home');
+});

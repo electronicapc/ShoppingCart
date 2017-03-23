@@ -76,14 +76,14 @@
                     <td>   </td>
                     <td>   </td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>$<div id="totalc">${{$total}}</div></strong></h3></td>
+                    <td class="text-right"><h3><strong><div id="totalc">${{$total}}</div></strong></h3></td>
                 </tr>
                 <tr>
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
                     <td>
-                        <a href="/"> <button type="button" class="btn btn-default">
+                        <a href="{{ url('/') }}"> <button type="button" class="btn btn-default">
                                 <span class="fa fa-shopping-cart"></span> Continuar comprando
                             </button>
                         </a></td>
@@ -106,16 +106,16 @@
 	$( "select" ).change(function (){
 		var idt = $(this).val();
 		var nca = $(this).find('option:selected').text();
-		/*alert(idt);*/
-		alert(nca);
+		/*alert(idt);
+		alert(nca);*/
 		$.ajax({
 			type:'post',
 			url:'checkout/' + idt + '/' + nca,
 		    headers: {
 		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-		    success:function(html){
-                location.reload();
-            }
+		        success:function(data){
+		        	$("#totalc").html('$' + data.msg);
+		        }
 		});
         });
 	  

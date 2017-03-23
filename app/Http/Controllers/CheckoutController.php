@@ -47,6 +47,12 @@ class CheckoutController extends Controller
 		$arreg  = array('precio' => $precp,'descripcion' => $desc,'foto' => $foto,'cantidad' => $can, 'total' => $total, 'existencia' => $exis);
 		//dd($arreg);
 		session(['cart.'.$id => $arreg]);
-		
+		$data = Session::get('cart');
+		$totsum	= 0;
+		foreach ($data as $key => $value)
+		{
+			$totsum = ($value['cantidad']*$value['precio']) + $totsum;
+		}
+		return response()->json(array('msg'=> $totsum), 200);
 	}
 }
