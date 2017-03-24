@@ -55,4 +55,11 @@ class CheckoutController extends Controller
 		}
 		return response()->json(array('msg'=> $totsum), 200);
 	}
+	
+	public function remcant($id)
+	{
+		Session::forget('cart.'.$id);
+		//return view('cart');
+		return back();
+	}
 }

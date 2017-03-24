@@ -45,7 +45,7 @@
 			<div class="container">
 				<div class="header-bottom-left">
 					<div class="logo">
-						<a href="index.html"><img src="{{  asset('images/logo.png') }}" alt=" " /></a>
+						<a href="index.html"><img src="{{asset('images/logo.png') }}" alt=" " /></a>
 					</div>
 					<!-- <div class="search">
 						<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
@@ -54,13 +54,24 @@
 					</div> -->
 					<div class="clearfix"> </div>
 				</div>
-				<div class="header-bottom-right">					
-						<div class="account"><a href="login.html"><span> </span>YOUR ACCOUNT</a></div>
+				<div class="header-bottom-right">	
+					@if (Auth::guest())				
+						<div class="account"><a href="{{ url('/login') }}"><span> </span>YOUR ACCOUNT</a></div>
 							<ul class="login">
-								<li><a href="login.html"><span> </span>LOGIN</a></li> |
-								<li ><a href="register.html">SIGNUP</a></li>
+								<li><a href="{{ url('/login') }}"><span> </span>LOGIN</a></li> |
+								<li ><a href="{{ url('/register') }}">SIGNUP</a></li>
 							</ul>
-						<div class="cart"><a href="#"><span></span></a>@if($total > 0) <span class="badge"> {{ $total }} </span>@endif</div>
+					@else
+
+						   <div class="dropdown account">
+						        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span></span>{{ Auth::user()->name }}<b class="caret"></b></a>
+						        <ul class="dropdown-menu">
+						            <li><a href="{{ url('/logout') }}">Salir</a></li>
+						        </ul>
+				   		 </div>
+						  
+                  @endif		
+						<div class="cart"><a href="{{ url('/checkout') }}"><span></span></a>@if($total > 0) <span class="badge"> {{ $total }} </span>@endif</div>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="clearfix"> </div>	
@@ -68,15 +79,17 @@
 		</div>
 	</div>
 	
-	<link href="{{  asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
-	<!--theme-style-->
-	<link href="{{  asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all" />	
-	<!--//theme-style-->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	
-	<!--fonts-->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-	<!--//fonts-->
-	<script src="{{  asset('js/jquery.min.js') }}"></script>
-	<!--script-->
+<!--theme-style propios de la app-->
+<link href="{{  asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--Fin Librerias propias -->	
+
+<!--Librerias bootstrap y Jquery-->	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Fin Librerias bootstrap y Jquery-->	
+
 @show

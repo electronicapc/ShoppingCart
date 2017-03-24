@@ -18,13 +18,22 @@ Route::get('/categoria/{id}/{asc?}', 'ShopController@show')->where(['id' => '[0-
 Route::get('/categoria/single/{id}', 'ShopController@showprod')->where(['id' => '[0-9]+']);
 
 Route::post('/checkout', 'CheckoutController@addprod');
+Route::get('/checkout', function () {
+    return view('cart');
+});
 Route::post('/checkout/{id}/{can}', 'CheckoutController@addcant')->where(['can' => '[0-9]+'],['id' => '[0-9]+']);
+Route::get('/checkout/{id}', 'CheckoutController@remcant')->where(['id' => '[0-9]+']);
 
 Route::get('/vrfauth', 'ShopController@showprod')->where(['id' => '[0-9]+']);
 
 Auth::routes();
 
+Route::get('/pruebas', function () {
+	return view('pruebas');
+});
 
-Route::get('/home', function () {
-    return view('home');
+Route::get('/logout', function () {
+    Auth::logout();
+    return back();
+    
 });

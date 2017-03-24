@@ -1,3 +1,4 @@
+@includeIf('layouts.header')
 @extends('layouts.app')
 
 @section('content')
@@ -103,8 +104,14 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
-                        <div class="form-group">
+                         <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                            <label for="recaptcha" class="col-md-4 control-label">Captcha</label>
+                             	<div class="col-md-6">
+									{!! Recaptcha::render() !!}
+								</div>	
+						</div>
+		
+	                    <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
@@ -118,3 +125,4 @@
     </div>
 </div>
 @endsection
+
