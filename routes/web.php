@@ -28,10 +28,6 @@ Route::get('/vrfauth', 'ShopController@showprod')->where(['id' => '[0-9]+']);
 
 Auth::routes();
 
-Route::get('/pruebas', function () {
-	return view('pruebas');
-});
-
 Route::get('/depto', 'CityController@index');
 Route::get('/depto/{id}', 'CityController@munic')->where('id', '[A-Za-z]+');
 
@@ -45,4 +41,20 @@ Route::get('/logout', function () {
     Auth::logout();
     return back();
     
+});
+
+//Rutas de pruebas
+
+Route::get('/pruebas', function () {
+	return view('pruebas');
+});
+Route::get('/pdf', function () {
+	$data =  [
+			'quantity'      => '1' ,
+			'description'   => 'some ramdom text',
+			'price'   => '500',
+			'total'     => '898900'
+	];
+	$pdf = PDF::loadView('genpdf',['data' => $data]);
+	return $pdf->download('detalleVenta.pdf');
 });

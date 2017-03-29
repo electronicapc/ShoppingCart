@@ -2,6 +2,16 @@
 <html>
 <head>
 <title>Softecol</title>
+@php
+	$data 	= Session::get('cart');
+	$totalc = 0;
+	foreach($data as $key => $value)
+	{
+		$totalc = ($value['cantidad']*$value['precio']) + $totalc;
+	}
+
+@endphp
+
 @includeIf('layouts.header')
 <link rel="stylesheet" href="{{ asset('css/etalage.css') }}" type="text/css" media="all" />
 
@@ -84,7 +94,7 @@
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
 							      <h4 class="panel-title">
-							        <input name="forma-pago" id="paypal" type="radio" data-toggle="collapse" data-parent="#accordion" data-target="#collapse3"/><span data-toggle="tooltip" data-placement="top" title="Este pago es permitido &uacute;nicamente para montos de compra superiores a $50.000.oo pesos, se liquidara haciendo conversi&oacute;n a dolares USD, la comisi&oacute;n de pago igual al 4% de total, 900 COP  y los cargos de env&iacute;o">PAY-U</span>
+							        <input name="forma-pago" id="paypal" type="radio" data-toggle="collapse" data-parent="#accordion" data-target="#collapse3"/><span data-toggle="tooltip" data-placement="top" title="Este pago es permitido &uacute;nicamente para montos de compra superiores a $30.000.oo pesos, la comisi&oacute;n de pago igual al 3.5% de total, 900 COP o $2.900 si es inferior y los cargos de env&iacute;o">PAY-U</span>
 							       </h4>
 							    </div>
 							    <div id="collapse3" class="panel-collapse collapse">
@@ -107,6 +117,7 @@
 		                </div>		            
 	                </div>	            
 	            </div>
+	            {{ Form::hidden('totalc', $totalc, array('id' => 'totalc')) }}
 	            </form>
         </div>
     </div>
@@ -168,6 +179,18 @@
      }
        
   	});
+  });
+
+  </script> 
+  
+   <script type="text/javascript">
+
+  $(document).ready(function() {
+		var total = $( "#totalc" ).val();
+		if (total < 50) 
+		{
+			$("#paypal").prop("disabled", "disabled");
+		}
   });
 
   </script> 
