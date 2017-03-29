@@ -56,7 +56,7 @@
 				</div>
 				<div class="header-bottom-right">	
 					@if (Auth::guest())				
-						<div class="account"><a href="{{ url('/login') }}"><span> </span>YOUR ACCOUNT</a></div>
+						<div class="account"><a href="{{ url('/login') }}"><span> </span>TU CUENTA</a></div>
 							<ul class="login">
 								<li><a href="{{ url('/login') }}"><span> </span>LOGIN</a></li> |
 								<li ><a href="{{ url('/register') }}">SIGNUP</a></li>
@@ -71,7 +71,7 @@
 				   		 </div>
 						  
                   @endif		
-						<div class="cart"><a href="{{ url('/checkout') }}"><span></span></a>@if($total > 0) <span class="badge"> {{ $total }} </span>@endif</div>
+						<div class="cart"><a href="{{ url('/checkout') }}"><span></span></a>@if($total > 0) <span class="badge badge-success" style="background-color: green"> {{ $total }} </span>@endif</div>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="clearfix"> </div>	

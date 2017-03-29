@@ -32,6 +32,15 @@ Route::get('/pruebas', function () {
 	return view('pruebas');
 });
 
+Route::get('/depto', 'CityController@index');
+Route::get('/depto/{id}', 'CityController@munic')->where('id', '[A-Za-z]+');
+
+Route::group(['middleware' =>'auth'], function () {
+	Route::match(['get', 'post'],'/pago', function () {
+		return view('pago');
+	});
+});
+	
 Route::get('/logout', function () {
     Auth::logout();
     return back();

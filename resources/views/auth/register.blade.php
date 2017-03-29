@@ -1,18 +1,17 @@
-@includeIf('layouts.header')
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row"  style="margin-top:15px">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading"><h4>Registrate</h4></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -40,7 +39,7 @@
                         </div>
                         
                       <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Direccion</label>
+                            <label for="address" class="col-md-4 control-label">Direcci&oacute;n</label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>

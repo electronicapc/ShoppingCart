@@ -15,6 +15,7 @@ body a{
 	-ms-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 }
+
 .top-header{
 	background: #F97E76;
 	padding: 0.7em 0;
@@ -912,7 +913,7 @@ a.forgot {
 	padding: 0.5em;
 	margin: 0.5em 0;
 }
-.checkbox {
+/*.checkbox {
 	margin-bottom: 4px;
 	padding-left: 27px;
 	font-size: 1.2em;
@@ -975,7 +976,7 @@ a.forgot {
 }
 .checkbox input:checked + i:after {
 	opacity: 1;
-}
+}*/
 .news-letter:hover {
 	color:#00BFF0;
 }

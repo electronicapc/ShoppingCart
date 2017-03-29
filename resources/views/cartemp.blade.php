@@ -1,8 +1,8 @@
 
 @php
-	$data = Session::get('cart');
-	
-	$total = 0;
+	$data 	= Session::get('cart');
+	$totalc = count($data);
+	$total 	= 0;
 	
 @endphp
 
@@ -20,43 +20,49 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $key => $value)
-    				           
-		                    <tr>
-		                        <td class="col-sm-8 col-md-6">
-		                            <div class="media">
-		                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{-- $item->product->imageurl --}}" style="width: 100px; height: 72px;"> </a>
-		                                <div class="media-body">
-		                                    <h4 class="media-heading"><a href="#">{{ $value['descripcion'] }}</a></h4>
-			                            </div>
-		                            </div></td>
-		                        <td class="col-sm-1 col-md-1" style="text-align: center">
-		                        </td>
-		                        <td class="col-sm-1 col-md-1 text-center">	                        
-			                        	<select id="cantidad" name="cantidad" class="form-control input-sm">
-							             	@for ($i = 1; $i < $value['existencia'] + 1; $i++)
-							             		@if($i == $value['cantidad'])
-		    										<option selected="selected">{{ $i }}</option>
-		    									@else
-		    										<option value="{{ $key }}">{{ $i }}</option>	
-		    									@endif	
-											@endfor					                
-						            	</select>
-						            	
-					            </td>
-		                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ $value['precio'] }}</strong></td>
-		                        <td class="col-sm-1 col-md-1">
-		                            <a href="checkout/{{ $key }}"> <button type="button" class="btn btn-danger">
-		                                    <span class="fa fa-remove"></span> Remove
-		                                </button>
-		                            </a>
-		                        </td>
-		                    </tr>
-		                    @php
-		                    	$total = ($value['cantidad']*$value['precio']) + $total;
-		                    @endphp
-			@endforeach
+                @if($totalc > 0)
+	                @foreach($data as $key => $value)
+	    				           
+			                    <tr>
+			                        <td class="col-sm-8 col-md-6">
+			                            <div class="media">
+			                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{-- $item->product->imageurl --}}" style="width: 100px; height: 72px;"> </a>
+			                                <div class="media-body">
+			                                    <h4 class="media-heading"><a href="#">{{ $value['descripcion'] }}</a></h4>
+				                            </div>
+			                            </div></td>
+			                        <td class="col-sm-1 col-md-1" style="text-align: center">
+			                        </td>
+			                        <td class="col-sm-1 col-md-1 text-center">	                        
+				                        	<select id="cantidad" name="cantidad" class="form-control input-sm">
+								             	@for ($i = 1; $i < $value['existencia'] + 1; $i++)
+								             		@if($i == $value['cantidad'])
+			    										<option selected="selected">{{ $i }}</option>
+			    									@else
+			    										<option value="{{ $key }}">{{ $i }}</option>	
+			    									@endif	
+												@endfor					                
+							            	</select>
+							            	
+						            </td>
+			                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ $value['precio'] }}</strong></td>
+			                        <td class="col-sm-1 col-md-1">
+			                            <a href="checkout/{{ $key }}"> <button type="button" class="btn btn-danger">
+			                                    <span class="fa fa-remove"></span> Remove
+			                                </button>
+			                            </a>
+			                        </td>
+			                    </tr>
+			                    @php
+			                    	$total = ($value['cantidad']*$value['precio']) + $total;
+			                    @endphp
+					@endforeach
+ 				@else
+ 					 <tr>
+ 					 	<div class="alert alert-danger">Opsss El carrito esta vacio, te invitamos a llenarlo con excelentes productos</div>
+ 					 </tr>
  				
+ 				@endif
                 <tr>
                     <td>   </td>
                     <td>   </td>
@@ -74,10 +80,16 @@
                             </button>
                         </a></td>
                     <td>
-                    {!! Form::open(['url' => 'foo/bar']) !!}
-                        <button type="submit" class="btn btn-success">
-                            Comprar <span class="fa fa-play"></span>
-                        </button></td>
+                    {!! Form::open(['url' => 'pago']) !!}
+                    	 @if($totalc > 0)
+	                        <button type="submit" class="btn btn-success">
+	                            Comprar <span class="fa fa-play"></span>
+	                        </button></td>
+	                     @else
+	                     	<button type="submit" disabled="disabled" class="btn btn-success disabled">
+	                            Comprar <span class="fa fa-play"></span>
+	                        </button></td>
+	                     @endif   
                     {!! Form::close() !!}    
                 </tr>
                 </tbody>

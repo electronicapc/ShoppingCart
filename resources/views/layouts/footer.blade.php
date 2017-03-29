@@ -13,7 +13,7 @@
 					<div class="clearfix"> </div>
 				</div>
 				<div class="latter-right">
-					<p>FOLLOW US</p>
+					<p>SIGUENOS</p>
 					<ul class="face-in-to">
 						<li><a href="#"><span> </span></a></li>
 						<li><a href="#"><span class="facebook-in"> </span></a></li>
@@ -54,15 +54,12 @@
 					</ul>
 				</div>
 				<div class="footer-bottom-cate cate-bottom">
-					<h6>OUR ADDERSS</h6>
+					<h6>Nuestra direcci&oacute;n</h6>
 					<ul>
-						<li>Aliquam metus  dui. </li>
-						<li>orci, ornareidquet</li>
-						<li> ut,DUI.</li>
-						<li >nisi, dignissim</li>
-						<li >gravida at.</li>
-						<li class="phone">PH : 6985792466</li>
-						<li class="temp"> <p class="footer-class">Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p></li>
+						<li>Dg 2B No 82 - 40</li>
+						<li>Bogot&aacute;, Colombia</li>
+						<li class="phone"><a href="tel:3005672190"><img src="{{ asset('images/phone.png') }}" width="50" height="50"></a></li>
+						<li class="temp"> <p class="footer-class">En colaboraci&oacute;n con <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p></li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
