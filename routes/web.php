@@ -35,6 +35,10 @@ Route::group(['middleware' =>'auth'], function () {
 	Route::match(['get', 'post'],'/pago', function () {
 		return view('pago');
 	});
+	
+	Route::post('/confpago', 'CheckoutController@confpago');
+	
+	Route::post('/ins_ven', 'CheckoutController@insven');
 });
 	
 Route::get('/logout', function () {

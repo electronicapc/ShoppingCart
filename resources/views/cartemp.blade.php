@@ -13,9 +13,9 @@
                 <tr>
                     <th>Product</th>
                     <th></th>
-                    <th class="text-center"></th>
                     <th class="text-center">Cantidad</th>
                     <th class="text-center">Total</th>
+                    <th class="text-center"></th>
                     <th> </th>
                 </tr>
                 </thead>
@@ -37,7 +37,7 @@
 				                        	<select id="cantidad" name="cantidad" class="form-control input-sm">
 								             	@for ($i = 1; $i < $value['existencia'] + 1; $i++)
 								             		@if($i == $value['cantidad'])
-			    										<option selected="selected">{{ $i }}</option>
+			    										<option value="{{ $key }}" selected="selected">{{ $i }}</option>
 			    									@else
 			    										<option value="{{ $key }}">{{ $i }}</option>	
 			    									@endif	
@@ -45,7 +45,7 @@
 							            	</select>
 							            	
 						            </td>
-			                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ $value['precio'] }}</strong></td>
+			                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ $value['precio'] * $value['iva']}}</strong></td>
 			                        <td class="col-sm-1 col-md-1">
 			                            <a href="checkout/{{ $key }}"> <button type="button" class="btn btn-danger">
 			                                    <span class="fa fa-remove"></span> Remove
@@ -54,7 +54,7 @@
 			                        </td>
 			                    </tr>
 			                    @php
-			                    	$total = ($value['cantidad']*$value['precio']) + $total;
+			                    	$total = ($value['cantidad']*$value['precio']*$value['iva']) + $total;
 			                    @endphp
 					@endforeach
  				@else

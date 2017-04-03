@@ -43,7 +43,12 @@
 				</div>
 				    <h4><a href="#">{{ $categorie->name }}</a></h4>
 				     <p>{{ $categorie->Descripcion }}</p>
-				     {{ $categorie->precpu }}
+					    @if ($categorie->iva === 'SI')
+						    ${{ $categorie->precpu * (1 + ($categorie->ivap)/100) }}
+						@else
+						    ${{ $categorie->precpu}}
+						@endif
+				     
 			   	</div>
               </div>
               

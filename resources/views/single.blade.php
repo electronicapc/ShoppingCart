@@ -71,7 +71,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				{!! Form::open(['url' => 'checkout'], ['method' => 'post'], ['class' => 'form-inline'], ['role'=> 'form'] ) !!}
 					
 						<div class="form-group">
-					 		<div class="left-n ">${{ $productos->precpu }}</div>
+					 		<div class="left-n ">
+					 			@if ($productos->iva === 'SI')
+						    		${{ $productos->precpu * (1 + ($productos->ivap)/100) }}
+								@else
+								    ${{ $productos->precpu}}
+								@endif
+
+					 		</div>
 						 </div>
 						  <div class="form-group">
 						  <!--    <label for="cantidad" >Cantidad :</label>

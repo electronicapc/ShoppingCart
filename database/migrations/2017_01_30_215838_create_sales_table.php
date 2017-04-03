@@ -18,7 +18,7 @@ class CreateSalesTable extends Migration
         	$table->integer('idCliente');
         	$table->decimal('valorFacturado',12,2);
         	$table->datetime('fechatx',100);
-        	$table->smallInteger('ivac');
+        	$table->decimal('ivac',12,2);
         	$table->char('confirmado',2);
         	$table->foreign('idCliente')
         	->references('documento')->on('users')
