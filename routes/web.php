@@ -39,6 +39,8 @@ Route::group(['middleware' =>'auth'], function () {
 	Route::post('/confpago', 'CheckoutController@confpago');
 	
 	Route::post('/ins_ven', 'CheckoutController@insven');
+	
+	Route::get('/response_Payu', 'CheckoutController@res_payu');
 });
 	
 Route::get('/logout', function () {
@@ -62,3 +64,6 @@ Route::get('/pdf', function () {
 	$pdf = PDF::loadView('genpdf',['data' => $data]);
 	return $pdf->download('detalleVenta.pdf');
 });
+
+Route::get('/deptos', 'CityController@indexx');
+//Fin rutas de pruebas	

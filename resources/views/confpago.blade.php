@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>Softecol</title>
-
 @includeIf('layouts.header')
 
 <link rel="stylesheet" href="{{ asset('css/etalage.css') }}" type="text/css" media="all" />
@@ -33,7 +32,7 @@
         <p>Recuerde que si el pago seleccionado es mediante consignaci&oacute;n se debe anexar copia de esta mediante 
         correo el&eacute;ctronico a electronicapcolombia@gmail.com o mensajer&iacute;a instantanea al n&uacute;mero 300 5672190
         indicando el n&uacute;mero de referencia de la compra, que ser&aacute; enviado al correo el&eacute;ctronico registrado para proceder con el envio.
-        Si el pago es contra-entrega en efectivo recibir&aacute; una llamada de confirmaci&oacute;n el d&iacute;a de la entrega onfirmando disponibilidad de pago.
+        Si el pago es contra-entrega en efectivo recibir&aacute; una llamada de confirmaci&oacute;n el d&iacute;a de la entrega confirmando disponibilidad de pago.
         Si se seleccion&oacute; como medio de pago Pay-u ser&aacute; redireccionado a la p&aacute;gina de pagos y de ser efectivo se confirmar&aacute; inmediatamente el env&iacute;o de los productos</p>
       </div>
       <div class="modal-footer">
@@ -51,7 +50,7 @@
     					@elseif ($arrcp['forpa'] == 'efectivo')
     						{!! Form::open(['url' => 'ins_ven','method' => 'post']) !!}
     					@else
-    						{!! Form::open(['url' => 'ins_ven','method' => 'post']) !!}    					
+    						{!! Form::open(['url' => 'https://sandbox.gateway.payulatam.com/ppp-web-gateway','method' => 'post']) !!}    					
     					@endif  					
 			                
 				            <div class="col-md-5 col-xs-12 col-lg-5 col-md-offset-4">
@@ -112,7 +111,7 @@
 							{{ Form::hidden('gasfin', $arrcp['ctfin']) }}
 							{{ Form::hidden('gasenv', $arrcp['ctenv']) }}
 							@php
-								$taxReturnBase = ($arrcp['ctbrt']-$arrcp['ctiva'] );
+								$taxReturnBase = round(($arrcp['ctbrt']-$arrcp['ctiva']),2);
 							@endphp
 							{{ Form::hidden('taxReturnBase',$taxReturnBase) }}
 							{{ Form::hidden('signature',$arrcp['signature']) }}
@@ -125,7 +124,8 @@
 							{{ Form::hidden('shippingCountry', "Colombia") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
-							{{ Form::hidden('responseUrl', "http://www.test.com/response") --}}
+							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response.php") 
+							{{ Form::hidden('algorithmSignature', "SHA") --}}
 							
 							
 							{{ Form::hidden('merchantId', 508029) }}
@@ -137,7 +137,7 @@
 							{{ Form::hidden('gasfin', $arrcp['ctfin']) }}
 							{{ Form::hidden('gasenv', $arrcp['ctenv']) }}
 							@php
-								$taxReturnBase = ($arrcp['ctbrt']-$arrcp['ctiva'] );
+								$taxReturnBase = round(($arrcp['ctbrt']-$arrcp['ctiva']),2);
 							@endphp
 							{{ Form::hidden('taxReturnBase',$taxReturnBase) }}
 							{{ Form::hidden('signature',$arrcp['signature']) }}
@@ -150,7 +150,8 @@
 							{{ Form::hidden('shippingCountry', "Colombia") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
-							{{ Form::hidden('responseUrl', "http://www.test.com/response") }}
+							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response.php") }}
+							{{ Form::hidden('algorithmSignature', "SHA") }}
 							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
 				            {!! Form::close() !!} 
 				      </div>      

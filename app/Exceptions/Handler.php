@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
+//use ReflectionException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -44,6 +46,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+    	
+    	if ($exception instanceof ReflectionException) {
+    		return response()->view('errors.404', [], 404);
+    	}
         return parent::render($request, $exception);
     }
 
@@ -61,5 +67,18 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest('login');
+    }
+    
+    protected function renderModelNotFoundException(ModelNotFoundException $e)
+    {
+    	 
+    	if (view()->exists('errors.404'))
+    	{
+    		return response()->view('errors.404', [], 404);
+    	}
+    	else
+    	{
+    		return (new SymfonyDisplayer(config('app.debug'))) ->createResponse($e);
+    	}
     }
 }

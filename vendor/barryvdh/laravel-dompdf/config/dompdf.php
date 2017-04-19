@@ -38,7 +38,7 @@ return array(
          * Times-Roman, Times-Bold, Times-BoldItalic, Times-Italic,
          * Symbol, ZapfDingbats.
          */
-        "DOMPDF_FONT_DIR" => storage_path('fonts/'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
+        "DOMPDF_FONT_DIR" => storage_path('../public/fonts/'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
 
         /**
          * The location of the DOMPDF font cache directory
@@ -48,7 +48,7 @@ return array(
          *
          * Note: This directory must exist and be writable by the webserver process.
          */
-        "DOMPDF_FONT_CACHE" => storage_path('fonts/'),
+        "DOMPDF_FONT_CACHE" => storage_path('../public/fonts/'),
 
         /**
          * The location of a temporary directory.
@@ -152,7 +152,7 @@ return array(
          *
          * @see CPDF_Adapter::PAPER_SIZES for valid sizes ('letter', 'legal', 'A4', etc.)
          */
-        "DOMPDF_DEFAULT_PAPER_SIZE" => "a4",
+        "DOMPDF_DEFAULT_PAPER_SIZE" => "letter",
 
         /**
          * The default font family
