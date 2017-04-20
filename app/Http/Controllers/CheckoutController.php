@@ -219,7 +219,7 @@ class CheckoutController extends Controller
 		{
 			return view('cart')->with('respay', $data);
 		}
-		else if($estadoTx == "aprobada" )
+		else if(strtoupper($signature) == strtoupper($firmacreada) && $estadoTx == "aprobada" )
 		{
 			return view('fintx')->with('respay', $data);
 		}

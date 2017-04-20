@@ -1,42 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>404</title>
-<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-<style>
-html, body {
-height: 100%;
-}
-body {
-margin: 0;
-padding: 0;
-width: 100%;
-color: #B0BEC5;
-display: table;
-font-weight: 100;
-font-family: 'Lato';
-}
-.container {
-text-align: center;
-display: table-cell;
-vertical-align: middle;
-}
-.content {
-text-align: center;
-display: inline-block;
-}
-.title {
-font-size: 72px;
-margin-bottom: 40px;
-}
-</style>
+<title>Softecol</title>
+@includeIf('layouts.header')
 </head>
 <body>
 <div class="container">
-<div class="content">
-<div class="title">Usted no fue autorizado para enviar datos al servidor</div>
-	<button href="{{ route('/') }}" type="button" class="btn btn-default">Ponerme a salvo!!</button>
+	<div class="row" style="margin-top:15px">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="alert alert-danger alert-dismissable fade in">
+			  <strong>Error</strong> No posee permisos para enviar esos datos al servidor.
+			</div>
+			<div class="col-md-offset-4">
+				<button href="{{ url('/') }}" type="button" class="btn btn-danger">Ponerme a salvo!!</button>
+			</div>
+		</div>
+	</div>
 </div>
-</div>
+    @includeIf('layouts.footer')
 </body>
 </html>
