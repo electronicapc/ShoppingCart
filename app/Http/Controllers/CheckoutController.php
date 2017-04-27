@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
+use DB;
+use App\Detalleventa;
 use App\Producto;
 use App\Venta;
 use Carbon\Carbon;
@@ -112,7 +114,7 @@ class CheckoutController extends Controller
 		$idven->ivac			= $ctiva;
 		$idven->confirmado		= 'NO';
 		$idven->save();
-		//fIN INSERCION
+		//Fin insercion
 		$last_id = $idven->id;
 		//echo $last_id, exit(-1);
 		//Signature
@@ -138,8 +140,17 @@ class CheckoutController extends Controller
 			//$message->to(env('CONTACT_MAIL'), env('CONTACT_NAME'));
 		
 		});*/
+		if ($request->input('forpa') == 'Consignacion')
+		{
+			$tiptx = 1;
+		}
+		else 
+		{
+			$tiptx = 2;
+		}
 
 		$data =  [
+				'refcli'    => $request->input('referenceCode'),
 				'nomcli'    => $request->input('buyerFullName'),
 				'emacli'   	=> $request->input('buyerEmail'),
 				'dircli'   	=> $request->input('shippingAddress'),
@@ -150,17 +161,34 @@ class CheckoutController extends Controller
 				'gasfin'   	=> $request->input('gasfin'),
 				'gasenv'   	=> $request->input('gasenv'),
 				'ivacli'   	=> $request->input('tax'),
-				'totcli'   	=> $request->input('amount')
+				'totcli'   	=> $request->input('amount'),
+				'forpa'   	=> $request->input('forpa'),
+				'tiptx'		=> $tiptx
 		];
+		//Inicio COntruccion PDF
+		$pdf = \PDF::loadView('genpdf',['data' => $data])->save('pdf/'.$request->input('referenceCode').'.pdf');
+		//Fin pdf
 		//Rutina de envio de mail
-		$totmail  = array('valbru' => $request->input('valbru'),'gasfin' => $request->input('gasfin'),'gasenv' => $request->input('gasenv'),'ivacli' => $request->input('tax'),'totcli' => $request->input('amount'));
+		$totmail  = array('refcod'=>$request->input('referenceCode'),'valbru' => $request->input('valbru'),'gasfin' => $request->input('gasfin'),'gasenv' => $request->input('gasenv'),'ivacli' => $request->input('tax'),'totcli' => $request->input('amount'),'dirent' => $request->input('shippingAddress'),'ciuent' => $request->input('shippingCity'),'telent' => $request->input('telephone'),'metpag'=>$tiptx,'ip'=>$request->ip());
 		\Mail::to($request->input('buyerEmail'))->send(new ConfirmarCompra($totmail));
 		//Fin de rutina de mail
-		//Inicio COntruccion PDF
-		$pdf = \PDF::loadView('genpdf',['data' => $data]);
-		return $pdf->download('detalleVenta.pdf');
-		//FIn construccion pdf
-		//return view('cart');
+		//Descargamos el carrito en tabla
+		$datcar = Session::get('cart');
+		foreach ($datcar as $key =>$value)
+		{
+			DB::table('detalleVentas')->insert([
+				'CodigoVenta'       => $request->input('referenceCode'),
+				'CodigoProducto' 	=> $key,
+				'descuento'         => 0,
+				'cantidad'          => $value['cantidad'],
+				'valorFac'          => $value['total'],
+				'ivaFac'            => $value['iva']]);
+		}
+		//fin descarga
+		$request->session()->forget('cart');
+		return view('fintx')->with('respay', $data);
+		//return $pdf->download('detalleVenta.pdf');
+		//Fin construccion pdf
 	}
 	public function res_payu(Request $request)
 	{
@@ -169,6 +197,7 @@ class CheckoutController extends Controller
 		$mer_id			= env('MER_PAY_ID','ERROR');
 		$referenceCode  = $request->input('referenceCode');
 		$TX_VALUE   	= $request->input('TX_VALUE');
+		$ivatot   		= $request->input('TX_TAX');
 		$currency   	= $request->input('currency');
 		$txState   		= $request->input('transactionState');
 		$signature   	= $request->input('signature');
@@ -180,9 +209,13 @@ class CheckoutController extends Controller
 		$txId 			= $request->input('transactionId');
 		$tx_val_m		= number_format($TX_VALUE, 1, '.', '');
 		$firma_cadena	= "$api_key~$mer_id~$referenceCode~$tx_val_m~$currency~$txState";
-		$firmacreada 	= md5($firma_cadena);
+		$firmacreada 	= sha1($firma_cadena);
 		$url 			= $request->fullUrl();
 		$mensaje 		= $request->input('message');
+		$valbru 		= $request->input('extra1');
+		$valfin 		= $request->input('extra2');
+		$valenv 		= $request->input('extra3');
+		$mailcl 		= $request->input('buyerEmail');
 		
 		if ($txState == 4 )
 		{
@@ -213,20 +246,116 @@ class CheckoutController extends Controller
 				'tx_val_m'   	=> $tx_val_m,
 				'mensaje'   	=> $mensaje,
 				'descrp'   		=> $descrp,
-				'estadoTx' 		=> $estadoTx
+				'estadoTx' 		=> $estadoTx,
+				'valbru' 		=> $valbru,
+				//'nomcli'   		=> Auth::user()->name,
+				'nomcli'   		=> 'nesiton reyes',
+				'emacli'   		=> $mailcl,
+				'dircli'   		=> 'Confirmada por correo',
+				'ciucli'   		=> 'Confirmada por correo',
+				'telcli'   		=> 'Confirmado por correo',
+				'refcli'   		=> $referenceCode,
+				'gasfin'   		=> $valfin,
+				'gasenv'   		=> $valenv,
+				'ivacli'   		=> $ivatot,
+				'totcli'   		=> $TX_VALUE,
+				'tiptx'			=> 3
+				
 		];
 		if (strtoupper($signature) == strtoupper($firmacreada) && $estadoTx != "aprobada" && $estadoTx != "desconocido")
 		{
 			return view('cart')->with('respay', $data);
 		}
-		else if(strtoupper($signature) == strtoupper($firmacreada) && $estadoTx == "aprobada" )
+		else if((strtoupper($signature) == strtoupper($firmacreada)) && $estadoTx == "aprobada" )
 		{
+			$pdf = \PDF::loadView('genpdf',['data' => $data])->save('pdf/'.$referenceCode.'.pdf');
+			$datcar = Session::get('cart');
+			foreach ($datcar as $key =>$value)
+			{
+				DB::table('detalleVentas')->insert([
+						'CodigoVenta'       => $referenceCode,
+						'CodigoProducto' 	=> $key,
+						'descuento'         => 0,
+						'cantidad'          => $value['cantidad'],
+						'valorFac'          => $value['total'],
+						'ivaFac'            => $value['iva']]);
+			}
+			$request->session()->forget('cart');
 			return view('fintx')->with('respay', $data);
+			//return $pdf->download('detalleVenta.pdf');
 		}
 		else
 		{
 			abort(401, 'Unauthorized.');
 		}
 	}	
+	
+	public function conf_payu(Request $request)
+	{
+		$api_key			= env('API_PAYU_KEY','ERROR');
+		$mer_id				= env('MER_PAY_ID','ERROR');
+		$state_pol			= $request->input('state_pol');
+		$response_code_pol	= $request->input('response_code_pol');
+		$reference_sale		= $request->input('reference_sale');
+		$reference_pol		= $request->input('reference_pol');
+		$sign				= $request->input('sign');
+		$extra1				= $request->input('extra1');
+		$extra2				= $request->input('extra2');
+		$extra3				= $request->input('extra3');
+		$payment_method		= $request->input('payment_method');
+		$payment_method_type= $request->input('payment_method_type');
+		$value				= $request->input('value');
+		$tax				= $request->input('tax');
+		$transaction_date	= $request->input('transaction_date');
+		$email_buyer		= $request->input('email_buyer');
+		$pse_bank			= $request->input('pse_bank');
+		$test               = $request->input('test');
+		$description        = $request->input('description');
+		$billing_address    = $request->input('billing_address');
+		$shipping_address   = $request->input('shipping_address');
+		$phone              = $request->input('phone');
+		$office_phone       = $request->input('office_phone');
+		$admin_fee          = $request->input('administrative_fee');
+		$admin_fee_base     = $request->input('administrative_fee_base');
+		$admin_fee_tax      = $request->input('administrative_fee_tax');
+		$billing_city       = $request->input('billing_city');
+		$billing_country	= $request->input('billing_country');
+		$commision_pol      = $request->input('commision_pol');
+		$commision_pol_cur  = $request->input('commision_pol_currency');
+		$customer_number	= $request->input('customer_number');
+		$date               = $request->input('date');
+		$ip                 = $request->input('ip');
+		$payment_method_id  = $request->input('payment_method_id');
+		$payment_reqt_state = $request->input('payment_request_state');
+		$response_mess_pol  = $request->input('response_message_pol');
+		$shipping_city      = $request->input('shipping_city');
+		$shipping_country   = $request->input('shipping_country');
+		$transaction_id     = $request->input('transaction_id');
+		$pay_method_name    = $request->input('payment_method_name');
+				
+		if (strtoupper($signature) == strtoupper($firmacreada) && $state_pol == 4)
+		{
+			$venap	= App\Venta::find($reference_sale);
+			$venap->confirmado = 'SI' ;
+			$venap->save();
+								
+			$totmail  = array('refcod' => $reference_sale,'response_message_pol' => $response_mess_pol,'valbru' => $extra1,'gasfin' => $extra2,'gasenv' => $extra3,'ivacli' => $tax,'totcli' => $value,'fectx' => $transaction_date,'shipping_address' => $shipping_address,'phone'=>$phone,'billing_city'=>$billing_city,'ip'=>$ip,'shipping_city'=>$shipping_city,'pay_method_name'=>$pay_method_name,'metpag'=>3);
+			\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+		}
+		else if(strtoupper($signature) == strtoupper($firmacreada) && $state_pol == 6 )
+		{
+			$totmail  = array('refcod' => $reference_sale,'response_message_pol' => $response_mess_pol,'valbru' => $extra1,'gasfin' => $extra2,'gasenv' => $extra3,'ivacli' => $tax,'totcli' => $value,'fectx' => $transaction_date,'shipping_address' => $shipping_address,'phone'=>$phone,'billing_city'=>$billing_city,'ip'=>$ip,'shipping_city'=>$shipping_city,'pay_method_name'=>$pay_method_name,'metpag'=>3);
+			\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+		}
+		else if(strtoupper($signature) == strtoupper($firmacreada) && $state_pol == 5)
+		{
+			$totmail  = array('refcod' => $reference_sale,'response_message_pol' => $response_mess_pol,'valbru' => $extra1,'gasfin' => $extra2,'gasenv' => $extra3,'ivacli' => $tax,'totcli' => $value,'fectx' => $transaction_date,'shipping_address' => $shipping_address,'phone'=>$phone,'billing_city'=>$billing_city,'ip'=>$ip,'shipping_city'=>$shipping_city,'pay_method_name'=>$pay_method_name,'metpag'=>3);
+			\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+		}
+		else
+		{
+			Log::notice('Existio un error de concordancia en la firma enviada desde Payu:  Codigo de referencia de compra->'.$reference_sale.' Valor reportado-> '.$value.' Metodo de pago->'.$payment_method.'Fecha de tx->'.$transaction_date);
+		}
+	}
 	
 }

@@ -35,8 +35,9 @@ Auth::routes();
 Route::get('/depto', 'CityController@index');
 Route::get('/depto/{id}', 'CityController@munic')->where('id', '[A-Za-z]+');
 //Fin rutas
-
+//Rutas Payu response
 Route::get('/response_Payu', 'CheckoutController@res_payu');
+Route::post('/conf_Payu', 'CheckoutController@conf_payu');
 //Rutas autenticadas
 Route::group(['middleware' =>'auth'], function () {
 	Route::match(['get', 'post'],'/pago', function () {

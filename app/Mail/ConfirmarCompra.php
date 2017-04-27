@@ -33,8 +33,8 @@ class ConfirmarCompra extends Mailable
         return $this->view('emails.compra')
 				        ->cc('electronicapcolombia@gmail.com')
 				        ->from('gunsnjrc@gmail.com', 'Softecol')
-				        ->subject('Nueva compra registrada Softecol');
-				       // ->attach('/path/to/file', ['as' => 'name.pdf','mime' => 'application/pdf',]);
+				        ->subject('Nueva compra registrada Softecol')
+				        ->attach('pdf/'.$this->total['refcod'].'.pdf', ['as' => 'DetalleCompraSoftecol.pdf','mime' => 'application/pdf',]);
         			
     }
 }

@@ -12,7 +12,7 @@
 			  <strong>Error</strong> No posee permisos para enviar esos datos al servidor.
 			</div>
 			<div class="col-md-offset-4">
-				<button href="{{ url('/') }}" type="button" class="btn btn-danger">Ponerme a salvo!!</button>
+				<button type="button" class="btn btn-danger"> <a style="color:white" href="{{ url('/') }}" >Ponerme a salvo!!</a></button>
 			</div>
 		</div>
 	</div>

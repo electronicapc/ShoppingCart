@@ -103,6 +103,7 @@
 				                </div>	            
 				            </div>
 				            {{-- Form::hidden('merchantId', 505232) }}
+				            {{ Form::hidden('forpa', $arrcp['forpa']) }}
 							{{ Form::hidden('referenceCode', $arrcp['last_id']) }}
 							{{ Form::hidden('description', "Venta de productos Softecol") }}
 							{{ Form::hidden('amount',$arrcp['ctota'] ) }}
@@ -124,11 +125,16 @@
 							{{ Form::hidden('shippingCountry', "Colombia") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
-							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response.php") 
+							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response.php")
+							{{ Form::hidden('confirmationUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_conf.php") }}
+							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
+							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
+							{{ Form::hidden('extra3', $arrcp['ctenv']) }} 
 							{{ Form::hidden('algorithmSignature', "SHA") --}}
 							
 							
 							{{ Form::hidden('merchantId', 508029) }}
+							{{ Form::hidden('forpa', $arrcp['forpa']) }}
 							{{ Form::hidden('referenceCode', $arrcp['last_id']) }}
 							{{ Form::hidden('description', "Venta de productos Softecol") }}
 							{{ Form::hidden('amount',$arrcp['ctota'] ) }}
@@ -151,8 +157,12 @@
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
 							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response.php") }}
+							{{ Form::hidden('confirmationUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response_system.php") }}
 							{{ Form::hidden('algorithmSignature', "SHA") }}
 							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
+							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
+							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
+							{{ Form::hidden('extra3', $arrcp['ctenv']) }}
 				            {!! Form::close() !!} 
 				      </div>      
  		</div>

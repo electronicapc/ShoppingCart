@@ -28,10 +28,35 @@
 			              <div class="panel-heading text-center"><h4>Gracias por tu compra!!</h4></div>
 				        	    <div class="panel-body">
 				        	    	<h2><p class="text-center">Resultado de la transacci&oacute;n</p></h2>
-									<dl class="dl-horizontal">
+									<dl class="dl-horizontal">											  
+											  @if ($respay['tiptx']  == 1 || $respay['tiptx'] == 2)
+											  <dt><h4><p class="text-left">M&eacute;todo de pago utilizado:</p></h4></dt>
+											  @if ( $respay['tiptx']  == 1)
+											  	<dd><h4>Consginaci&oacute;n</h4></dd>
+											  @else
+											  <dd><h4>Efectivo</h4></dd>
+											  @endif											  
+											  <dt><h4><p class="text-left">Estado transacci&oacute;n:</p></h4></dt>
+											  <dd><h4>Pendiente por pagar/Confirmar</h4></dd>
+											  
+											  <dt><h4><p class="text-left">Valor bruto:</p></h4></dt>
+											  <dd><h4>{{ $respay['valbru'] }}</h4></dd>
+											  											
+											  <dt><h4><p class="text-left">Costos financieros:</p></h4></dt>
+											  <dd><h4>{{ $respay['gasfin'] }}</h4></dd>
+										
+											  <dt><h4><p class="text-left">Gastos de envio:</p></h4></dt>
+											  <dd><h4>{{ $respay['gasenv'] }}</h4></dd>
+											 
+											  <dt><h4><p class="text-left">Iva facturado:</p></h4></dt>
+											  <dd><h4>{{ $respay['ivacli'] }}</h4></dd>
+											  
+											  <dt><h4><p class="text-left">Monto de transacci&oacute;n:</p></h4></dt>
+											  <dd><h4>${{ number_format($respay['totcli'],2) }}</h4></dd>
+
+											  @else
 											  <dt><h4><p class="text-left">M&eacute;todo de pago utilizado:</p></h4></dt>
 											  <dd><h4>{{ $respay['lapPayMethod'] }}</h4></dd>
-											  
 											  <dt><h4><p class="text-left">Estado transacci&oacute;n:</p></h4></dt>
 											  <dd><h4>{{ $respay['mensaje'] }}</h4></dd>
 											 
@@ -43,15 +68,18 @@
 										
 											  <dt><h4><p class="text-left">Descripcion del pago:</p></h4></dt>
 											  <dd><h4>{{ $respay['descrp'] }}</h4></dd>
-
+											 @endif
 											</dl>											
 											<a href="{{ url('/') }}"> <button type="button" class="btn btn-success">
 	                                			 Regresar al inicio</button></a>
+	                                		<a href="pdf/{{ $respay['refcli'] }}.pdf"> <button type="button" class="btn btn-warning">
+	                                			 Descargar comprobante</button></a>
 							</div>           
 				       </div>	            
 				  </div>
 			</div>      
- 		</div>
+ 		</div>			
+ 
     @includeIf('layouts.footer')
 </body>
 </html>

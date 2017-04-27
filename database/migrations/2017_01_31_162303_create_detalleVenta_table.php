@@ -13,7 +13,7 @@ class CreateDetalleVentaTable extends Migration
      */
     public function up()
     {
-        Schema::create('detalleVenta', function (Blueprint $table) {
+        Schema::create('detalleVentas', function (Blueprint $table) {
             $table->integer('CodigoVenta');
         	$table->integer('CodigoProducto');
         	$table->integer('cantidad');
