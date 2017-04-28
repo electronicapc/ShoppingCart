@@ -52,6 +52,14 @@ Route::group(['middleware' =>'auth'], function () {
 });
 //Fin rutas	
 
+//Rutas administrativas
+	Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+	{
+		Route::get('/admin', 'AdminController@admin');
+
+	});
+//Din rutas adminitrativas
+
 Route::get('/logout', function () {
     Auth::logout();
     return back();
