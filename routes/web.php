@@ -56,6 +56,8 @@ Route::group(['middleware' =>'auth'], function () {
 	Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 	{
 		Route::get('/admin', 'AdminController@admin');
+		
+		Route::post('admin/upload', 'AdminController@save');
 
 	});
 //Din rutas adminitrativas
