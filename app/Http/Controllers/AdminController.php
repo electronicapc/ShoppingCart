@@ -84,8 +84,7 @@ class AdminController extends Controller
 		       		}
 		       }
        
-		       fclose($file);
-		       
+		       fclose($file);    
 		       
 		       //return "archivo guardado";
 			}
@@ -98,6 +97,13 @@ class AdminController extends Controller
 		{
 			return back();
 		}
+	}
+	
+	public function excel()
+	{
+		$produc	= Producto::where('activo', 'SI')->get();
+		return view('genexcel')->with('producs', $produc);
+		
 	}
 	
 }

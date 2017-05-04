@@ -56,8 +56,15 @@ Route::group(['middleware' =>'auth'], function () {
 	Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 	{
 		Route::get('/admin', 'AdminController@admin');
+		Route::get('/admin/categorias', 'AdminController@categoria');
+		Route::get('/admin/productos', 'AdminController@producto');
+		Route::get('/admin/prodmasivo', function () {
+		    return view('prodmas');
+		});
+		Route::get('/admin/user', 'AdminController@ausered');
 		
 		Route::post('admin/upload', 'AdminController@save');
+		Route::post('admin/excel', 'AdminController@excel');
 
 	});
 //Din rutas adminitrativas
