@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use File;
 use App\Producto;
+use App\Categoria;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -104,6 +105,13 @@ class AdminController extends Controller
 		$produc	= Producto::where('activo', 'SI')->get();
 		return view('genexcel')->with('producs', $produc);
 		
+	}
+	
+	public function categoria()
+	{
+		$lists 	= Categoria::all();
+       return view('edcat')->with('categoria', $lists);      					
+	
 	}
 	
 }

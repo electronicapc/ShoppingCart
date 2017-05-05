@@ -12,134 +12,22 @@
 
 <!-- Custom Fonts -->
 <link href="{{  asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+<!-- DataTables CSS -->
+<link href="{{  asset('css/dataTables.bootstrap.css') }}" rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link href="{{  asset('css/dataTables.responsive.css') }}" rel="stylesheet">
 
 <!-- Fin Librerias bootstrap y Jquery-->	
 <style>
-body,html{
-    height: 100%;
-  }
 
-  nav.sidebar, .main{
-    -webkit-transition: margin 200ms ease-out;
-      -moz-transition: margin 200ms ease-out;
-      -o-transition: margin 200ms ease-out;
-      transition: margin 200ms ease-out;
-  }
-
-  .main{
-    padding: 10px 10px 0 10px;
-  }
-
- @media (min-width: 765px) {
-
-    .main{
-      position: absolute;
-      width: calc(100% - 40px); 
-      margin-left: 40px;
-      float: right;
-    }
-
-    nav.sidebar:hover + .main{
-      margin-left: 200px;
-    }
-
-    nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-      margin-left: 0px;
-    }
-
-    nav.sidebar .navbar-brand, nav.sidebar .navbar-header{
-      text-align: center;
-      width: 100%;
-      margin-left: 0px;
-    }
-    
-    nav.sidebar a{
-      padding-right: 13px;
-    }
-
-    nav.sidebar .navbar-nav > li:first-child{
-      border-top: 1px #e5e5e5 solid;
-    }
-
-    nav.sidebar .navbar-nav > li{
-      border-bottom: 1px #e5e5e5 solid;
-    }
-
-    nav.sidebar .navbar-nav .open .dropdown-menu {
-      position: static;
-      float: none;
-      width: auto;
-      margin-top: 0;
-      background-color: transparent;
-      border: 0;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
-
-    nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
-      padding: 0 0px 0 0px;
-    }
-
-    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
-      color: #777;
-    }
-
-    nav.sidebar{
-      width: 200px;
-      height: 100%;
-      margin-left: -160px;
-      float: left;
-      margin-bottom: 0px;
-    }
-
-    nav.sidebar li {
-      width: 100%;
-    }
-
-    nav.sidebar:hover{
-      margin-left: 0px;
-    }
-
-    .forAnimate{
-      opacity: 0;
-    }
-  }
-   
-  @media (min-width: 1330px) {
-
-    .main{
-      width: calc(100% - 200px);
-      margin-left: 200px;
-    }
-
-    nav.sidebar{
-      margin-left: 0px;
-      float: left;
-    }
-
-    nav.sidebar .forAnimate{
-      opacity: 1;
-    }
-  }
-
-  nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
-    color: #CCC;
-    background-color: transparent;
-  }
-
-  nav:hover .forAnimate{
-    opacity: 1;
-  }
-  section{
-    padding-left: 15px;
-  }
-  
 </style>
 </head>
 <body>
-<div>
-     <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div id="wrapper">
+
+        <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -147,7 +35,7 @@ body,html{
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Admnistration</a>
+                <a class="navbar-brand" href="index.html">Administration</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -342,7 +230,7 @@ body,html{
                     <!-- /.dropdown-alerts -->
                 </li>
                 <!-- /.dropdown -->
-                <li class="dropdown ">
+                <li class="dropdown">
                     <a class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" href="#">
                         <span class="caret"></span>
                     </a>
@@ -352,7 +240,7 @@ body,html{
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="glyphicon glyphicon-floppy-save""></i> Logout</a>
+                        <li><a href="login.html"><i class="glyphicon glyphicon-floppy-save"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -363,41 +251,53 @@ body,html{
 
              <!-- /.navbar-static-side -->
         </nav>
-     </div>
-     <div>  
-		<nav class="navbar navbar-success sidebar" style="margin-top: 0" role="navigation">
 
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-		        <span class="sr-only">Barra</span>
-		        <span class="icon-bar"></span>
-		      </button>      
-		    </div>
-		    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="{{URL::to('admin')}}">Dashboard<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Productos <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-hdd"></span></a>
-		          <ul class="dropdown-menu forAnimate" role="menu">
-		            <li><a href="{{URL::to('admin/categorias')}}">Categorias</a></li>
-		            <li><a href="{{URL::to('admin/productos')}}">Productos</a></li>
-		            <li><a href="{{URL::to('admin/prodmasivo')}}">Masivo Productos</a></li>
-		           <!--  <li class="divider"></li>
-		            <li><a href="#">Separated link</a></li>
-		            <li class="divider"></li>
-		            <li><a href="#">Informes</a></li> -->
-		          </ul>
-		        </li>          
-		        <li ><a href="{{URL::to('admin/user')}}">Usuarios<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>        
-		        <li ><a href="{{URL::to('admin/ventas')}}">Ventas<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></span></a></li> 
-		      </ul>
-		    </div>
+            <!-- /.navbar-top-links -->
 
-		</nav>
-	</div> 	
-	<div class="container" style="margin-left: 20px">
+            <div class="navbar-default sidebar" role="navigation" style="margin-top: 0">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="{{URL::to('admin')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="glyphicon glyphicon-film"></i>Productos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{URL::to('admin/categorias')}}">Categorias</a>
+                                </li>
+                                <li>
+                                    <a href="{{URL::to('admin/productos')}}">Editar Productos</a>
+                                </li>
+								<li>
+                                    <a href="{{URL::to('admin/prodmasivo')}}">Masivo Productos</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{{URL::to('admin/user')}}"><i class="fa fa-table fa-fw"></i>Usuarios</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to('admin/ventas')}}"><i class="fa fa-edit fa-fw"></i>Ventas</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        
+    <div id="page-wrapper">    
 		@yield('content')
 	</div>	
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{  asset('js/metisMenu.min.js')}}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{  asset('js/sb-admin-2.js')}}"></script>
+
 </body>
 
 </html>

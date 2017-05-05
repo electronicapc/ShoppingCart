@@ -1,12 +1,13 @@
 @extends('layouts.admlay')
 
 @section('content')
-
+<div class="container-fluid">
 	<div class="col-sm-12 col-md-10">
 		<h1>Carga Masiva y Export Excel</h1>
 		<hr>
 	</div>
-
+</div>
+<div class="container-fluid">
 	<div class="col-sm-12 col-md-10">
 			<div class="panel panel-success">
 			  <div class="panel-heading"><h3>Carga Masiva de Productos</h3></div>
@@ -33,6 +34,8 @@
 				</div>
 			</div>
 	</div>
+</div>	
+<div class="container-fluid">
 	<div class="col-sm-12 col-md-10">
 		<hr>
 		<h1>Export Excel</h1>
@@ -57,5 +60,5 @@
 				</div>
 			</div>
 	</div>
-  
+</div>	  
 @endsection
