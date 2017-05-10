@@ -106,19 +106,46 @@ class AdminController extends Controller
 		return view('genexcel')->with('producs', $produc);
 		
 	}
-	
+	//Categorias
 	public function categoria()
 	{
 		$lists 	= Categoria::all();
-       return view('edcat')->with('categoria', $lists);      					
+       return view('lstcat')->with('categoria', $lists);      					
 	
 	}
 	
 	public function categedit($id)
 	{
-		$lists 	= Categoria::all();
+		$lists 	= Categoria::findOrFail($id);//dd($lists);
 		return view('edcat')->with('categoria', $lists);
 	
+	}
+	
+	public function categedsv(Request $request)
+	{
+		if ($request->hasFile('photo'))
+		{
+			if ($request->file('photo')->isValid())
+			{
+				$ecat 				= Categoria::find($request->input('id'));		
+				$ecat->name 		= $request->input('nombre');	
+				$ecat->Descripcion 	= $request->input('descripcion');
+				$ecat->foto			= '../storage/app/CatImages/';
+				$ecat->save();	
+				
+				//obtenemos el campo file definido en el formulario
+				$path = $request->photo->storeAs('CatImages', $request->input('id').'.jpg');
+				
+				return redirect('/admin/categorias')->with('status', 'Se modifico la categoria correctamente');
+			}
+			return back();
+			
+		}
+		else
+		{
+			return back();
+		}
+
 	}
 	
 	public function categadd(Request $request)
@@ -146,6 +173,13 @@ class AdminController extends Controller
 		{
 			return back();
 		}
+	
+	}
+	//Productos
+	public function producto()
+	{
+		$lists 	= Producto::all();
+		return view('lstprod')->with('producto', $lists);
 	
 	}
 	

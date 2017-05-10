@@ -4,18 +4,10 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
-			<h1>Adicionar/Editar Categoria</h1>
+			<h1>Editar Categoria</h1>
 			<hr>
 		</div>
 	</div>	
-	<div class="row" style="margin-bottom:10px">
-		<div class="center-block col-sm-12">   
-			<a href="categorias/add"><button type="button" class="btn btn-success btn-lg pull-right">
-					<span class="glyphicon glyphicon-plus-sign"></span>
-			</button>
-			</a>
-		</div>
-	</div>
 </div>
 @if (session('status'))
 <div class="alert alert-success">
@@ -32,45 +24,48 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Foto</th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Editar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @php
-                                	$parity = 0
-                                @endphp
-                                @foreach ($categoria as $list)
-                                	@php 
-                                		$imgpath = asset('../storage/app/CatImages').'/'.$list->id.'.jpg'
-                                	@endphp
-                                	@if(($parity % 2) == 0)
-	                                    <tr class="odd gradeA">
-	                                        <td><img src="{{$imgpath}}" alt="Categoria" width="40" height="39"></td>
-	                                        <td>{{ $list->name }}</td>
-	                                        <td>{{ $list->Descripcion }}</td>
-	                                        <td class="center"><a href="categorias/{{$list->id}}"><button type="button" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon-edit"></span></button><a></a></td>
-	                                    </tr>
-	                                @else    
-	                                    <tr class="even gradeA">
-	                                        <td><img src="{{$imgpath}}" alt="Categoria" width="40" height="39"></td>
-	                                        <td>{{ $list->name }}</td>
-	                                        <td>{{ $list->Descripcion }}</td>
-	                                        <td class="center"><a href="categorias/{{$list->id}}"><button type="button" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon-edit"></span></button><a></a></td>
-	                                    </tr>
-	                                @endif    
-                                    @php
-                                    	$parity = $parity + 1
-                                    @endphp	
-                                @endforeach    
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
+								{!! Form::open(['url' => 'admin/categorias/edicion','method' => 'post', 'class' => 'form-horizontal','files' => true]) !!}
+	
+								<div class="row" style="margin-bottom:10px">
+									<div class="center-block col-sm-12">   
+										<a href="categorias/add"><button type="submit" class="btn btn-success btn-lg pull-right">
+												<span class="glyphicon glyphicon-floppy-saved"></span>
+										</button>
+										</a>
+									</div>
+								</div>
+								<div class="row">
+									<fieldset>
+									  	<div class="form-group">
+										    <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+										    <div class="col-sm-6">
+										      <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $categoria['name'] }}" placeholder="Ingrese nombre" required>
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label class="control-label col-sm-2" for="descripcion">Descripci&oacute;n:</label>
+										    <div class="col-sm-6"> 
+										    	<textarea rows="6" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese descripci&oacute;n" required >{{ $categoria['Descripcion'] }}</textarea>			      
+										    </div>
+										 </div> 
+										@php 
+                                			$imgpath = asset($categoria['foto']).'/'.$categoria['id'].'.jpg'                                			
+                                		@endphp 
+										<div class="form-group">
+										    <label class="control-label col-sm-2" for="descripcion">Descripci&oacute;n:</label>
+										    <div class="col-sm-6"> 
+										    	<img src="{{$imgpath}}" alt="Categoria" width="80" height="79">			      
+										    </div>
+										 </div> 
+										 <div class="form-group">
+											 <label class="control-label col-sm-2" for="foto">Imagen:</label>
+												 <div class="col-md-6">
+													{{ Form::file('photo', ['class' => 'form-control']) }}
+												 </div>
+											</div>
+									</fieldset>	 
+									{{ Form::hidden('id', $categoria['id']) }}
+									{!! Form::close() !!} 
 
                         </div>
                         <!-- /.panel-body -->
@@ -85,13 +80,4 @@
 <script src="{{  asset('js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{  asset('js/dataTables.responsive.js')}}"></script>
 
-
-<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-  $(document).ready(function() {
-       $('#dataTables-example').DataTable({
-           responsive: true
-       });
-  });
-</script>
 @endsection
