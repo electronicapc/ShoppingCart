@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+	Options -Indexes
+	ErrorDocument 403 http://localhost/ShoppingCart/public
+	# Follow symbolic links
+	Options +FollowSymLinks
+</IfModule>

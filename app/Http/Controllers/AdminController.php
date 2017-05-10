@@ -114,4 +114,39 @@ class AdminController extends Controller
 	
 	}
 	
+	public function categedit($id)
+	{
+		$lists 	= Categoria::all();
+		return view('edcat')->with('categoria', $lists);
+	
+	}
+	
+	public function categadd(Request $request)
+	{
+		if ($request->hasFile('photo'))
+		{
+			if ($request->file('photo')->isValid())
+			{
+		
+				$idcat = new Categoria;
+				$idcat->name 		= $request->input('nombre');
+				$idcat->Descripcion	= $request->input('descripcion');
+				$idcat->foto		= '../storage/app/CatImages/';
+				$idcat->save();
+			   //obtenemos el campo file definido en el formulario				     
+			   $path = $request->photo->storeAs('CatImages', $idcat->id.'.jpg');
+			   
+			  return redirect('/admin/categorias/add')->with('status', 'Se agrego la categoria correctamente');
+			   
+			}	
+			return back();
+			
+		}
+		else
+		{
+			return back();
+		}
+	
+	}
+	
 }
