@@ -4,7 +4,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
-			<h1>Adicionar/Editar Categoria</h1>
+			<h1>Adicionar/Editar Producto</h1>
 			<hr>
 		</div>
 	</div>	

@@ -228,6 +228,14 @@ class AdminController extends Controller
 	
 	}
 	
+	public function prodedit($id)
+	{
+		$lists 	= Producto::findOrFail($id);//dd($lists);
+		return view('edprd')->with('producto', $lists);
+	
+	}
+	
+	
 	//Retorno de catgroias para anadir producto
 	
 	public function prdcat()

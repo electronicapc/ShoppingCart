@@ -68,7 +68,7 @@ Route::group(['middleware' =>'auth'], function () {
 		
 		//Productos
 		Route::get('/admin/productos', 'AdminController@producto');
-		Route::get('/admin/productos/{id}', 'AdminController@prodedit')->where(['id' => '[0-9]+']);
+		Route::get('/admin/producto/{id}', 'AdminController@prodedit')->where(['id' => '[0-9]+']);
 		Route::get('/admin/producto/add', function () {
 			return view('adprd');
 		});
