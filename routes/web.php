@@ -56,6 +56,7 @@ Route::group(['middleware' =>'auth'], function () {
 	Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 	{
 		Route::get('/admin', 'AdminController@admin');
+		//Categorias
 		Route::get('/admin/categorias', 'AdminController@categoria');
 		Route::get('/admin/categorias/{id}', 'AdminController@categedit')->where(['id' => '[0-9]+']);
 		Route::post('/admin/categorias/edicion', 'AdminController@categedsv');
@@ -65,12 +66,14 @@ Route::group(['middleware' =>'auth'], function () {
 		});
 		Route::post('/admin/categorias/add', 'AdminController@categadd');
 		
-		
+		//Productos
 		Route::get('/admin/productos', 'AdminController@producto');
 		Route::get('/admin/productos/{id}', 'AdminController@prodedit')->where(['id' => '[0-9]+']);
 		Route::get('/admin/producto/add', function () {
 			return view('adprd');
 		});
+		Route::post('/admin/productos/add', 'AdminController@prodadd');
+			
 		Route::get('/admin/prodmasivo', function () {
 		    return view('prodmas');
 		});

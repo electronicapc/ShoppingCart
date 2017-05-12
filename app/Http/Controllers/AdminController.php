@@ -183,4 +183,48 @@ class AdminController extends Controller
 	
 	}
 	
+	public function prodadd(Request $request)
+	{
+		if ($request->hasFile('photo1'))
+		{
+			if ($request->file('photo1')->isValid())
+			{
+	
+				$idprd = new Producto;
+				$idprd->name 			= $request->input('nombre');
+				$idprd->precpu 			= $request->input('ppublico');
+				$idprd->costo 			= $request->input('costo');
+				$idprd->ReferenciaOEM 	= $request->input('referencia');
+				$idprd->iva 			= $request->input('iva');
+				$idprd->ivap 			= $request->input('piva');
+				$idprd->activo 			= $request->input('activo');
+				$idprd->destacado 		= $request->input('destacado');
+				$idprd->cantidadex 		= $request->input('cexist');
+				$idprd->Descripcion		= $request->input('descripcion');
+				$idprd->foto		= '../storage/app/PrdImages/';
+				$idprd->save();
+				//obtenemos el campo file definido en el formulario
+				$path = $request->photo1->storeAs('PrdImages', $idprd->id.'.jpg');
+				if ($request->hasFile('photo2'))
+				{
+					$path = $request->photo2->storeAs('PrdImages', $idprd->id.'_2.jpg');
+				}
+				if ($request->hasFile('photo3'))
+				{
+					$path = $request->photo3->storeAs('PrdImages', $idprd->id.'_3.jpg');
+				}
+	
+				return redirect('/admin/producto/add')->with('status', 'Se agrego el producto correctamente');
+	
+			}
+			return back();
+				
+		}
+		else
+		{
+			return back();
+		}
+	
+	}
+	
 }

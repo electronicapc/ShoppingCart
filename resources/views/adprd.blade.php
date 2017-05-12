@@ -16,7 +16,7 @@
 </div>
 @endif
 <div class="container-fluid">
-	{!! Form::open(['url' => 'admin/categorias/add','method' => 'post', 'class' => 'form-horizontal','files' => true]) !!}
+	{!! Form::open(['url' => 'admin/productos/add','method' => 'post', 'class' => 'form-horizontal','files' => true]) !!}
 	
 	<div class="row" style="margin-bottom:10px">
 		<div class="center-block col-sm-12">   
@@ -33,7 +33,67 @@
 			    <div class="col-sm-6">
 			      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese nombre" required>
 			    </div>
-			  </div>
+			 </div>
+			 <div class="form-group">
+			    <label class="control-label col-sm-2" for="ppublico">P. Publico:</label>
+			    <div class="col-sm-6">
+			      <input type="number" class="form-control" id="ppublico" name="ppublico"  min="0" placeholder="Ingrese Precio de venta al publico - solo numeros" required>
+			    </div>
+			 </div>
+			 <div class="form-group">
+			    <label class="control-label col-sm-2" for="costo">Costo:</label>
+			    <div class="col-sm-6">
+			      <input type="number" class="form-control" id="costo" name="costo" placeholder="Ingrese Costo del producto - solo numeros" required>
+			    </div>
+			 </div>
+			 <div class="form-group">
+			    <label class="control-label col-sm-2" for="referencia">Referencia:</label>
+			    <div class="col-sm-6">
+			      <input type="text" class="form-control" id="referencia" name="referencia" min="0" placeholder="Ingrese Referencia" required>
+			    </div>
+			 </div>
+			 <div class="form-group">
+			    <label class="control-label col-sm-2" for="iva">Iva:</label>
+			    <div class="col-sm-6">
+			      <select name="iva" id="iva" class="form-control" placeholder="Seleccione IVA" required>
+			      	  <option value=""></option>
+					  <option value="SI">SI</option>
+					  <option value="NO">NO</option>
+					</select>
+			    </div>
+			 </div>
+			<div class="form-group">
+			    <label class="control-label col-sm-2" for="piva">Porcentaje de Iva:</label>
+			    <div class="col-sm-6">
+			      <input type="number" class="form-control" id="piva" name="piva"  min="0" placeholder="Ingrese porcentaje de IVA - solo numeros" required>
+			    </div>
+			 </div>
+			 <div class="form-group">
+			    <label class="control-label col-sm-2" for="activo">Activo?:</label>
+			    <div class="col-sm-6">
+			      <select name="activo" class="form-control" id="activo" placeholder="Activo?" required>
+			      	  <option value=""></option>
+					  <option value="SI">SI</option>
+					  <option value="NO">NO</option>
+					</select>
+			    </div>
+			 </div>
+			 <div class="form-group">
+			    <label class="control-label col-sm-2" for="destacado">Destacado:</label>
+			    <div class="col-sm-6">
+			      <select name="destacado" class="form-control" id="destacado" placeholder="Producto destacado?" required>
+			          <option value=""></option> 
+					  <option value="SI">SI</option>
+					  <option value="NO">NO</option>
+					</select>
+			    </div>
+			 </div>
+			 <div class="form-group">
+			    <label class="control-label col-sm-2" for="cexist">Cantidad en Existencia:</label>
+			    <div class="col-sm-6">
+			      <input type="number" class="form-control" id="cexist" name="cexist"  min="0" placeholder="Ingrese cantidad en inventario - solo numeros" required>
+			    </div>
+			 </div>
 			  <div class="form-group">
 			    <label class="control-label col-sm-2" for="descripcion">Descripci&oacute;n:</label>
 			    <div class="col-sm-6"> 
@@ -41,11 +101,23 @@
 			    </div>
 			 </div> 
 			 <div class="form-group">
-				 <label class="control-label col-sm-2" for="foto">Imagen:</label>
+				 <label class="control-label col-sm-2" for="photo1">Imagen Principal:</label>
 					 <div class="col-md-6">
-						{{ Form::file('photo', ['class' => 'form-control']) }}
+						{{ Form::file('photo1', ['class' => 'form-control']) }}
 					 </div>
 				</div>
+			<div class="form-group">
+				 <label class="control-label col-sm-2" for="photo2">Imagen No. 2:</label>
+					 <div class="col-md-6">
+						{{ Form::file('photo2', ['class' => 'form-control']) }}
+					 </div>
+			</div>
+			<div class="form-group">
+				 <label class="control-label col-sm-2" for="photo3">Imagen No. 3:</label>
+					 <div class="col-md-6">
+						{{ Form::file('photo3', ['class' => 'form-control']) }}
+					 </div>
+			</div>
 		</fieldset>	 
 		{!! Form::close() !!} 
 

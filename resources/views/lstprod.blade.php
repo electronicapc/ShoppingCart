@@ -39,13 +39,13 @@
                                         <th>Nombre</th>
                                         <th>P. Publico</th>
                                         <th>Costo</th>
-                                        <th>Referencia</th>
-                                        <th>Descripcion</th>
+                                        <th>Referencia</th>                                        
                                         <th>Iva ?</th>
                                         <th>Iva %</th>
                                         <th>Activo?</th>
                                         <th>Destacado?</th>
                                         <th>Cant. Ex</th>
+                                        <th>Descripcion</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
@@ -61,6 +61,14 @@
 	                                    <tr class="odd gradeA">
 	                                        <td><img src="{{$imgpath}}" alt="Producto" width="40" height="39"></td>
 	                                        <td>{{ $list->name }}</td>
+	                                        <td>{{ $list->precpu }}</td>
+	                                        <td>{{ $list->costo }}</td>
+	                                        <td>{{ $list->ReferenciaOEM }}</td>
+	                                        <td>{{ $list->iva }}</td>
+	                                        <td>{{ $list->ivap }}</td>
+	                                        <td>{{ $list->activo }}</td>
+	                                        <td>{{ $list->destacado }}</td>
+	                                        <td>{{ $list->cantidadex }}</td>
 	                                        <td>{{ $list->Descripcion }}</td>
 	                                        <td class="center"><a href="producto/{{$list->id}}"><button type="button" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon-edit"></span></button><a></a></td>
 	                                    </tr>
@@ -68,6 +76,14 @@
 	                                    <tr class="even gradeA">
 	                                        <td><img src="{{$imgpath}}" alt="Producto" width="40" height="39"></td>
 	                                        <td>{{ $list->name }}</td>
+	                                        <td>{{ $list->precpu }}</td>
+	                                        <td>{{ $list->costo }}</td>
+	                                        <td>{{ $list->ReferenciaOEM }}</td>
+	                                        <td>{{ $list->iva }}</td>
+	                                        <td>{{ $list->ivap }}</td>
+	                                        <td>{{ $list->activo }}</td>
+	                                        <td>{{ $list->destacado }}</td>
+	                                        <td>{{ $list->cantidadex }}</td>
 	                                        <td>{{ $list->Descripcion }}</td>
 	                                        <td class="center"><a href="producto/{{$list->id}}"><button type="button" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon-edit"></span></button><a></a></td>
 	                                    </tr>
