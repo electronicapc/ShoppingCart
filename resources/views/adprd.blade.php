@@ -34,6 +34,13 @@
 			      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese nombre" required>
 			    </div>
 			 </div>
+			<div class="form-group">
+			    <label class="control-label col-sm-2" for="categoria">Categoria:</label>
+			    <div class="col-sm-6">
+			      <select name="categoria" id="categoria" class="form-control" required>
+					</select>
+			    </div>
+			 </div>
 			 <div class="form-group">
 			    <label class="control-label col-sm-2" for="ppublico">P. Publico:</label>
 			    <div class="col-sm-6">
@@ -127,5 +134,26 @@
 <script src="{{  asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{  asset('js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{  asset('js/dataTables.responsive.js')}}"></script>
+   <script type="text/javascript">
 
+  $(document).ready(function() {
+	  $("#depto").change(function(){
+	  var depto = $( "#depto" ).val();
+	  $.ajax ({
+	  type:'get',
+	  url: 'depto/' + depto,
+	  datatype: "json",
+	  success: function(data) {
+		  $("#categoria").empty();
+		  $.each(JSON.parse(data), function(i,obj){
+		  $("#categoria").append('<option id="' + i + '">' + obj.nombre +   
+		  '</option>');
+		        })
+		       }
+		     });
+		  });
+	  });
+
+  </script>
+  
 @endsection
