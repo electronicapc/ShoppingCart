@@ -110,6 +110,7 @@ class CheckoutController extends Controller
 		$idven = new Venta;		
 		$idven->idCliente 		= Auth::user()->documento;
 		$idven->valorFacturado	= $ctota;
+		$idven->med_pag			= $forpa;
 		$idven->fechatx			= Carbon::now('America/Bogota');
 		$idven->ivac			= $ctiva;
 		$idven->confirmado		= 'NO';

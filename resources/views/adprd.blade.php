@@ -130,28 +130,20 @@
 
 	</div>
 </div>
-<!-- DataTables JavaScript -->
-<script src="{{  asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{  asset('js/dataTables.bootstrap.min.js') }}"></script>
-<script src="{{  asset('js/dataTables.responsive.js')}}"></script>
-   <script type="text/javascript">
-
+<script type="text/javascript">
   $(document).ready(function() {
-	  $("#depto").change(function(){
-	  var depto = $( "#depto" ).val();
 	  $.ajax ({
 	  type:'get',
-	  url: 'depto/' + depto,
+	  url: 'prodcat',
 	  datatype: "json",
 	  success: function(data) {
 		  $("#categoria").empty();
 		  $.each(JSON.parse(data), function(i,obj){
-		  $("#categoria").append('<option id="' + i + '">' + obj.nombre +   
+		  $("#categoria").append('<option value="' + obj.id + '">' + obj.name +   
 		  '</option>');
 		        })
 		       }
 		     });
-		  });
 	  });
 
   </script>

@@ -73,6 +73,7 @@ Route::group(['middleware' =>'auth'], function () {
 			return view('adprd');
 		});
 		Route::post('/admin/productos/add', 'AdminController@prodadd');
+		Route::get('/admin/producto/prodcat', 'AdminController@prdcat');
 			
 		Route::get('/admin/prodmasivo', function () {
 		    return view('prodmas');

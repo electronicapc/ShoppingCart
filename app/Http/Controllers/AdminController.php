@@ -192,6 +192,7 @@ class AdminController extends Controller
 	
 				$idprd = new Producto;
 				$idprd->name 			= $request->input('nombre');
+				$idprd->categoria 		= $request->input('categoria');
 				$idprd->precpu 			= $request->input('ppublico');
 				$idprd->costo 			= $request->input('costo');
 				$idprd->ReferenciaOEM 	= $request->input('referencia');
@@ -225,6 +226,14 @@ class AdminController extends Controller
 			return back();
 		}
 	
+	}
+	
+	//Retorno de catgroias para anadir producto
+	
+	public function prdcat()
+	{
+		$aprcat	= Categoria::select('id','name')->get()->toJson();//
+		return $aprcat;
 	}
 	
 }
