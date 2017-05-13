@@ -44,13 +44,13 @@
 			 <div class="form-group">
 			    <label class="control-label col-sm-2" for="ppublico">P. Publico:</label>
 			    <div class="col-sm-6">
-			      <input type="number" class="form-control" id="ppublico" name="ppublico"  min="0" placeholder="Ingrese Precio de venta al publico - solo numeros" required>
+			      <input type="number" class="form-control" id="ppublico" name="ppublico"  min="0" max="999999999999" placeholder="Ingrese Precio de venta al publico - solo numeros" required>
 			    </div>
 			 </div>
 			 <div class="form-group">
 			    <label class="control-label col-sm-2" for="costo">Costo:</label>
 			    <div class="col-sm-6">
-			      <input type="number" class="form-control" id="costo" name="costo" placeholder="Ingrese Costo del producto - solo numeros" required>
+			      <input type="number" class="form-control" id="costo" name="costo" min="0" max="999999999999" placeholder="Ingrese Costo del producto - solo numeros" required>
 			    </div>
 			 </div>
 			 <div class="form-group">
@@ -72,7 +72,7 @@
 			<div class="form-group">
 			    <label class="control-label col-sm-2" for="piva">Porcentaje de Iva:</label>
 			    <div class="col-sm-6">
-			      <input type="number" class="form-control" id="piva" name="piva"  min="0" placeholder="Ingrese porcentaje de IVA - solo numeros" required>
+			      <input type="number" class="form-control" id="piva" name="piva"  min="0" max="99" placeholder="Ingrese porcentaje de IVA - solo numeros" required>
 			    </div>
 			 </div>
 			 <div class="form-group">
@@ -98,7 +98,7 @@
 			 <div class="form-group">
 			    <label class="control-label col-sm-2" for="cexist">Cantidad en Existencia:</label>
 			    <div class="col-sm-6">
-			      <input type="number" class="form-control" id="cexist" name="cexist"  min="0" placeholder="Ingrese cantidad en inventario - solo numeros" required>
+			      <input type="number" class="form-control" id="cexist" name="cexist"  min="0" min="0" max="99"  placeholder="Ingrese cantidad en inventario - solo numeros" required>
 			    </div>
 			 </div>
 			  <div class="form-group">
