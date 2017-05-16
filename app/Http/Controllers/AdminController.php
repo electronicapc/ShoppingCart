@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use File;
 use App\Producto;
+use App\User;
 use App\Categoria;
 use Carbon\Carbon;
 
@@ -242,6 +243,54 @@ class AdminController extends Controller
 	{
 		$aprcat	= Categoria::select('id','name')->get()->toJson();//
 		return $aprcat;
+	}
+	
+	public function prodedsv(Request $request)
+	{
+		$eprd 					= Producto::find($request->input('id'));
+		$eprd->name 			= $request->input('nombre');
+		$eprd->Descripcion 		= $request->input('descripcion');
+		$eprd->categoria 		= $request->input('categoria');
+		$eprd->ReferenciaOEM 	= $request->input('referencia');
+		$eprd->precpu 			= $request->input('ppublico');
+		$eprd->costo 			= $request->input('costo');
+		$eprd->iva 				= $request->input('iva');
+		$eprd->ivap 			= $request->input('piva');
+		$eprd->activo 			= $request->input('activo');
+		$eprd->destacado 		= $request->input('destacado');
+		$eprd->cantidadex 		= $request->input('cexist');
+		
+		if ($request->hasFile('photo1'))
+		{
+			if ($request->file('photo1')->isValid())
+			{
+				//obtenemos el campo file definido en el formulario
+				$path = $request->photo1->storeAs('PrdImages', $request->input('id').'.jpg');
+				$eprd->foto			= '../storage/app/PrdImages/';
+				
+			}
+		}	
+		if ($request->hasFile('photo2'))
+		{
+			$path = $request->photo2->storeAs('PrdImages', $request->input('id').'_2.jpg');
+		}
+		if ($request->hasFile('photo3'))
+		{
+			$path = $request->photo3->storeAs('PrdImages', $request->input('id').'_3.jpg');
+		}
+		
+		$eprd->save();
+		
+		return redirect('/admin/productos')->with('status', 'Se modifico el producto correctamente');
+	
+	}
+	
+	//Metodos de usuarios
+
+	public function ausered()
+	{
+		$aprcat	= User::select('id','name','address','email','phonen','documento','isAdmin')->get();
+		return view('lstusr')->with('users', $aprcat);
 	}
 	
 }

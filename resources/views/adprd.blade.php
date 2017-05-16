@@ -38,6 +38,7 @@
 			    <label class="control-label col-sm-2" for="categoria">Categoria:</label>
 			    <div class="col-sm-6">
 			      <select name="categoria" id="categoria" class="form-control" required>
+			      	<option selected="selected" value=""></option>
 					</select>
 			    </div>
 			 </div>
@@ -137,7 +138,7 @@
 	  url: 'prodcat',
 	  datatype: "json",
 	  success: function(data) {
-		  $("#categoria").empty();
+		  //$("#categoria").empty();
 		  $.each(JSON.parse(data), function(i,obj){
 		  $("#categoria").append('<option value="' + obj.id + '">' + obj.name +   
 		  '</option>');
