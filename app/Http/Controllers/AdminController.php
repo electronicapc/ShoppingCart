@@ -8,6 +8,8 @@ use File;
 use App\Producto;
 use App\User;
 use App\Categoria;
+use App\Venta;
+use App\Detalleventa;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -291,6 +293,37 @@ class AdminController extends Controller
 	{
 		$aprcat	= User::select('id','name','address','email','phonen','documento','isAdmin')->get();
 		return view('lstusr')->with('users', $aprcat);
+	}
+	
+	public function addmin($id,$isAdmin)
+	{
+		$eusr		 = User::find($id);		
+		if ($isAdmin == 'SI')
+		{
+			$eusr->isAdmin 	= 'NO';
+		}
+		else 
+		{
+			$eusr->isAdmin 	= 'SI';
+		}
+		$eusr->save();	
+		return back();
+	}
+	
+	//Metodos de Ventas
+	
+	public function lstven()
+	{
+		$lists 	= Venta::all();
+		return view('lstvent')->with('venta', $lists);
+	
+	}
+	
+	public function ventedit($id)
+	{
+		$lists 	= Detalleventa::findOrFail($id);//dd($lists);
+		return view('edvent')->with('dventa', $lists);
+	
 	}
 	
 }

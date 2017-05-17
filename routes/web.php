@@ -80,13 +80,16 @@ Route::group(['middleware' =>'auth'], function () {
 		    return view('prodmas');
 		});
 		
+		Route::post('admin/upload', 'AdminController@save');
+		Route::post('admin/excel', 'AdminController@excel');
 		//Ventas
+		Route::get('/admin/ventas', 'AdminController@lstven');
+		Route::get('/admin/ventas/{id}', 'AdminController@ventedit')->where(['id' => '[0-9]+']);
 		
 		//Usuarios		
 		Route::get('/admin/user', 'AdminController@ausered');
-		
-		Route::post('admin/upload', 'AdminController@save');
-		Route::post('admin/excel', 'AdminController@excel');
+		Route::get('/admin/user/{id}/{isAdmin}', 'AdminController@addmin')->where(['id' => '[0-9]+']);
+
 
 	});
 //Din rutas adminitrativas

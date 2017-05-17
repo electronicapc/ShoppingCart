@@ -66,6 +66,9 @@
 						   <div class="dropdown account">
 						        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span></span>{{ Auth::user()->name }}<b class="caret"></b></a>
 						        <ul class="dropdown-menu">
+						         @if (Auth::user()->isAdmin == 'SI')
+						            <li><a href="{{ url('/admin') }}">Administrar</a></li>
+						       	 @endif
 						            <li><a href="{{ url('/logout') }}">Salir</a></li>
 						        </ul>
 				   		 </div>
