@@ -8,14 +8,6 @@
 			<hr>
 		</div>
 	</div>	
-	<div class="row" style="margin-bottom:10px">
-		<div class="center-block col-sm-12">   
-			<a href="categorias/add"><button type="button" class="btn btn-success btn-lg pull-right">
-					<span class="glyphicon glyphicon-plus-sign"></span>
-			</button>
-			</a>
-		</div>
-	</div>
 </div>
 @if (session('status'))
 <div class="alert alert-success">

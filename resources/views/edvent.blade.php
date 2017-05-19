@@ -4,7 +4,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
-			<h1>Editar Categoria</h1>
+			<h1>Editar Ventas</h1>
 			<hr>
 		</div>
 	</div>	
@@ -20,11 +20,11 @@
 		<div class="col-lg-12">
 			   <div class="panel panel-default">
                         <div class="panel-heading">
-                            Categorias
+                            Ventas
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-								{!! Form::open(['url' => 'admin/categorias/edicion','method' => 'post', 'class' => 'form-horizontal','files' => true]) !!}
+								{!! Form::open(['url' => 'admin/ventas/edicion','method' => 'post', 'class' => 'form-horizontal']) !!}
 	
 								<div class="row" style="margin-bottom:10px">
 									<div class="center-block col-sm-12">   
@@ -34,40 +34,33 @@
 										</a>
 									</div>
 								</div>
+								@php
+									$array =  $dventa->first();
+									
+									
+								@endphp	
+
 								<div class="row">
 									<fieldset>
 									  	<div class="form-group">
-										    <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+										    <label class="control-label col-sm-2" for="nombre">Nombre del Cliente:</label>
 										    <div class="col-sm-6">
-										      <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $categoria['name'] }}" placeholder="Ingrese nombre" required>
+										      <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $array->nomcli }}" placeholder="Ingrese nombre" disabled>
 										    </div>
-										  </div>
-										  <div class="form-group">
-										    <label class="control-label col-sm-2" for="descripcion">Descripci&oacute;n:</label>
-										    <div class="col-sm-6"> 
-										    	<textarea rows="6" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese descripci&oacute;n" required >{{ $categoria['Descripcion'] }}</textarea>			      
+										</div>
+									  	<div class="form-group">
+										    <label class="control-label col-sm-2" for="email">Email cliente:</label>
+										    <div class="col-sm-6">
+										      <input type="text" class="form-control" id="email" name="email" value="{{ $array->email }}" placeholder="Ingrese email" disabled>
 										    </div>
-										 </div> 
-										@php 
-                                			$imgpath = asset($categoria['foto']).'/'.$categoria['id'].'.jpg'                                			
-                                		@endphp 
-										<div class="form-group">
-										    <label class="control-label col-sm-2" for="descripcion">Descripci&oacute;n:</label>
-										    <div class="col-sm-6"> 
-										    	<img src="{{$imgpath}}" alt="Categoria" width="80" height="79">			      
-										    </div>
-										 </div> 
-										 <div class="form-group">
-											 <label class="control-label col-sm-2" for="foto">Imagen:</label>
-												 <div class="col-md-6">
-													{{ Form::file('photo', ['class' => 'form-control']) }}
-												 </div>
-											</div>
+										</div>
 									</fieldset>	 
-									{{ Form::hidden('id', $categoria['id']) }}
+
 									{!! Form::close() !!} 
 
-                        </div>
+                        		</div>
+                        @foreach ($dventa as $list)
+                        @endforeach
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
@@ -75,9 +68,5 @@
 	</div>
 </div>
 
-<!-- DataTables JavaScript -->
-<script src="{{  asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{  asset('js/dataTables.bootstrap.min.js') }}"></script>
-<script src="{{  asset('js/dataTables.responsive.js')}}"></script>
 
 @endsection

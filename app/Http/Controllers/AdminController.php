@@ -9,8 +9,8 @@ use App\Producto;
 use App\User;
 use App\Categoria;
 use App\Venta;
-use App\Detalleventa;
 use Carbon\Carbon;
+use DB;
 
 class AdminController extends Controller
 {
@@ -321,7 +321,14 @@ class AdminController extends Controller
 	
 	public function ventedit($id)
 	{
-		$lists 	= Detalleventa::findOrFail($id);//dd($lists);
+		$lists = DB::table('ventas')
+            ->join('detalleVentas', 'ventas.CodigoVenta', '=', 'detalleVentas.CodigoVenta')
+            ->join('productos', 'productos.id', '=', 'detalleVentas.CodigoProducto')
+            ->join('users', 'users.documento', '=', 'ventas.idCliente')
+            ->select('users.name as nomcli','users.email','users.address','users.phonen', 'ventas.valorFacturado', 'ventas.fechatx', 'ventas.ivac', 'ventas.confirmado', 'ventas.med_pag', 'ventas.comentarios','detalleVentas.CodigoProducto','productos.name','detalleVentas.Cantidad','detalleVentas.valorFac','detalleVentas.ivaFac')
+			->where('ventas.CodigoVenta', '=', $id)
+            ->get();
+		//dd($lists);
 		return view('edvent')->with('dventa', $lists);
 	
 	}
