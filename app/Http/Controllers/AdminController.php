@@ -325,12 +325,27 @@ class AdminController extends Controller
             ->join('detalleVentas', 'ventas.CodigoVenta', '=', 'detalleVentas.CodigoVenta')
             ->join('productos', 'productos.id', '=', 'detalleVentas.CodigoProducto')
             ->join('users', 'users.documento', '=', 'ventas.idCliente')
-            ->select('users.name as nomcli','users.email','users.address','users.phonen', 'ventas.valorFacturado', 'ventas.fechatx', 'ventas.ivac', 'ventas.confirmado', 'ventas.med_pag', 'ventas.comentarios','detalleVentas.CodigoProducto','productos.name','detalleVentas.Cantidad','detalleVentas.valorFac','detalleVentas.ivaFac')
+            ->select('ventas.CodigoVenta','users.name as nomcli','users.email','users.address','users.phonen', 'ventas.valorFacturado', 'ventas.fechatx', 'ventas.ivac', 'ventas.confirmado', 'ventas.med_pag', 'ventas.comentarios','detalleVentas.CodigoProducto','productos.name','detalleVentas.Cantidad','detalleVentas.valorFac','detalleVentas.ivaFac')
 			->where('ventas.CodigoVenta', '=', $id)
             ->get();
 		//dd($lists);
 		return view('edvent')->with('dventa', $lists);
 	
+	}
+	
+	public function ventedsv(Request $request)
+	{
+		//echo $request->input('idV');exit(1);
+		$even 					= Venta::find($request->input('idV'));
+		$even->comentarios 		= $request->input('com');
+		if($request->has('conf'))
+		{	
+			$even->confirmado 		= $request->input('conf');
+		}
+
+		$even->save();
+		
+		return redirect('/admin/ventas')->with('status', 'Se modifico la venta correctamente');
 	}
 	
 }

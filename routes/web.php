@@ -85,6 +85,7 @@ Route::group(['middleware' =>'auth'], function () {
 		//Ventas
 		Route::get('/admin/ventas', 'AdminController@lstven');
 		Route::get('/admin/ventas/{id}', 'AdminController@ventedit')->where(['id' => '[0-9]+']);
+		Route::post('/admin/ventas/edicion', 'AdminController@ventedsv');
 		
 		//Usuarios		
 		Route::get('/admin/user', 'AdminController@ausered');

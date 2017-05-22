@@ -36,8 +36,6 @@
 								</div>
 								@php
 									$array =  $dventa->first();
-									
-									
 								@endphp	
 
 								<div class="row">
@@ -54,13 +52,99 @@
 										      <input type="text" class="form-control" id="email" name="email" value="{{ $array->email }}" placeholder="Ingrese email" disabled>
 										    </div>
 										</div>
+										<div class="form-group">
+										    <label class="control-label col-sm-2" for="dir">Direcci&oacute;n del Cliente:</label>
+										    <div class="col-sm-6">
+										      <input type="text" class="form-control" id="dir" name="dir" value="{{ $array->address }}" placeholder="Ingrese direccion" disabled>
+										    </div>
+										</div>
+									  	<div class="form-group">
+										    <label class="control-label col-sm-2" for="phone">Tel&eacute;fono cliente:</label>
+										    <div class="col-sm-6">
+										      <input type="text" class="form-control" id="phone" name="phone" value="{{ $array->phonen }}"  disabled>
+										    </div>
+										</div>
+										<div class="form-group">
+										    <label class="control-label col-sm-2" for="vf">Valor total Factura:</label>
+										    <div class="col-sm-6">
+										      <input type="text" class="form-control" id="vf" name="vf" value="{{ $array->valorFacturado }}"  disabled>
+										    </div>
+										</div>
+									  	<div class="form-group">
+										    <label class="control-label col-sm-2" for="ftx">Fecha transacci&oacute;n:</label>
+										    <div class="col-sm-6">
+										      <input type="text" class="form-control" id="ftx" name="ftx" value="{{ $array->fechatx }}" disabled>
+										    </div>
+										</div>
+										<div class="form-group">
+										    <label class="control-label col-sm-2" for="ivac">Iva facturado:</label>
+										    <div class="col-sm-6">
+										      <input type="text" class="form-control" id="ivac" name="ivac" value="{{ $array->ivac }}"  disabled>
+										    </div>
+										</div>
+										<div class="form-group">
+										    <label class="control-label col-sm-2" for="mp">Medio de Pago:</label>
+										    <div class="col-sm-6">
+										      <input type="text" class="form-control" id="mp" name="mp" value="{{ $array->med_pag }}"  disabled>
+										    </div>
+										</div>
+									  	<div class="form-group">
+										    <label class="control-label col-sm-2" for="com">Comentarios:</label>
+										    <div class="col-sm-6">
+										      <textarea rows="6" class="form-control" id="com" name="com" placeholder="Ingrese Comentarios" required >{{ $array->comentarios }}</textarea>
+										    </div>
+										</div>
+										<div class="form-group">
+										    <label class="control-label col-sm-2" for="conf">Confirmado? :</label>
+										    <div class="col-sm-6">
+										    @if ($array->confirmado == 'SI')	
+										      <select name="conf" id="conf" class="form-control"  disabled>
+										      	  <option selected="selected" value="{{ $array->confirmado }}">{{ $array->confirmado }}</option>
+											 </select>
+											@else	
+											 <select name="conf" id="conf" class="form-control"  required>
+										      	  <option selected="selected" value="{{ $array->confirmado }}">{{ $array->confirmado }}</option>
+												  <option value="SI">SI</option>
+												  <option value="NO">NO</option>
+											 </select>
+											@endif
+										    </div>
+										 </div>
 									</fieldset>	 
-
+									<fieldset style="margin-left: 10px;margin-right:10px;">
+										<h3><p> Relaci&oacute;n de productos por venta:</p></h3>
+									  	  <div class="table-responsive">          
+											  <table class="table">
+											    <thead>
+											      <tr>
+											        <th>#</th>
+											        <th>C&oacute;digo de producto</th>
+											        <th>Nombre</th>
+											        <th>Cantidad</th>
+											        <th>Valor facturado</th>
+											        <th>Iva facturado</th>
+											      </tr>
+											    </thead>
+											    <tbody>
+											    @foreach ($dventa as $list)
+											      <tr>
+											        <td>{{ $loop->index + 1}}</td>
+											        <td>{{ $list->CodigoProducto}}</td>
+											        <td>{{ $list->name}}</td>
+											        <td>{{ $list->Cantidad}}</td>
+											        <td>{{ $list->valorFac}}</td>
+											        <td>{{ $list->ivaFac}}</td>
+											      </tr>
+											    @endforeach  
+											    </tbody>
+											  </table>
+											</div>
+									</fieldset>	
+									{{ Form::hidden('idV', $array->CodigoVenta) }}
 									{!! Form::close() !!} 
-
                         		</div>
-                        @foreach ($dventa as $list)
-                        @endforeach
+       
+                        
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
