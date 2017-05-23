@@ -21,7 +21,13 @@ class AdminController extends Controller
 	
 	public function admin()
 	{
-		return view('admin');
+		$diaini = Carbon::now()->startOfMonth();//echo $diaini;
+		$todfec	= Carbon::now('America/Bogota');//echo $todfec;
+		$das001	= Venta::where('confirmado', 'SI')
+		->where('fechatx','<=',$todfec)
+		->where('fechatx','>=',$diaini)
+		->get();//dd($das001)	;	
+		return view('admin')->with('dash1', $das001);
 	}
 	
 	public function save(Request $request)
