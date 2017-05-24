@@ -36,29 +36,44 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body> 
+@php 
+  	$imgpath  = asset('../storage/app/PrdImages').'/'.$productos->id.'.jpg';
+  	$imgpath2 = asset('../storage/app/PrdImages').'/'.$productos->id.'_2.jpg'; 
+  	$imgpath3 = asset('../storage/app/PrdImages').'/'.$productos->id.'_3.jpg'
+@endphp
 	 <div class="container"> 
-
 	 	<div class=" single_top">
 	      <div class="">
 				<div class="grid images_3_of_2">
 						<ul id="etalage">
 							<li>
-								<a href="optionallink.html">
-									<img class="etalage_thumb_image" src="{{ asset('images/s4.jpg') }}" class="img-responsive" />
-									<img class="etalage_source_image" src="{{ asset('images/s4.jpg') }}" class="img-responsive" title="" />
+								<a href="#">
+									<img class="etalage_thumb_image" src="{{ $imgpath }}" class="img-responsive" />
+									<img class="etalage_source_image" src="{{ $imgpath }}" class="img-responsive" title="" />
 								</a>
 							</li>
-							<li>
-								<img class="etalage_thumb_image" src="{{ asset('images/s4.jpg') }}" class="img-responsive" />
-								<img class="etalage_source_image" src="images/si2.jpg" class="img-responsive" title="" />
+							<li>   
+							    <img class="etalage_thumb_image" src="{{ $imgpath }}" class="img-responsive" />
+								<img class="etalage_source_image" src="{{ $imgpath }}" class="img-responsive" title="" />
+							      
 							</li>
 							<li>
-								<img class="etalage_thumb_image" src="{{ asset('images/s4.jpg') }}" class="img-responsive"  />
-								<img class="etalage_source_image" src="images/si3.jpg"class="img-responsive"  />
+								@if(file_exists(storage_path('app/PrdImages/'.$productos->id.'_2.jpg')))
+									<img class="etalage_thumb_image" src="{{ $imgpath2 }}" class="img-responsive"  />
+									<img class="etalage_source_image" src="{{ $imgpath2 }}"class="img-responsive"  />
+								@else
+									<img class="etalage_thumb_image" src="{{ $imgpath }}" class="img-responsive"  />
+									<img class="etalage_source_image" src="{{ $imgpath }}"class="img-responsive"  />								
+								@endif
 							</li>
 						    <li>
-								<img class="etalage_thumb_image" src="{{ asset('images/s4.jpg') }}" class="img-responsive"  />
-								<img class="etalage_source_image" src="{{ asset('images/s4.jpg') }}"class="img-responsive"  />
+						    	@if(file_exists(storage_path('app/PrdImages/'.$productos->id.'_3.jpg')))
+						       		<img class="etalage_thumb_image" src="{{ $imgpath3 }}" class="img-responsive" />
+									<img class="etalage_source_image" src="{{ $imgpath3 }}" class="img-responsive" title="" />
+							    @else
+							    	<img class="etalage_thumb_image" src="{{ $imgpath }}" class="img-responsive"  />
+									<img class="etalage_source_image" src="{{ $imgpath }}"class="img-responsive"  />						    
+							    @endif
 							</li>
 						</ul>
 						 <div class="clearfix"> </div>		
@@ -66,7 +81,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				  <div class="desc1 span_3_of_2">
 				  
 					
-					<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
+					<h4>{{$productos->name}}</h4>
 				<div class="cart-b">
 				{!! Form::open(['url' => 'checkout'], ['method' => 'post'], ['class' => 'form-inline'], ['role'=> 'form'] ) !!}
 					
@@ -106,9 +121,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 </div>
 				 
 				 <h6>{{ $productos->cantidadex }} productos en existencia</h6>
-			   	<p>{{ $productos->Descripcion }}</p>
+			   	<p>{{ $productos->ReferenciaOEM }}</p>
 			   	<div class="share">
-							<h5>Share Product :</h5>
+							<h5>Compartir producto :</h5>
 							<ul class="share_nav">
 								<li><a href="#"><img src="images/facebook.png" title="facebook"></a></li>
 								<li><a href="#"><img src="images/twitter.png" title="Twiiter"></a></li>
@@ -121,13 +136,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
           	    <div class="clearfix"> </div>
           	   </div>
-          	   <ul id="flexiselDemo1">
-			<li><img src="images/pi.jpg" /><div class="grid-flex"><a href="#">Bloch</a><p>Rs 850</p></div></li>
-			<li><img src="images/pi1.jpg" /><div class="grid-flex"><a href="#">Capzio</a><p>Rs 850</p></div></li>
-			<li><img src="images/pi2.jpg" /><div class="grid-flex"><a href="#">Zumba</a><p>Rs 850</p></div></li>
-			<li><img src="images/pi3.jpg" /><div class="grid-flex"><a href="#">Bloch</a><p>Rs 850</p></div></li>
-			<li><img src="images/pi4.jpg" /><div class="grid-flex"><a href="#">Capzio</a><p>Rs 850</p></div></li>
-		 </ul>
+          	  <ul id="flexiselDemo1">
+          	  @foreach($lists as $categ)
+				<li><img src="images/pi.jpg" /><div class="grid-flex"><a href="#">{{ $categ->name}}</a><p>Rs 850</p></div></li>
+			  @endforeach	
+		 	</ul>
 	    <script type="text/javascript">
 		 $(window).load(function() {
 			$("#flexiselDemo1").flexisel({
@@ -158,15 +171,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<script type="text/javascript" src="{{ asset('js/jquery.flexisel.js') }}"></script>
 
           	    	<div class="toogle">
-				     	<h3 class="m_3">Product Details</h3>
-				     	<p class="m_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+				     	<h3 class="m_3">Detalles del Producto</h3>
+				     	<p class="m_text">{{ $productos->Descripcion }}</p>
 				     </div>	
           	   </div>
           	   
           	   <!---->
 	<div class="sub-cate">
 				<div class=" top-nav rsidebar span_1_of_left">
-					<h3 class="cate">CATEGORIES</h3>
+					<h3 class="cate">CATEGORIAS</h3>
 			<ul class="menu">
 			@foreach ($lists as $list)
 				<ul class="kid-menu">
@@ -176,7 +189,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</ul>
 					</div>
 
-	   		     	 <a class="view-all all-product" href="product.html">VIEW ALL PRODUCTS<span> </span></a> 	
+	   		     	 <a class="view-all all-product" href="product.html">VER TODOS<span> </span></a> 	
 			</div>
 <div class="clearfix"> </div>			
 		</div>

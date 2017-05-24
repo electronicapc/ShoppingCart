@@ -32,16 +32,17 @@
 		    @php
 			    $expre = array("/\/asc/","/\/dsc/" ,"/\/\d+/");
 			    $urlpr = preg_replace($expre,'', url()->current());
+			    $imgpath = asset('../storage/app/PrdImages').'/'.$categorie->id.'.jpg'
 			@endphp
 			<div class="content_box"><a href="{{ $urlpr }}/single/{{ $categorie->id }}">
 			   	<div class="left-grid-view grid-view-left">
-			   	   	 <img src="{{  asset('images/pic13.jpg') }}" class="img-responsive watch-right" alt=""/>
+			   	   	 <img src="{{  $imgpath }}" class="img-responsive watch-right" alt=""/>
 				   	   	<div class="mask">
-	                        <div class="info">Quick View</div>
+	                        <div class="info">Vista R&aacute;pida</div>
 			            </div>
 				   	  </a>
 				</div>
-				    <h4><a href="#">{{ $categorie->name }}</a></h4>
+				    <h4><a href="{{ $urlpr }}/single/{{ $categorie->id }}">{{ $categorie->name }}</a></h4>
 				     <p>{{ $categorie->Descripcion }}</p>
 					    @if ($categorie->iva === 'SI')
 						    ${{ $categorie->precpu * (1 + ($categorie->ivap)/100) }}
@@ -66,7 +67,7 @@
 	
 	<div class="sub-cate">
 				<div class=" top-nav rsidebar span_1_of_left">
-					<h3 class="cate">CATEGORIES</h3>
+					<h3 class="cate">CATEGORIAS</h3>
 			<ul class="menu">
 			@foreach ($lists as $list)
 				<ul class="kid-menu">
@@ -76,7 +77,7 @@
 			</ul>
 					</div>
 
-	   		     	 <a class="view-all all-product" href="product.html">VIEW ALL PRODUCTS<span> </span></a> 	
+	   		     	 <a class="view-all all-product" href="product.html">VER TODOS<span> </span></a> 	
 			</div>
 	<div class="clearfix"> </div>
 </div>

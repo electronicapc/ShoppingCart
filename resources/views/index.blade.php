@@ -8,7 +8,7 @@
    <!-- Inicio fotos de descuento -->
 	  <div class="container"> 
 			<div class="shoes-grid">
-			<a href="single.html">
+			
 			<div class="wrap-in">
 				<div class="wmuSlider example1 slide-grid">		 
 				   <div class="wmuSliderWrapper">	
@@ -16,13 +16,16 @@
 						   <article style="position: absolute; width: 100%; opacity: 0;">					
 							<div class="banner-matter">
 							<div class="col-md-5 banner-bag">
-								<img class="img-responsive " src="images/bag.jpg" alt=" " />
+							    @php 
+                                	$imgpath = asset('../storage/app/PrdImages').'/'.$produc->id.'.jpg'
+                                @endphp
+								<img class="img-responsive " src="{{$imgpath}}" alt=" " />
 								</div>
 								<div class="col-md-7 banner-off">							
 									<h2>Hasta 50% de descuento</h2>
 									<label>EN COMPRAS <b>VALUE</b></label>
 									<p>{{ $produc->Descripcion }}</p>					
-									<span class="on-get">COMPRAR</span>
+									<a href="categoria/single/{{$produc->id}}" class="btn btn-primary btn-lg active" role="button">Comprar</a>
 								</div>
 								
 								<div class="clearfix"> </div>
@@ -32,7 +35,7 @@
 					 	@endforeach
 						
 					 </div>
-					 </a>
+
 	                <ul class="wmuSliderPagination">
 	                	<li><a href="{{ $produc->id }}" class="">0</a></li>
 	                	<li><a href="{{ $produc->id }}" class="">1</a></li>
@@ -51,19 +54,22 @@
 	           <!-- inicio productos con descuent-->
 	
 	   		     <div class="products">
-	   		     	<h5 class="latest-product">LATEST PRODUCTS</h5>	
-	   		     	  <a class="view-all" href="product.html">VIEW ALL<span> </span></a> 		     
+	   		     	<h5 class="latest-product">ULTIMOS PRODUCTOS</h5>	
+	   		     	  <a class="view-all" href="product.html">VER TODOS<span> </span></a> 		     
 	   		     </div>
 	   		     
 	   		     <div class="product-left"> 
 
 
  @foreach ($producs as $produc)	
+ 					@php 
+                       	$imgpath = asset('../storage/app/PrdImages').'/'.$produc->id.'.jpg'
+                    @endphp
 	   		     	<div class="col-md-4 chain-grid grid-top-chain">
-	   		     		<a href="single.html"><img class="img-responsive chain" src="images/baa.jpg" alt=" " /></a>
+	   		     		<a href="categoria/single/{{ $produc->id }}"><img class="img-responsive chain" src="{{ $imgpath }}" alt=" " /></a>
 	   		     		<span class="star"> </span>
 	   		     		<div class="grid-chain-bottom">
-	   		     			<h6><a href="single.html">{{ $produc->Descripcion }}</a></h6>
+	   		     			<h6><a href="categoria/single/{{ $produc->id }}">{{ $produc->Descripcion }}</a></h6>
 	   		     			<div class="star-price">
 	   		     				<div class="dolor-grid"> 
 		   		     				<span class="actual">{{ $produc->precpu }}</span>
@@ -81,7 +87,7 @@
 									        <label for="rating-input-1-1" class="rating-star"> </label>
 							    	   </span>
 	   		     				</div>
-	   		     				<a class="now-get get-cart" href="{{ $produc->id }}">ACARRITO</a> 
+	   		     				<a class="now-get get-cart" href="categoria/single/{{ $produc->id }}">COMPRAR</a> 
 	   		     				<div class="clearfix"> </div>
 							</div>
 	   		     		</div>
@@ -97,7 +103,7 @@
 	   		    
 	<div class="sub-cate">
 		<div class=" top-nav rsidebar span_1_of_left">
-			<h3 class="cate">CATEGORIES</h3> 					
+			<h3 class="cate">CATEGORIAS</h3> 					
 			 					
 			 					
 			<ul class="menu">

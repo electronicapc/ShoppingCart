@@ -467,7 +467,8 @@ h5.latest-product{
 	padding: 3em 0;
 }
 .chain-grid span.star{
-	background: url(../images/img-sprite.png)-208px -14px;
+	/*background: url(../images/img-sprite.png)-208px -14px;*/
+	background: url(../images/nuevo.png);
 	width: 52px;
 	height: 52px;
 	display: block;
