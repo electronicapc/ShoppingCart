@@ -32,7 +32,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			});
 </script>
-
 </head>
 
 <body> 
@@ -125,10 +124,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			   	<div class="share">
 							<h5>Compartir producto :</h5>
 							<ul class="share_nav">
-								<li><a href="#"><img src="images/facebook.png" title="facebook"></a></li>
-								<li><a href="#"><img src="images/twitter.png" title="Twiiter"></a></li>
-								<li><a href="#"><img src="images/rss.png" title="Rss"></a></li>
-								<li><a href="#"><img src="images/gpluse.png" title="Google+"></a></li>
+								<li><a href="https://www.facebook.com/sharer.php?u=http://www.softecol.com/public/categoria/single/{{ $productos->id }}"><img src="{{asset('images/facebook.png')}}" title="facebook"></a></li>
+								<li><a href="https://plus.google.com/share?url=http://www.softecol.com/public/categoria/single/{{ $productos->id }}"><img src="{{asset('images/gpluse.png')}}" title="Google+"></a></li>
 				    		</ul>
 						</div>
 			   
@@ -138,7 +135,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           	   </div>
           	  <ul id="flexiselDemo1">
           	  @foreach($lists as $categ)
-				<li><img src="images/pi.jpg" /><div class="grid-flex"><a href="#">{{ $categ->name}}</a><p>Rs 850</p></div></li>
+          	    @php 
+                   $imgpath = asset('../storage/app/CatImages').'/'.$categ->id.'.jpg'
+                @endphp
+				<li><img src="{{ $imgpath }}" /><div class="grid-flex"><a href="../../categoria/{{ $categ->id}}">{{ $categ->name}}</a></div></li>
 			  @endforeach	
 		 	</ul>
 	    <script type="text/javascript">
