@@ -10,11 +10,11 @@
 				<div class="top-header-left">
 					<ul class="support">
 						<li><a href="#"><label> </label></a></li>
-						<li><a href="#">24x7 live<span class="live"> support</span></a></li>
+						<li><a href="#">8x5 Vivo<span class="live"> Soporte</span></a></li>
 					</ul>
 					<ul class="support">
 						<li class="van"><a href="#"><label> </label></a></li>
-						<li><a href="#">Free shipping <span class="live">on order over 500</span></a></li>
+						<li><a href="#">Entrega gratis<span class="live">compras mayores a $ 1.000.000 COP</span></a></li>
 					</ul>
 					<div class="clearfix"> </div>
 				</div>
