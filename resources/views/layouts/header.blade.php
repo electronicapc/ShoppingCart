@@ -10,29 +10,28 @@
 				<div class="top-header-left">
 					<ul class="support">
 						<li><a href="#"><label> </label></a></li>
-						<li><a href="#">8x5 Vivo<span class="live"> Soporte</span></a></li>
+						<li><a href="#">Soporte <span class="live">8x5 en vivo</span></a></li>
 					</ul>
 					<ul class="support">
 						<li class="van"><a href="#"><label> </label></a></li>
-						<li><a href="#">Entrega gratis<span class="live">compras mayores a $ 1.000.000 COP</span></a></li>
+						<li><a href="#">Entrega gratis<span class="live"> compras mayores a $ 1.000.000 COP</span></a></li>
 					</ul>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="top-header-right">
 				 <div class="down-top">		
 						  <select class="in-drop">
-							  <option value="English" class="in-of">English</option>
-							  <option value="Japanese" class="in-of">Japanese</option>
+							  <option value="English" class="in-of">Espa&ntilde;ol</option>
+							 <!--  <option value="Japanese" class="in-of">Japanese</option>
 							  <option value="French" class="in-of">French</option>
-							  <option value="German" class="in-of">German</option>
+							  <option value="German" class="in-of">German</option>-->
 							</select>
 					 </div>
 					<div class="down-top top-down">
-						  <select class="in-drop">
-						  
-						  <option value="Dollar" class="in-of">Dollar</option>
-						  <option value="Yen" class="in-of">Yen</option>
-						  <option value="Euro" class="in-of">Euro</option>
+						  <select class="in-drop">						  
+						  <option value="Dollar" class="in-of">Pesos</option>
+						 <!--  <option value="Yen" class="in-of">Yen</option>
+						  <option value="Euro" class="in-of">Euro</option> -->
 							</select>
 					 </div>
 					 <!---->
@@ -58,8 +57,8 @@
 					@if (Auth::guest())				
 						<div class="account"><a href="{{ url('/login') }}"><span> </span>TU CUENTA</a></div>
 							<ul class="login">
-								<li><a href="{{ url('/login') }}"><span> </span>LOGIN</a></li> |
-								<li ><a href="{{ url('/register') }}">SIGNUP</a></li>
+								<li><a href="{{ url('/login') }}"><span> </span>INGRESAR</a></li> |
+								<li ><a href="{{ url('/register') }}">REGISTRASTE</a></li>
 							</ul>
 					@else
 
