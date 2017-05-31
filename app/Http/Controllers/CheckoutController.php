@@ -116,7 +116,7 @@ class CheckoutController extends Controller
 		$idven->confirmado		= 'NO';
 		$idven->save();
 		//Fin insercion
-		$last_id = $idven->id;
+		$last_id = $idven->CodigoVenta;
 		//echo $last_id, exit(-1);
 		//Signature
 		//$strsig = "5eiu9cu1hjo9kuhdajsj1k1luq~505232~".$last_id."~".$ctota."~COP";
