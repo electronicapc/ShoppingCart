@@ -22,7 +22,7 @@ class CityController extends Controller
     
     public function munic($id)
     {
-    	$depmun	= Municipio::where('id', $id)->select('nombre')->get()->toJson();
+    	$depmun	= Municipio::where('id', $id)->select('nombre')->distinct()->get()->toJson();
     	
     	return $depmun;
     }
