@@ -20,15 +20,19 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 @if($totalc > 0)
 	                @foreach($data as $key => $value)
-	    				           
+	    				@php 
+                    		$imgpath = '../storage/app/PrdImages/'.$key.'.jpg' ;
+                    		$hrefe	 = 'categoria/single/'.$key                            			
+                		@endphp     
 			                    <tr>
 			                        <td class="col-sm-8 col-md-6">
 			                            <div class="media">
-			                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{-- $item->product->imageurl --}}" style="width: 100px; height: 72px;"> </a>
+			                                <a class="thumbnail pull-left" href="{{ $hrefe }}"> <img class="media-object" src="{{ $imgpath }}" style="width: 100px; height: 72px;"> </a>
 			                                <div class="media-body">
-			                                    <h4 class="media-heading"><a href="#">{{ $value['descripcion'] }}</a></h4>
+			                                    <h4 class="media-heading"><a href="{{ $hrefe }}">{{ $value['descripcion'] }}</a></h4>
 				                            </div>
 			                            </div></td>
 			                        <td class="col-sm-1 col-md-1" style="text-align: center">
