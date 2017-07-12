@@ -14,7 +14,7 @@ class CityController extends Controller
      */
     public function index()
     {
-    	$muncom	= Municipio::select('id')->get()->toJson();//
+    	$muncom	= Municipio::select('id')->distinct()->get()->toJson();//
     	return $muncom;
     }
 
