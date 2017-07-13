@@ -58,7 +58,7 @@
 						<div class="account"><a href="{{ url('/login') }}"><span> </span>TU CUENTA</a></div>
 							<ul class="login">
 								<li><a href="{{ url('/login') }}"><span> </span>INGRESAR</a></li> |
-								<li ><a href="{{ url('/register') }}">REGISTRASTE</a></li>
+								<li ><a href="{{ url('/register') }}">REGISTRATE</a></li>
 							</ul>
 					@else
 
