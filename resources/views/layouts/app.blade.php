@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Softecol') }}</title>
+    <title>{{ config('Softecol', 'Softecol') }}</title>
 
     <!-- Styles -->
     <link href="{{  asset('css/app.css') }}" rel="stylesheet">
