@@ -171,7 +171,55 @@ class CheckoutController extends Controller
 		//Fin pdf
 		//Rutina de envio de mail
 		$totmail  = array('refcod'=>$request->input('referenceCode'),'valbru' => $request->input('valbru'),'gasfin' => $request->input('gasfin'),'gasenv' => $request->input('gasenv'),'ivacli' => $request->input('tax'),'totcli' => $request->input('amount'),'dirent' => $request->input('shippingAddress'),'ciuent' => $request->input('shippingCity'),'telent' => $request->input('telephone'),'metpag'=>$tiptx,'ip'=>$request->ip());
-		\Mail::to($request->input('buyerEmail'))->send(new ConfirmarCompra($totmail));
+		//Rutina de envio de Correos
+		//\Mail::to($request->input('buyerEmail'))->send(new ConfirmarCompra($totmail));
+		
+		//Rutina de prueba mail
+		
+		require app_path('Mail/class.phpmailer.php');
+		require app_path('Mail/class.smtp.php');
+		
+		$message = file_get_contents('../resources/views/emails/compra.blade.php');
+		//$message = str_replace('%testusername%', $username, $message);
+		//$message = str_replace('%testpassword%', $password, $message);
+		
+		$mail = new \PHPMailer;
+		
+		//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+		
+		$mail->isSMTP();                                      // Set mailer to use SMTP
+		//$mail->Host = 'smtp.mailgun.org';  // Specify main and backup SMTP servers
+		$mail->Host = 'smtp.live.com';  // Specify main and backup SMTP servers
+		$mail->SMTPAuth = true;                               // Enable SMTP authentication
+		//$mail->Username = 'postmaster@electronicapc.hol.es';                 // SMTP username
+		$mail->Username = 'gunsnjrc_999@hotmail.com';                 // SMTP username
+		//$mail->Password = 'Super1982@';                           // SMTP password
+		$mail->Password = 'NOVEMBERRAIN';                           // SMTP password
+		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+		$mail->Port = 587;                                    // TCP port to connect to
+		
+		//$mail->setFrom('ventas@electronicapc.hol.es', 'Softecol');
+		$mail->setFrom('gunsnjrc_999@hotmail.com', 'Softecol');
+		$mail->addAddress($request->input('buyerEmail'), $request->input('buyerFullName'));     // Add a recipient
+		$mail->addAddress('electronicapcolombia@gmail.com');               // Name is optional
+		$mail->addReplyTo('electronicapcolombia@gmail.com', 'Information');
+		$mail->addCC('gunsnjrc@yahoo.com');
+		$mail->addBCC('gunsnjrc_999@hotmail.com');
+		
+		$mail->addAttachment('pdf/'.$request->input('referenceCode').'.pdf');         // Add attachments
+		//$mail->addAttachment('pdf/1.pdf');    // Optional name
+		$mail->isHTML(true);                                  // Set email format to HTML
+		
+		$mail->Subject = 'Nueva Compra de productos en Softecol';
+		$mail->Body    = $message;
+		$mail->AltBody = $message;
+		
+		/*if(!$mail->send()) {
+			echo 'Message could not be sent.';
+			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		} else {
+			echo 'Message has been sent';
+		}*/
 		//Fin de rutina de mail
 		//Descargamos el carrito en tabla
 		$datcar = Session::get('cart');
