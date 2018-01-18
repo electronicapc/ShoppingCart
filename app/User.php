@@ -17,7 +17,8 @@ class User extends Authenticatable
     protected $fillable = [
         'documento', 'address','phonen', 'name', 'email', 'password',
     ];
-
+    public $incrementing = false;
+    protected $primaryKey = 'documento';
     /**
      * The attributes that should be hidden for arrays.
      *
