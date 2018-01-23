@@ -7,14 +7,14 @@
 @endphp
 <div class="container">
 	<div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <table class="table table-hover">
+        <div class="col-sm-12 col-md-10 col-md-offset-1 table-responsive">
+            <table class="table table-hover" style="width: auto">
                 <thead>
-                <tr>
+                <tr class="table-active">
                     <th>Producto</th>
-                    <th></th>
-                    <th class="text-center">Cant.</th>
-                    <th class="text-center">Total P.</th>
+                    <th id="idtd"></th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Total U.</th>
                     <th class="text-center"></th>
                     
                 </tr>
@@ -29,17 +29,14 @@
                 		@endphp     
 			                    <tr>
 			                        <td>
-			                            <div>
-			                                <a class="thumbnail pull-left" href="{{ $hrefe }}"> <img class="media-object" src="{{ $imgpath }}" style="width: 100px; height: 72px;"> </a>
-			                                <div class="media-body">
-			                                    <h4 class="media-heading"><a href="{{ $hrefe }}">{{ $value['descripcion'] }}</a></h4>
-				                            </div>
-			                            </div>
+		                                <a class="thumbnail pull-left" href="{{ $hrefe }}"> <img class="media-object" src="{{ $imgpath }}" id="imgcart""> </a>
+		                                <div class="media-body">
+		                                    <h4 class="media-heading"><a href="{{ $hrefe }}">{{ $value['descripcion'] }}</a></h4>
+			                            </div>		                            
 			                          </td>
-			                        <td style="text-align: center">
-			                        </td>
-			                        <td class="col-xs-2 col-md-1 text-center">	                        
-				                        	<select id="cantidad" name="cantidad" class="form-control input-sm">
+			                        <td id="idtd"></td>
+			                        <td class="text-center">          
+				                        	<select id="cantidad" name="cantidad" class="input-sm">
 								             	@for ($i = 1; $i < $value['existencia'] + 1; $i++)
 								             		@if($i == $value['cantidad'])
 			    										<option value="{{ $key }}" selected="selected">{{ $i }}</option>
@@ -48,9 +45,8 @@
 			    									@endif	
 												@endfor					                
 							            	</select>
-							            	
 						            </td>
-			                        <td class="text-center"><strong>${{ $value['precio'] * $value['iva']}}</strong></td>
+			                        <td class="text-center"><strong>${{ number_format($value['precio'] * $value['iva'],0)}}</strong></td>
 			                        <td>
 			                            <a href="checkout/{{ $key }}">
 			                                    <span class="glyphicon glyphicon-remove-circle" style="font-size: 30px;color: red;"></span>
@@ -69,16 +65,16 @@
  				
  				@endif
                 <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
+                    <td id="idtd"></td>
+                    <td id="idtd"></td>
+                    <td id="idtd"></td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong><div id="totalc">${{$total}}</div></strong></h3></td>
+                    <td class="text-right"><h3><strong><div id="totalc">${{number_format($total,0)}}</div></strong></h3></td>
                 </tr>
                 <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
+                    <td id="idtd"></td>
+                    <td id="idtd"></td>
+                    <td id="idtd"></td>
                     <td>
                         <a href="{{ url('/') }}"> <button type="button" class="btn btn-default">
                                 <span class="fa fa-shopping-cart"></span> Continuar comprando

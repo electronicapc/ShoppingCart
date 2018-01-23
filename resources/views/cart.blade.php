@@ -3,7 +3,7 @@
 <head>
 <title>Softecol</title>
 
-	@includeIf('layouts.header')
+@includeIf('layouts.header')
 
 <link rel="stylesheet" href="{{ asset('css/etalage.css') }}" type="text/css" media="all" />
 
