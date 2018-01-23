@@ -7,7 +7,7 @@
 @endphp
 <div class="container">
 	<div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1 table-responsive">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 table-responsive">
             <table class="table table-hover" style="width: auto">
                 <thead>
                 <tr class="table-active">
@@ -31,7 +31,7 @@
 			                        <td>
 		                                <a class="thumbnail pull-left" href="{{ $hrefe }}"> <img class="media-object" src="{{ $imgpath }}" id="imgcart""> </a>
 		                                <div class="media-body">
-		                                    <h4 class="media-heading"><a href="{{ $hrefe }}">{{ $value['descripcion'] }}</a></h4>
+		                                    <h4 class="media-heading col-xs-1"><a href="{{ $hrefe }}">{{ $value['descripcion'] }}</a></h4>
 			                            </div>		                            
 			                          </td>
 			                        <td id="idtd"></td>

@@ -6,7 +6,7 @@
 					<div class="latter col-xs-6">					
 						<div class="sub-left-right">
 							<form>
-								<input type="text" value="Ingrese Email"onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ingrese Email';}" />
+								<input type="text" value="Ingrese Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ingrese Email';}" />
 								<input type="submit" value="SUSCRIBIRSE" />
 							</form>
 						</div>
@@ -49,9 +49,9 @@
 					<h6>MARCAS ELEGIDAS</h6>
 					<ul>
 						<li><a href="{{ asset('categoria/1')}}">Copiadoras Sharp</a></li>
-						<!--<li><a href="#">Dignissim purus</a></li>
+						<li><a href="#">Dignissim purus</a></li>
 						<li><a href="#">Tempus pretium</a></li>
-						<li ><a href="#">Dignissim neque</a></li><!--
+						<li><a href="#">Dignissim neque</a></li>
 					</ul>
 				</div>
 				<div class="footer-bottom-cate cate-bottom">
