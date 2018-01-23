@@ -6,6 +6,7 @@
 </head>
 <body> 
    <!-- Inicio fotos de descuento -->
+   @if( ! empty($producs[0]))
 	  <div class="container"> 
 			<div class="shoes-grid">
 			
@@ -114,11 +115,10 @@
 			@endforeach	
 			</ul>
 		</div>
-	</div> 
-
-
-
-	   <div class="clearfix"> </div>        	         
+	</div>
+</div>	 
+@endif
+<div class="clearfix"> </div>        	         
 
 @includeIf('layouts.footer')
 <!--Start of Tawk.to Script-->

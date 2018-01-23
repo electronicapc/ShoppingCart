@@ -1447,6 +1447,9 @@ a.get-cart {
 }
 @media(max-width:480px){
 .header-bottom-right {
+	/*display: none;*/
+}
+#pipe {
 	display: none;
 }
 .top-header-right {

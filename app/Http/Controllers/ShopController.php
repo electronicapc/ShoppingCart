@@ -18,6 +18,7 @@ class ShopController extends Controller
         $lists 	= Categoria::all();
         $produc	= Producto::where('destacado', 'SI')->get();
     	//return view('index')->with('lists', $lists->toArray());
+    	//dd($produc); 
         return view('index')->with('lists', $lists)
         					->with('producs', $produc);
     }

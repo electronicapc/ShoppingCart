@@ -11,12 +11,12 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Product</th>
+                    <th>Producto</th>
                     <th></th>
-                    <th class="text-center">Cantidad</th>
-                    <th class="text-center">Total</th>
+                    <th class="text-center">Cant.</th>
+                    <th class="text-center">Total P.</th>
                     <th class="text-center"></th>
-                    <th> </th>
+                    
                 </tr>
                 </thead>
                 <tbody>
@@ -28,16 +28,17 @@
                     		$hrefe	 = 'categoria/single/'.$key                            			
                 		@endphp     
 			                    <tr>
-			                        <td class="col-sm-8 col-md-6">
-			                            <div class="media">
+			                        <td>
+			                            <div>
 			                                <a class="thumbnail pull-left" href="{{ $hrefe }}"> <img class="media-object" src="{{ $imgpath }}" style="width: 100px; height: 72px;"> </a>
 			                                <div class="media-body">
 			                                    <h4 class="media-heading"><a href="{{ $hrefe }}">{{ $value['descripcion'] }}</a></h4>
 				                            </div>
-			                            </div></td>
-			                        <td class="col-sm-1 col-md-1" style="text-align: center">
+			                            </div>
+			                          </td>
+			                        <td style="text-align: center">
 			                        </td>
-			                        <td class="col-sm-1 col-md-1 text-center">	                        
+			                        <td class="col-xs-2 col-md-1 text-center">	                        
 				                        	<select id="cantidad" name="cantidad" class="form-control input-sm">
 								             	@for ($i = 1; $i < $value['existencia'] + 1; $i++)
 								             		@if($i == $value['cantidad'])
@@ -49,11 +50,11 @@
 							            	</select>
 							            	
 						            </td>
-			                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ $value['precio'] * $value['iva']}}</strong></td>
-			                        <td class="col-sm-1 col-md-1">
-			                            <a href="checkout/{{ $key }}"> <button type="button" class="btn btn-danger">
-			                                    <span class="fa fa-remove"></span> Remove
-			                                </button>
+			                        <td class="text-center"><strong>${{ $value['precio'] * $value['iva']}}</strong></td>
+			                        <td>
+			                            <a href="checkout/{{ $key }}">
+			                                    <span class="glyphicon glyphicon-remove-circle" style="font-size: 30px;color: red;"></span>
+			                               
 			                            </a>
 			                        </td>
 			                    </tr>
@@ -82,7 +83,8 @@
                         <a href="{{ url('/') }}"> <button type="button" class="btn btn-default">
                                 <span class="fa fa-shopping-cart"></span> Continuar comprando
                             </button>
-                        </a></td>
+                        </a>
+                    </td>
                     <td>
                     {!! Form::open(['url' => 'pago']) !!}
                     	 @if($totalc > 0)
