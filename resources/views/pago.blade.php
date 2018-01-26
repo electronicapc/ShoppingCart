@@ -125,7 +125,7 @@
 		                <div class="panel-body">
 							<dl class="dl-horizontal">
 							  <dt><h4><p class="text-success align-right">TOTAL:</p></h4></dt>
-							  <dd><h4><p class="text-success" id="totalcart">${{$totalct}}</p></h4></dd>
+							  <dd><h4><p class="text-success" id="totalcart">${{number_format($totalct,0)}}</p></h4></dd>
 							  <hr>
 							  <dt><h4>Costos financieros:</h4></dt>
 							  <dd><h4 id="totalcost">$0.00</h4></dd>
@@ -134,7 +134,7 @@
 							  <dd><h4 id="totalenv">$0.00</h4></dd>
 							  <hr>
 							  <dt><h4><p class="text-danger">TOTAL A PAGAR:</p></h4></dt>
-							  <dd><h4><p class="text-danger" id="totalpago">${{$totalct}}</p></h4></dd>
+							  <dd><h4><p class="text-danger" id="totalpago">${{number_format($totalct,0)}}</p></h4></dd>
 							</dl>
 							<button type="submit" class="btn btn-success">Confirmar</button>
 						</div>           
@@ -195,7 +195,7 @@
   $(document).ready(function() {
 	  $("#depto").change(function(){
 	  var depto = $( "#depto" ).val();
-     if (depto == "DE") 
+     if (depto == "BOGOTA") 
      {
      	$("#efectivo").removeAttr("disabled");
 	 }
@@ -232,7 +232,7 @@
 		var envioct	= 11000;
 		var enviocb	= 5500;
 		var total = parseFloat($( "#totalct" ).val());
-		if ((consigna == "Consignacion") && (city == 'DE' || city == 'Seleccionar'))
+		if ((consigna == "Consignacion") && (city == 'BOGOTA' || city == 'Seleccionar'))
 		{
 			var consigc	= 0.00;
 			var costfin	= total + consigc + enviocb;
@@ -248,7 +248,7 @@
 		}
 		else
 		{
-			if (consigna == "Consignacion" && city != 'DE')
+			if (consigna == "Consignacion" && city != 'BOGOTA')
 			{
 				var consigc	= 12000;
 				var costfin	= total + consigc + envioct;
@@ -276,7 +276,7 @@
 		var envioct	= 11000;
 		var enviocb	= 5500;
 		var total = parseFloat($( "#totalct" ).val());
-		if ((consigna == "Consignacion") && (city == 'DE' || city == 'Seleccionar'))
+		if ((consigna == "Consignacion") && (city == 'BOGOTA' || city == 'Seleccionar'))
 		{
 			var consigc	= 0.00;
 			var costfin	= total + consigc + enviocb;
@@ -291,7 +291,7 @@
 		}
 		else
 		{
-			if (consigna == "Consignacion" && city != 'DE')
+			if (consigna == "Consignacion" && city != 'BOGOTA')
 			{
 				var consigc	= 12000;
 				var costfin	= total + consigc + envioct;
@@ -306,7 +306,7 @@
 			}
 		}
 
-		if (consigna == "efectivo" && city == 'DE')
+		if (consigna == "efectivo" && city == 'BOGOTA')
 		{
 			
 			var costfin	= total + enviocb;
@@ -321,7 +321,7 @@
 		}
 		else
 		{
-			if (consigna == "efectivo" && city != 'DE')
+			if (consigna == "efectivo" && city != 'BOGOTA')
 			{
 				
 				var costfin	= total + envioct;
@@ -336,7 +336,7 @@
 			}
 		}
 
-		if (consigna == "Payu" && city == 'DE')
+		if (consigna == "Payu" && city == 'BOGOTA')
 		{
 			var costpp	= (total * 0.035) + 900;
 			if(costpp < 2901)
@@ -355,9 +355,9 @@
 		}
 		else
 		{
-			if (consigna == "Payu" && city != 'DE')
+			if (consigna == "Payu" && city != 'BOGOTA')
 			{
-				var costpp	= (total * 0.035) + 900;
+				var costpp	= (((total * 0.035) + 900) * 0.19) + ((total * 0.035) + 900);
 				if(costpp < 2901)
 				{
 					costpp = 2900;

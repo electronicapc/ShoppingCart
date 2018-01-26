@@ -112,7 +112,14 @@
 							{{ Form::hidden('gasfin', $arrcp['ctfin']) }}
 							{{ Form::hidden('gasenv', $arrcp['ctenv']) }}
 							@php
-								$taxReturnBase = round(($arrcp['ctbrt']-$arrcp['ctiva']),2);
+								if($arrcp['ctiva'] == 0)
+								{
+									$taxReturnBase = 0;
+								}
+								else
+								{	
+									$taxReturnBase = round(($arrcp['ctbrt']-$arrcp['ctiva']),2);
+								}
 							@endphp
 							{{ Form::hidden('taxReturnBase',$taxReturnBase) }}
 							{{ Form::hidden('signature',$arrcp['signature']) }}
@@ -125,7 +132,7 @@
 							{{ Form::hidden('shippingCountry', "Colombia") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
-							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response.php")
+							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/response_Payu.php")
 							{{ Form::hidden('confirmationUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_conf.php") }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
@@ -136,6 +143,7 @@
 							{{ Form::hidden('merchantId', 508029) }}
 							{{ Form::hidden('forpa', $arrcp['forpa']) }}
 							{{ Form::hidden('referenceCode', $arrcp['last_id']) }}
+							{{-- Form::hidden('referenceCode', 555527) --}}
 							{{ Form::hidden('description', "Venta de productos Softecol") }}
 							{{ Form::hidden('amount',$arrcp['ctota'] ) }}
 							{{ Form::hidden('tax', $arrcp['ctiva']) }}
@@ -143,7 +151,14 @@
 							{{ Form::hidden('gasfin', $arrcp['ctfin']) }}
 							{{ Form::hidden('gasenv', $arrcp['ctenv']) }}
 							@php
-								$taxReturnBase = round(($arrcp['ctbrt']-$arrcp['ctiva']),2);
+								if($arrcp['ctiva'] == 0)
+								{
+									$taxReturnBase = 0;
+								}
+								else
+								{	
+									$taxReturnBase = round(($arrcp['ctbrt']-$arrcp['ctiva']),2);
+								}
 							@endphp
 							{{ Form::hidden('taxReturnBase',$taxReturnBase) }}
 							{{ Form::hidden('signature',$arrcp['signature']) }}
@@ -156,13 +171,14 @@
 							{{ Form::hidden('shippingCountry', "Colombia") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
-							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response.php") }}
+							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/response_Payu.php") }}
 							{{ Form::hidden('confirmationUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response_system.php") }}
 							{{ Form::hidden('algorithmSignature', "SHA") }}
 							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
 							{{ Form::hidden('extra3', $arrcp['ctenv']) }}
+							{{ Form::hidden('algorithmSignature', "SHA") }}
 				            {!! Form::close() !!} 
 				      </div>      
  		</div>

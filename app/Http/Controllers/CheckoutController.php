@@ -94,7 +94,6 @@ class CheckoutController extends Controller
 	
 	public function confpago(Request $request)
 	{
-		//dd($request);
 		$dir 	= $request->input('dir_entrega');
 		$depto	= $request->input('depto');
 		$mun	= $request->input('mun');
@@ -121,16 +120,32 @@ class CheckoutController extends Controller
 		//Signature
 		//$strsig = "5eiu9cu1hjo9kuhdajsj1k1luq~505232~".$last_id."~".$ctota."~COP";
 		$strsig = "4Vj8eK4rloUd272L48hsrarnUA~508029~".$last_id."~".round($ctota, 0)."~COP";
+		//$strsig = "4Vj8eK4rloUd272L48hsrarnUA~508029~555527~".round($ctota, 0)."~COP";
 		$signature  = sha1($strsig);
 		//End signature
-		
+		if($forpa == 'Payu')
+		{
+			$datcar = Session::get('cart');
+			foreach ($datcar as $key =>$value)
+			{
+				DB::table('detalleVentas')->insert([
+						'CodigoVenta'       => $last_id,
+						'CodigoProducto' 	=> $key,
+						'descuento'         => 0,
+						'cantidad'          => $value['cantidad'],
+						'valorFac'          => $value['total'],
+						'ivaFac'            => $value['iva']]);
+			}
+		}
 		
 		$arrcp  = array('dir' => $dir,'depto' => $depto,'mun' => $mun,'barr' => $barr, 'tel' => $tel, 'ctbrt' => $ctbrt, 'ctfin' => $ctfin,'ctiva' => round($ctiva,2), 'ctenv' => $ctenv, 'ctota' => round($ctota,0), 'last_id' => $last_id,'signature' => $signature, 'forpa' => $forpa,'lafirma'=>$strsig);
+		//dd($arrcp);
 		return view('confpago')->with(array('arrcp'=>$arrcp));
 	}
 	
 	public function insven(Request $request)
 	{
+		//dd($request);
 		/*$datcor = $request->all();
 		\Mail::send('emails.compra', $datcor, function($message) use ($request)
 		{
@@ -256,7 +271,8 @@ class CheckoutController extends Controller
 		$pseBank   		= $request->input('pseBank');
 		$lapPayMethod 	= $request->input('lapPaymentMethod');
 		$txId 			= $request->input('transactionId');
-		$tx_val_m		= number_format($TX_VALUE, 1, '.', '');
+		//$tx_val_m		= number_format($TX_VALUE, 1, '.', '');
+		$tx_val_m		= round( $TX_VALUE, 2, PHP_ROUND_HALF_EVEN);
 		$firma_cadena	= "$api_key~$mer_id~$referenceCode~$tx_val_m~$currency~$txState";
 		$firmacreada 	= sha1($firma_cadena);
 		$url 			= $request->fullUrl();
@@ -279,6 +295,10 @@ class CheckoutController extends Controller
 		else if ($txState == 104 )
 		{
 			$estadoTx = "Error";
+		}
+		else if ($txState == 5 )
+		{
+			$estadoTx = "Expirada";
 		}
 		else if ($txState == 7 )
 		{
@@ -308,27 +328,21 @@ class CheckoutController extends Controller
 				'gasenv'   		=> $valenv,
 				'ivacli'   		=> $ivatot,
 				'totcli'   		=> $TX_VALUE,
+				'txId'   		=> $txId,
 				'tiptx'			=> 3
 				
 		];
+		/*echo $firmacreada."\n";
+		echo "\n".$signature;
+		echo $estadoTx;
+		dd($data);*/
 		if (strtoupper($signature) == strtoupper($firmacreada) && $estadoTx != "aprobada" && $estadoTx != "desconocido")
 		{
-			return view('cart')->with('respay', $data);
+			return redirect('/checkout')->with('respay', $data);
 		}
 		else if((strtoupper($signature) == strtoupper($firmacreada)) && $estadoTx == "aprobada" )
 		{
 			$pdf = \PDF::loadView('genpdf',['data' => $data])->save('pdf/'.$referenceCode.'.pdf');
-			$datcar = Session::get('cart');
-			foreach ($datcar as $key =>$value)
-			{
-				DB::table('detalleVentas')->insert([
-						'CodigoVenta'       => $referenceCode,
-						'CodigoProducto' 	=> $key,
-						'descuento'         => 0,
-						'cantidad'          => $value['cantidad'],
-						'valorFac'          => $value['total'],
-						'ivaFac'            => $value['iva']]);
-			}
 			$request->session()->forget('cart');
 			return view('fintx')->with('respay', $data);
 			//return $pdf->download('detalleVenta.pdf');
