@@ -334,14 +334,14 @@ class CheckoutController extends Controller
 		];
 		/*echo $firmacreada."\n";
 		echo "\n".$signature;
-		echo $estadoTx;
-		dd($data);*/
+		echo $estadoTx;*/
+		
 		if (strtoupper($signature) == strtoupper($firmacreada) && $estadoTx != "aprobada" && $estadoTx != "desconocido")
 		{
 			return redirect('/checkout')->with('respay', $data);
 		}
 		else if((strtoupper($signature) == strtoupper($firmacreada)) && $estadoTx == "aprobada" )
-		{
+		{//dd($data);
 			$pdf = \PDF::loadView('genpdf',['data' => $data])->save('pdf/'.$referenceCode.'.pdf');
 			$request->session()->forget('cart');
 			return view('fintx')->with('respay', $data);
