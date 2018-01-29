@@ -6,6 +6,7 @@ use App\Mail\ConfirmarCompra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 use DB;
 use App\Detalleventa;
@@ -341,7 +342,7 @@ class CheckoutController extends Controller
 			return redirect('/checkout')->with('respay', $data);
 		}
 		else if((strtoupper($signature) == strtoupper($firmacreada)) && $estadoTx == "aprobada" )
-		{//dd($data);
+		{
 			$pdf = \PDF::loadView('genpdf',['data' => $data])->save('pdf/'.$referenceCode.'.pdf');
 			$request->session()->forget('cart');
 			return view('fintx')->with('respay', $data);
@@ -362,6 +363,7 @@ class CheckoutController extends Controller
 		$reference_sale		= $request->input('reference_sale');
 		$reference_pol		= $request->input('reference_pol');
 		$sign				= $request->input('sign');
+		$currency			= $request->input('currency');
 		$extra1				= $request->input('extra1');
 		$extra2				= $request->input('extra2');
 		$extra3				= $request->input('extra3');
@@ -395,25 +397,28 @@ class CheckoutController extends Controller
 		$shipping_country   = $request->input('shipping_country');
 		$transaction_id     = $request->input('transaction_id');
 		$pay_method_name    = $request->input('payment_method_name');
+		
+		$firma_cadena		= "$api_key~$mer_id~$reference_sale~$value~$currency~$state_pol";
+		$firmacreada 		= sha1($firma_cadena);
 				
-		if (strtoupper($signature) == strtoupper($firmacreada) && $state_pol == 4)
+		if (strtoupper($sign) == strtoupper($firmacreada) && $state_pol == 4)
 		{
-			$venap	= App\Venta::find($reference_sale);
+			$venap	= Venta::find($reference_sale);
 			$venap->confirmado = 'SI' ;
 			$venap->save();
 								
 			$totmail  = array('refcod' => $reference_sale,'response_message_pol' => $response_mess_pol,'valbru' => $extra1,'gasfin' => $extra2,'gasenv' => $extra3,'ivacli' => $tax,'totcli' => $value,'fectx' => $transaction_date,'shipping_address' => $shipping_address,'phone'=>$phone,'billing_city'=>$billing_city,'ip'=>$ip,'shipping_city'=>$shipping_city,'pay_method_name'=>$pay_method_name,'metpag'=>3);
-			\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+			//\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
 		}
-		else if(strtoupper($signature) == strtoupper($firmacreada) && $state_pol == 6 )
+		else if(strtoupper($sign) == strtoupper($firmacreada) && $state_pol == 6 )
 		{
 			$totmail  = array('refcod' => $reference_sale,'response_message_pol' => $response_mess_pol,'valbru' => $extra1,'gasfin' => $extra2,'gasenv' => $extra3,'ivacli' => $tax,'totcli' => $value,'fectx' => $transaction_date,'shipping_address' => $shipping_address,'phone'=>$phone,'billing_city'=>$billing_city,'ip'=>$ip,'shipping_city'=>$shipping_city,'pay_method_name'=>$pay_method_name,'metpag'=>3);
-			\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+			//\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
 		}
-		else if(strtoupper($signature) == strtoupper($firmacreada) && $state_pol == 5)
+		else if(strtoupper($sign) == strtoupper($firmacreada) && $state_pol == 5)
 		{
 			$totmail  = array('refcod' => $reference_sale,'response_message_pol' => $response_mess_pol,'valbru' => $extra1,'gasfin' => $extra2,'gasenv' => $extra3,'ivacli' => $tax,'totcli' => $value,'fectx' => $transaction_date,'shipping_address' => $shipping_address,'phone'=>$phone,'billing_city'=>$billing_city,'ip'=>$ip,'shipping_city'=>$shipping_city,'pay_method_name'=>$pay_method_name,'metpag'=>3);
-			\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+			//\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
 		}
 		else
 		{

@@ -106,7 +106,10 @@
 				            {{ Form::hidden('forpa', $arrcp['forpa']) }}
 							{{ Form::hidden('referenceCode', $arrcp['last_id']) }}
 							{{ Form::hidden('description', "Venta de productos Softecol") }}
-							{{ Form::hidden('amount',$arrcp['ctota'] ) }}
+							@php 
+								$totcob	= round($arrcp['ctota'],0);
+							@endphp	
+							{{ Form::hidden('amount',$totcob ) }}
 							{{ Form::hidden('tax', $arrcp['ctiva']) }}
 							{{ Form::hidden('valbru', $arrcp['ctbrt']) }}
 							{{ Form::hidden('gasfin', $arrcp['ctfin']) }}
@@ -145,7 +148,10 @@
 							{{ Form::hidden('referenceCode', $arrcp['last_id']) }}
 							{{-- Form::hidden('referenceCode', 555527) --}}
 							{{ Form::hidden('description', "Venta de productos Softecol") }}
-							{{ Form::hidden('amount',$arrcp['ctota'] ) }}
+							@php 
+								$totcob	= round($arrcp['ctota'],0);
+							@endphp	
+							{{ Form::hidden('amount',$totcob ) }}
 							{{ Form::hidden('tax', $arrcp['ctiva']) }}
 							{{ Form::hidden('valbru', $arrcp['ctbrt']) }}
 							{{ Form::hidden('gasfin', $arrcp['ctfin']) }}
