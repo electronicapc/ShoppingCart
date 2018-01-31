@@ -35,7 +35,7 @@
 						<li><a href="{{ asset('categoria/2')}}">Smartphones</a></li>
 						<li><a href="{{ asset('categoria/3')}}">Copiadoras</a></li>
 						<li ><a href="{{ asset('categoria/4')}}">Impresoras</a></li>
-						<li ><a href="{{ asset('categoria/5')}}">Redes</a></li>-
+						<li ><a href="{{ asset('categoria/5')}}">Redes</a></li>
 					</ul>
 				</div>
 				<div class="footer-bottom-cate bottom-grid-cat">
