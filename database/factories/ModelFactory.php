@@ -39,6 +39,7 @@ $factory->define(App\Producto::class, function (Faker\Generator $faker) {
       'categoria' => 1,
       'ReferenciaOEM' => $faker->randomNumber($nbDigits = 6),
       'Descripcion' => $faker->text($maxNbChars =30),
+	  'DescripcionS'=> $faker->text($maxNbChars =30),
       'foto' => $faker->url,
       'fechaRetiro' => $faker->date($format = 'Y-m-d', $max = 'now'),
       'ivap' => $faker->randomDigit,

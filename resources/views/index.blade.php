@@ -24,8 +24,8 @@
 								</div>
 								<div class="col-md-7 banner-off">							
 									<h2>Hasta 50% de descuento</h2>
-									<label>EN COMPRAS <b>VALUE</b></label>
-									<p>{{ $produc->Descripcion }}</p>					
+									<label>EN COMPRAS <b>PC, Smartphones, Tecnolog&iacute;a</b></label>
+									<p>{!! $produc->Descripcion !!}</p>					
 									<a href="categoria/single/{{$produc->id}}" class="btn btn-primary btn-lg active" role="button">Comprar</a>
 								</div>
 								
@@ -56,7 +56,7 @@
 	
 	   		     <div class="products">
 	   		     	<h5 class="latest-product">ULTIMOS PRODUCTOS</h5>	
-	   		     	  <a class="view-all" href="product.html">VER TODOS<span> </span></a> 		     
+	   		     	  <a class="view-all" href="{{ asset('/')}}">VER TODOS<span> </span></a> 		     
 	   		     </div>
 	   		     
 	   		     <div class="product-left"> 
@@ -70,11 +70,11 @@
 	   		     		<a href="categoria/single/{{ $produc->id }}"><img class="img-responsive chain" src="{{ $imgpath }}" alt=" " /></a>
 	   		     		<span class="star"> </span>
 	   		     		<div class="grid-chain-bottom">
-	   		     			<h6><a href="categoria/single/{{ $produc->id }}">{{ $produc->Descripcion }}</a></h6>
+	   		     			<h6><a href="categoria/single/{{ $produc->id }}">{!! $produc->Descripcion !!}</a></h6>
 	   		     			<div class="star-price">
 	   		     				<div class="dolor-grid"> 
 		   		     				<span class="actual">{{ $produc->precpu }}</span>
-		   		     				
+		   		     				<!-- 
 		   		     				  <span class="rating">
 									        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
 									        <label for="rating-input-1-5" class="rating-star1"> </label>
@@ -86,7 +86,7 @@
 									        <label for="rating-input-1-2" class="rating-star"> </label>
 									        <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1">
 									        <label for="rating-input-1-1" class="rating-star"> </label>
-							    	   </span>
+							    	   </span> -->
 	   		     				</div>
 	   		     				<a class="now-get get-cart" href="categoria/single/{{ $produc->id }}">COMPRAR</a> 
 	   		     				<div class="clearfix"> </div>

@@ -108,6 +108,12 @@
 			    	<textarea rows="6" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese descripci&oacute;n" required ></textarea>			      
 			    </div>
 			 </div> 
+			<div class="form-group">
+			    <label class="control-label col-sm-2" for="descripcion">Descripci&oacute;n Detallada:</label>
+			    <div class="col-sm-6"> 
+			    	<textarea rows="6" class="form-control" id="descripcionS" name="descripcionS" placeholder="Ingrese descripci&oacute;n detallada"></textarea>			      
+			    </div>
+			 </div> 
 			 <div class="form-group">
 				 <label class="control-label col-sm-2" for="photo1">Imagen Principal:</label>
 					 <div class="col-md-6">

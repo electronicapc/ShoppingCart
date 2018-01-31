@@ -211,6 +211,7 @@ class AdminController extends Controller
 				$idprd->destacado 		= $request->input('destacado');
 				$idprd->cantidadex 		= $request->input('cexist');
 				$idprd->Descripcion		= $request->input('descripcion');
+				$idprd->DescripcionS	= $request->input('descripcionS');
 				$idprd->foto		= '../storage/app/PrdImages/';
 				$idprd->save();
 				//obtenemos el campo file definido en el formulario
@@ -258,6 +259,7 @@ class AdminController extends Controller
 		$eprd 					= Producto::find($request->input('id'));
 		$eprd->name 			= $request->input('nombre');
 		$eprd->Descripcion 		= $request->input('descripcion');
+		$eprd->DescripcionS 	= $request->input('descripcionS');
 		$eprd->categoria 		= $request->input('categoria');
 		$eprd->ReferenciaOEM 	= $request->input('referencia');
 		$eprd->precpu 			= $request->input('ppublico');

@@ -172,7 +172,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
           	    	<div class="toogle">
 				     	<h3 class="m_3">Detalles del Producto</h3>
-				     	<p class="m_text">{{ $productos->Descripcion }}</p>
+				     	<p class="m_text">{!! $productos->DescripcionS or $productos->Descripcion !!}</p>
 				     </div>	
           	   </div>
           	   

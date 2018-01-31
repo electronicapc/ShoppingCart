@@ -24,7 +24,7 @@ class CheckoutController extends Controller
 		
 		//Por seguridad verificamos que no se han anadido productos malintencionados
 		//$request->session()->flush();
-		$procom	= Producto::where('id', $idp)->select('precpu','Descripcion','foto','cantidadex','iva','ivap')->first();
+		$procom	= Producto::where('id', $idp)->select('precpu','Descripcion','DescripcionS','foto','cantidadex','iva','ivap')->first();
 		
 		if($procom->precpu == $precp )
 		{
@@ -42,9 +42,10 @@ class CheckoutController extends Controller
 			}
 
 			$desc	= $procom->Descripcion;
+			$descS	= $procom->DescripcionS;
 			$foto	= $procom->foto;
 			$exis	= $procom->cantidadex;
-			$arreg  = array('precio' => $precp,'descripcion' => $desc,'foto' => $foto,'cantidad' => $cant, 'total' => $total, 'existencia' => $exis, 'iva' => $poriva);
+			$arreg  = array('precio' => $precp,'descripcion' => $desc,'descripcionS' => $descS,'foto' => $foto,'cantidad' => $cant, 'total' => $total, 'existencia' => $exis, 'iva' => $poriva);
 			//$request->session()->push('cart',$arreglo); Tambien sepuede hacer de esta forma
 			session(['cart.'.$idp => $arreg]);
 			//Session::save(); Esto toca caherlo si se pone el dd, puesto que no deja gardar la sesion
@@ -57,7 +58,7 @@ class CheckoutController extends Controller
 	
 	public function addcant($id, $can)
 	{
-		$procom	= Producto::where('id', $id)->select('precpu','Descripcion','foto','cantidadex','iva','ivap')->first();
+		$procom	= Producto::where('id', $id)->select('precpu','Descripcion','DescripcionS','foto','cantidadex','iva','ivap')->first();
 		$precp	= $procom->precpu;
 		$ivaex	= $procom->iva;
 		$ivapc	= $procom->ivap;
@@ -72,9 +73,10 @@ class CheckoutController extends Controller
 			$total	= $precp * $can;
 		}
 		$desc	= $procom->Descripcion;
+		$descS	= $procom->DescripcionS;
 		$foto	= $procom->foto;
 		$exis	= $procom->cantidadex;
-		$arreg  = array('precio' => $precp,'descripcion' => $desc,'foto' => $foto,'cantidad' => $can, 'total' => $total, 'existencia' => $exis, 'iva' => $poriva);
+		$arreg  = array('precio' => $precp,'descripcion' => $desc,'descripcionS' => $descS,'foto' => $foto,'cantidad' => $can, 'total' => $total, 'existencia' => $exis, 'iva' => $poriva);
 		//dd($arreg);
 		session(['cart.'.$id => $arreg]);
 		$data = Session::get('cart');

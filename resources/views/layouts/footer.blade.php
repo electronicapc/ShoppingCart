@@ -5,8 +5,9 @@
 				<div class="row">
 					<div class="latter col-xs-6">					
 						<div class="sub-left-right">
-							<form>
-								<input type="text" value="Ingrese Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ingrese Email';}" />
+							<form action="{{ asset('/suscribir')}}" method="post">
+								<input type="text" value="Ingrese Email" name="suscript" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ingrese Email';}" />
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<input type="submit" value="SUSCRIBIRSE" />
 							</form>
 						</div>
@@ -30,28 +31,28 @@
 				<div class="footer-bottom-cate">
 					<h6>CATEGORIAS</h6>
 					<ul>
-						<!--  <li><a href="#">Curabituasdsadasdasdadr sapien</a></li>
-						<li><a href="#">Dignissim purus</a></li>
-						<li><a href="#">Tempus pretium</a></li>
-						<li ><a href="#">Dignissim neque</a></li>
-						<li ><a href="#">Ornared id aliquet</a></li>-->
+					 <li><a href="{{ asset('categoria/1')}}">Computadores</a></li>
+						<li><a href="{{ asset('categoria/2')}}">Smartphones</a></li>
+						<li><a href="{{ asset('categoria/3')}}">Copiadoras</a></li>
+						<li ><a href="{{ asset('categoria/4')}}">Impresoras</a></li>
+						<li ><a href="{{ asset('categoria/5')}}">Redes</a></li>-
 					</ul>
 				</div>
 				<div class="footer-bottom-cate bottom-grid-cat">
 					<h6>PRODUCTOS MAS COMPRADOS</h6>
 					<ul>
-						<!-- <li><a href="#">Curabitur sapien</a></li>
-						<li><a href="#">Dignissim purus</a></li>
-						<li><a href="#">Tempus pretium</a></li>-->
+						<li><a href="{{ asset('categoria/2')}}">Celular Samsung S8+</a></li>
+						<li><a href="{{ asset('categoria/3')}}">Copiadora Sharp 2041</a></li>
+						<li><a href="{{ asset('categoria/3')}}">Celular Xiaomi Redmi Note 4</a></li>
 					</ul>
 				</div>
 				<div class="footer-bottom-cate">
 					<h6>MARCAS ELEGIDAS</h6>
 					<ul>
-						<li><a href="{{ asset('categoria/1')}}">Copiadoras Sharp</a></li>
-						<li><a href="#">Dignissim purus</a></li>
-						<li><a href="#">Tempus pretium</a></li>
-						<li><a href="#">Dignissim neque</a></li>
+						<li><a href="{{ asset('categoria/3')}}">Copiadoras Sharp</a></li>
+						<li><a href="{{ asset('categoria/2')}}">Celular Xiaomi</a></li>
+						<li><a href="{{ asset('categoria/2')}}">Celular Samsumg</a></li>
+						<li><a href="{{ asset('categoria/1')}}">Port&aacute;til Lenovo</a></li>
 					</ul>
 				</div>
 				<div class="footer-bottom-cate cate-bottom">
