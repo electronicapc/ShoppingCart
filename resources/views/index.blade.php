@@ -73,7 +73,7 @@
 	   		     			<h6><a href="categoria/single/{{ $produc->id }}">{!! $produc->Descripcion !!}</a></h6>
 	   		     			<div class="star-price">
 	   		     				<div class="dolor-grid"> 
-		   		     				<span class="actual">{{ $produc->precpu }}</span>
+		   		     				<span class="actual">${{ number_format($produc->precpu,0) }}</span>
 		   		     				<!-- 
 		   		     				  <span class="rating">
 									        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
