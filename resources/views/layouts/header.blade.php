@@ -44,14 +44,14 @@
 			<div class="container">
 				<div class="header-bottom-left">
 					<div class="logo">
-						<a href="index.html"><img src="{{asset('images/logo.png') }}" alt=" " /></a>
+						<a href="{{asset('/') }}"><img src="{{asset('images/logo.png') }}" alt="Softecol, tecnologias de vanguardia, hardware y software" id="mylogo"/></a>
 					</div>
 					<!-- <div class="search">
 						<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
 						<input type="submit"  value="SEARCH">
 
 					</div> -->
-					<div class="clearfix"> </div>
+					
 				</div>
 				<div class="header-bottom-right">	
 					@if (Auth::guest())				
@@ -74,9 +74,9 @@
 						  
                   @endif		
 						<div class="cart"><a href="{{ url('/checkout') }}"><span></span></a>@if($total > 0) <span class="badge badge-success" style="background-color: green"> {{ $total }} </span>@endif</div>
-					<div class="clearfix"> </div>
+					
 				</div>
-				<div class="clearfix"> </div>	
+					
 			</div>
 		</div>
 	</div>
@@ -93,4 +93,22 @@
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!--Fin Librerias propias -->
+    <style>
+        @media screen and (min-width: 760px) {
+			  #mylogo {
+			    height: 100px;
+			  }
+	  
+			  #whatsappcall{
+			  	display: none;
+			  }
+		  }
+		  @media (max-width:640px) and (min-width:100px){
+			  #mylogo {
+			    height: 50px;
+
+			  }
+		 }		  
+	</style> 
+<!--Fin estilo logo -->
 @show
