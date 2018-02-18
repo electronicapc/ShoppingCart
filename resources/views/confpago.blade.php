@@ -135,8 +135,8 @@
 							{{ Form::hidden('shippingCountry', "Colombia") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
-							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/response_Payu.php")
-							{{ Form::hidden('confirmationUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_conf.php") }}
+							{{ Form::hidden('responseUrl', "http://softecol.com/tienda/public/response_Payu")
+							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/Payu_conf") }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
 							{{ Form::hidden('extra3', $arrcp['ctenv']) }} 
@@ -177,8 +177,8 @@
 							{{ Form::hidden('shippingCountry', "Colombia") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
-							{{ Form::hidden('responseUrl', "http://www.electronicapcolombia.w.pw/Include/response_Payu.php") }}
-							{{ Form::hidden('confirmationUrl', "http://www.electronicapcolombia.w.pw/Include/Payu_response_system.php") }}
+							{{ Form::hidden('responseUrl', "http://softecol.com/tienda/public/response_Payu") }}
+							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/Payu_response_system") }}
 							{{ Form::hidden('algorithmSignature', "SHA") }}
 							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
