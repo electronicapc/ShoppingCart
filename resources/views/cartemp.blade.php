@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1 table-responsive">
-            <table class="table table-hover" style="width: auto">
+            <table class="table table-hover" id="tableres">
                 <thead>
                 <tr class="table-active">
                     <th>Producto</th>
@@ -31,7 +31,7 @@
 			                        <td>
 		                                <a class="thumbnail pull-left" href="{{ $hrefe }}"> <img class="media-object" src="{{ $imgpath }}" id="imgcart""> </a>
 		                                <div class="media-body">
-		                                    <h4 class="media-heading col-xs-1"><a href="{{ $hrefe }}">{{ $value['descripcion'] }}</a></h4>
+		                                    <h4><a href="{{ $hrefe }}">{{ $value['descripcion'] }}</a></h4>
 			                            </div>		                            
 			                          </td>
 			                        <td id="idtd"></td>
@@ -81,6 +81,7 @@
                             </button>
                         </a>
                     </td>
+                    <td id="idtx"></td>
                     <td>
                     {!! Form::open(['url' => 'pago']) !!}
                     	 @if($totalc > 0)

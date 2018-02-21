@@ -1450,6 +1450,11 @@ a.get-cart {
   #idtd {
     display: none;
   }
+  
+    #tableres {
+    table-layout: fixed;
+    width: 100%
+  }
 }
 
 @media(min-width:481px){
@@ -1457,6 +1462,10 @@ a.get-cart {
 	width: 110px; 
 	height: 80px;
 	}
+  #idtx {
+    display: none;
+  }	
+	
 }
 @media(max-width:480px){
 .header-bottom-right {
