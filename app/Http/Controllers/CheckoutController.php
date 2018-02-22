@@ -274,8 +274,8 @@ class CheckoutController extends Controller
 		$pseBank   		= $request->input('pseBank');
 		$lapPayMethod 	= $request->input('lapPaymentMethod');
 		$txId 			= $request->input('transactionId');
-		//$tx_val_m		= number_format($TX_VALUE, 1, '.', '');
-		$tx_val_m		= round( $TX_VALUE, 2, PHP_ROUND_HALF_EVEN);
+		$tx_val_m		= number_format($TX_VALUE, 1, '.', '');
+		//$tx_val_m		= round( $TX_VALUE, 1, PHP_ROUND_HALF_EVEN);
 		$firma_cadena	= "$api_key~$mer_id~$referenceCode~$tx_val_m~$currency~$txState";
 		$firmacreada 	= sha1($firma_cadena);
 		$url 			= $request->fullUrl();
