@@ -136,7 +136,7 @@
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
 							{{ Form::hidden('responseUrl', "http://softecol.com/tienda/public/response_Payu")
-							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/Payu_conf") }}
+							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/conf_Payu") }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
 							{{ Form::hidden('extra3', $arrcp['ctenv']) }} 
@@ -178,7 +178,7 @@
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
 							{{ Form::hidden('test', 1) }}
 							{{ Form::hidden('responseUrl', "http://softecol.com/tienda/public/response_Payu") }}
-							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/Payu_response_system") }}
+							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/conf_Payu") }}
 							{{ Form::hidden('algorithmSignature', "SHA") }}
 							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
