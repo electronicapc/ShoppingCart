@@ -424,7 +424,7 @@ class CheckoutController extends Controller
 		}
 		else
 		{
-			Log::notice('Existio un error de concordancia en la firma enviada desde Payu:  Codigo de referencia de compra->'.$reference_sale.' Valor reportado-> '.$value.' Metodo de pago->'.$payment_method.'Fecha de tx->'.$transaction_date);
+			Log::notice('Existio un error de concordancia en la firma enviada desde Payu:  Codigo de referencia de compra->'.$reference_sale.' Valor reportado-> '.$value.' Metodo de pago->'.$payment_method.'Fecha de tx->'.$transaction_date.'Firma reportada ->'.$sign);
 		}
 	}
 	
