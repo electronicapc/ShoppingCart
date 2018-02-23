@@ -346,6 +346,7 @@ class CheckoutController extends Controller
 		else if((strtoupper($signature) == strtoupper($firmacreada)) && $estadoTx == "aprobada" )
 		{
 			$pdf = \PDF::loadView('genpdf',['data' => $data])->save('pdf/'.$referenceCode.'.pdf');
+			sleep(3);
 			$request->session()->forget('cart');
 			return view('fintx')->with('respay', $data);
 			//return $pdf->download('detalleVenta.pdf');
@@ -424,7 +425,7 @@ class CheckoutController extends Controller
 		}
 		else
 		{
-			Log::notice('Existio un error de concordancia en la firma enviada desde Payu:  Codigo de referencia de compra->'.$reference_sale.' Valor reportado-> '.$value.' Metodo de pago->'.$payment_method.'Fecha de tx->'.$transaction_date.'Firma reportada ->'.$sign);
+			Log::notice('Existio un error de concordancia en la firma enviada desde Payu:  Codigo de referencia de compra->'.$reference_sale.' Valor reportado-> '.$value.' Metodo de pago->'.$payment_method.'Fecha de tx->'.$transaction_date.'Firma reportada ->'.$sign.'Firma creada ->'.$firmacreada);
 		}
 	}
 	
