@@ -367,6 +367,7 @@ class CheckoutController extends Controller
 		$reference_pol		= $request->input('reference_pol');
 		$sign				= $request->input('sign');
 		$currency			= $request->input('currency');
+		$currency_new		= number_format($currency, 1, '.', '');
 		$extra1				= $request->input('extra1');
 		$extra2				= $request->input('extra2');
 		$extra3				= $request->input('extra3');
@@ -401,7 +402,7 @@ class CheckoutController extends Controller
 		$transaction_id     = $request->input('transaction_id');
 		$pay_method_name    = $request->input('payment_method_name');
 		
-		$firma_cadena		= "$api_key~$mer_id~$reference_sale~$value~$currency~$state_pol";
+		$firma_cadena		= "$api_key~$mer_id~$reference_sale~$value~$currency_new~$state_pol";
 		$firmacreada 		= sha1($firma_cadena);
 				
 		if (strtoupper($sign) == strtoupper($firmacreada) && $state_pol == 4)
