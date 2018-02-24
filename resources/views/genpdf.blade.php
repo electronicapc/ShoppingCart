@@ -28,7 +28,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-5">
-		<h1><a href=" "><img alt="" src="{{asset('images/logo.png') }}" />Softecol</a></h1>
+		<h1><a href=" "><img alt="" width="100" height="100" src="{{asset('images/logo.png') }}" />Softecol</a></h1>
 		</div>
 		<div class="col-xs-5 text-left">
 		<h4>Comprobante de compromiso de compra</h4>
