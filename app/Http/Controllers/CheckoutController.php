@@ -320,8 +320,8 @@ class CheckoutController extends Controller
 				'descrp'   		=> $descrp,
 				'estadoTx' 		=> $estadoTx,
 				'valbru' 		=> $valbru,
-				//'nomcli'   		=> Auth::user()->name,
-				'nomcli'   		=> 'nesiton reyes',
+				'nomcli'   		=> Auth::user()->name,
+				//'nomcli'   		=> 'nesiton reyes',
 				'emacli'   		=> $mailcl,
 				'dircli'   		=> 'Confirmada por correo',
 				'ciucli'   		=> 'Confirmada por correo',
@@ -366,14 +366,14 @@ class CheckoutController extends Controller
 		$reference_sale		= $request->input('reference_sale');
 		$reference_pol		= $request->input('reference_pol');
 		$sign				= $request->input('sign');
-		$currency			= $request->input('currency');
-		$currency_new		= number_format($currency, 1, '.', '');
+		$currency			= $request->input('currency');		
 		$extra1				= $request->input('extra1');
 		$extra2				= $request->input('extra2');
 		$extra3				= $request->input('extra3');
 		$payment_method		= $request->input('payment_method');
 		$payment_method_type= $request->input('payment_method_type');
 		$value				= $request->input('value');
+		$value_new			= number_format($value, 1, '.', '');
 		$tax				= $request->input('tax');
 		$transaction_date	= $request->input('transaction_date');
 		$email_buyer		= $request->input('email_buyer');
@@ -402,7 +402,7 @@ class CheckoutController extends Controller
 		$transaction_id     = $request->input('transaction_id');
 		$pay_method_name    = $request->input('payment_method_name');
 		
-		$firma_cadena		= "$api_key~$mer_id~$reference_sale~$value~$currency_new~$state_pol";
+		$firma_cadena		= "$api_key~$mer_id~$reference_sale~$value_new~$currency~$state_pol";
 		$firmacreada 		= sha1($firma_cadena);
 				
 		if (strtoupper($sign) == strtoupper($firmacreada) && $state_pol == 4)
@@ -412,7 +412,7 @@ class CheckoutController extends Controller
 			$venap->save();
 								
 			$totmail  = array('refcod' => $reference_sale,'response_message_pol' => $response_mess_pol,'valbru' => $extra1,'gasfin' => $extra2,'gasenv' => $extra3,'ivacli' => $tax,'totcli' => $value,'fectx' => $transaction_date,'shipping_address' => $shipping_address,'phone'=>$phone,'billing_city'=>$billing_city,'ip'=>$ip,'shipping_city'=>$shipping_city,'pay_method_name'=>$pay_method_name,'metpag'=>3);
-			//\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+			\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
 		}
 		else if(strtoupper($sign) == strtoupper($firmacreada) && $state_pol == 6 )
 		{
