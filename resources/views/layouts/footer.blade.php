@@ -16,8 +16,8 @@
 					<div class="latter-right">
 						<p>SIGUENOS</p>
 						<ul class="face-in-to">
-							<li><a href="#"><span> </span></a></li>
-							<li><a href="#"><span class="facebook-in"> </span></a></li>
+							<li><a href="https://www.facebook.com/Softecolsoftwareyhardware/" target="_blank"><span> </span></a></li>
+							<li><a href="https://www.facebook.com/Softecolsoftwareyhardware/" target="_blank"><span class="facebook-in"> </span></a></li>
 							<div class="clearfix"> </div>
 						</ul>
 						<div class="clearfix"> </div>
@@ -68,3 +68,16 @@
 			</div>
 		</div>
 	</div>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+	(function(){
+	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+	s1.async=true;
+	s1.src='https://embed.tawk.to/592837c2b3d02e11ecc66fa0/default';
+	s1.charset='UTF-8';
+	s1.setAttribute('crossorigin','*');
+	s0.parentNode.insertBefore(s1,s0);
+	})();
+</script>
+<!--End of Tawk.to Script-->
