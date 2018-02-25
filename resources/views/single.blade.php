@@ -124,8 +124,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			   	<div class="share">
 							<h5>Compartir producto :</h5>
 							<ul class="share_nav">
-								<li><a href="https://www.facebook.com/sharer.php?u=http://www.softecol.com/public/categoria/single/{{ $productos->id }}"><img src="{{asset('images/facebook.png')}}" title="facebook"></a></li>
-								<li><a href="https://plus.google.com/share?url=http://www.softecol.com/public/categoria/single/{{ $productos->id }}"><img src="{{asset('images/gpluse.png')}}" title="Google+"></a></li>
+								<li><a href="https://www.facebook.com/sharer.php?u=http://www.softecol.com/tienda/public/categoria/single/{{ $productos->id }}"><img src="{{asset('images/facebook.png')}}" title="facebook"></a></li>
+								<li><a href="https://plus.google.com/share?url=http://www.softecol.com/tienda/public/categoria/single/{{ $productos->id }}"><img src="{{asset('images/gpluse.png')}}" title="Google+"></a></li>
 				    		</ul>
 						</div>
 			   
