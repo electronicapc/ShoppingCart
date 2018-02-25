@@ -91,7 +91,7 @@
 				<tbody>
 					@foreach($datacar as $key => $value)
 					<tr>
-						<td>Artículo</td>
+						<td>Art&iacute;culo</td>
 						<td><a href="#">{{ $value['descripcion'] }}</a></td>
 						<td class=" text-right ">{{ $value['cantidad'] }}</td>
 						<td class=" text-right ">${{ $value['precio'] * $value['iva']}}</td>

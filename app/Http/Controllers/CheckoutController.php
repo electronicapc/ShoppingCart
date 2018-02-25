@@ -217,7 +217,7 @@ class CheckoutController extends Controller
 		$mail->Port = 587;                                    // TCP port to connect to
 		
 		//$mail->setFrom('ventas@electronicapc.hol.es', 'Softecol');
-		$mail->setFrom('gunsnjrc_999@hotmail.com', 'Softecol');
+		$mail->setFrom('servicio@softecol.com', 'Softecol');
 		$mail->addAddress($request->input('buyerEmail'), $request->input('buyerFullName'));     // Add a recipient
 		$mail->addAddress('electronicapcolombia@gmail.com');               // Name is optional
 		$mail->addReplyTo('electronicapcolombia@gmail.com', 'Information');
@@ -323,7 +323,7 @@ class CheckoutController extends Controller
 				'nomcli'   		=> Auth::user()->name,
 				//'nomcli'   		=> 'nesiton reyes',
 				'emacli'   		=> $mailcl,
-				'dircli'   		=> 'Confirmada por correo',
+				'dircli'   		=> Auth::user()->address,
 				'ciucli'   		=> 'Confirmada por correo',
 				'telcli'   		=> 'Confirmado por correo',
 				'refcli'   		=> $referenceCode,
