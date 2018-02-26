@@ -136,6 +136,15 @@
 							  <dt><h4><p class="text-danger">TOTAL A PAGAR:</p></h4></dt>
 							  <dd><h4><p class="text-danger" id="totalpago">${{number_format($totalct,0)}}</p></h4></dd>
 							</dl>
+							<div class="form-group">
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" required><a href="terminos"  target="_blank">Acepto t&eacute;rminos y condiciones</a> 
+                                    </label>
+                                </div>
+                            </div>
+
 							<button type="submit" class="btn btn-success">Confirmar</button>
 						</div>           
 	                </div>	            
