@@ -102,8 +102,8 @@
 									</div>           
 				                </div>	            
 				            </div>
-				            {{-- Form::hidden('merchantId', 505232) }}
-				            {{ Form::hidden('forpa', $arrcp['forpa']) }}
+							{{ Form::hidden('merchantId', 505232) }}													
+							{{ Form::hidden('forpa', $arrcp['forpa']) }}
 							{{ Form::hidden('referenceCode', $arrcp['last_id']) }}
 							{{ Form::hidden('description', "Venta de productos Softecol") }}
 							@php 
@@ -126,7 +126,7 @@
 							@endphp
 							{{ Form::hidden('taxReturnBase',$taxReturnBase) }}
 							{{ Form::hidden('signature',$arrcp['signature']) }}
-							{{ Form::hidden('accountId', 512321) }}
+							{{ Form::hidden('accountId', 506198) }}
 							{{ Form::hidden('currency', "COP") }}
 							{{ Form::hidden('buyerFullName', Auth::user()->name) }}
 							{{ Form::hidden('buyerEmail', Auth::user()->email) }}
@@ -134,19 +134,20 @@
 							{{ Form::hidden('shippingCity', $arrcp['mun']) }}
 							{{ Form::hidden('shippingCountry', "Colombia") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
-							{{ Form::hidden('test', 1) }}
+							{{ Form::hidden('test', 0) }}
 							{{ Form::hidden('responseUrl', "http://softecol.com/tienda/public/response_Payu")
 							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/conf_Payu") }}
+							{{ Form::hidden('algorithmSignature', "SHA") }}
+							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
-							{{ Form::hidden('extra3', $arrcp['ctenv']) }} 
-							{{ Form::hidden('algorithmSignature', "SHA") --}}
+							{{ Form::hidden('extra3', $arrcp['ctenv']) }}
+							{{ Form::hidden('algorithmSignature', "SHA") }}
 							
 							
-							{{ Form::hidden('merchantId', 508029) }}
+							{{-- Form::hidden('merchantId', 508029) }}
 							{{ Form::hidden('forpa', $arrcp['forpa']) }}
 							{{ Form::hidden('referenceCode', $arrcp['last_id']) }}
-							{{-- Form::hidden('referenceCode', 555527) --}}
 							{{ Form::hidden('description', "Venta de productos Softecol") }}
 							@php 
 								$totcob	= round($arrcp['ctota'],0);
@@ -184,7 +185,7 @@
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
 							{{ Form::hidden('extra3', $arrcp['ctenv']) }}
-							{{ Form::hidden('algorithmSignature', "SHA") }}
+							{{ Form::hidden('algorithmSignature', "SHA") --}}
 				            {!! Form::close() !!} 
 				      </div>      
  		</div>
