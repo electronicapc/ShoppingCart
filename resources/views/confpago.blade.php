@@ -134,7 +134,7 @@
 							{{ Form::hidden('shippingCity', $arrcp['mun']) }}
 							{{ Form::hidden('shippingCountry', "CO") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
-							{{-- Form::hidden('test', 0) --}}
+							{{ Form::hidden('test', 0) }}
 							{{ Form::hidden('responseUrl', "http://softecol.com/tienda/public/response_Payu") }}
 							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/conf_Payu") }}
 							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
