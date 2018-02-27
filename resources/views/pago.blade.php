@@ -104,7 +104,7 @@
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
 							      <h4 class="panel-title">
-							        <input name="forma-pago" id="Payu" value="Payu" type="radio" data-toggle="collapse" data-parent="#accordion" data-target="#collapse3"/><span data-toggle="tooltip" data-placement="top" title="Este pago es permitido &uacute;nicamente para montos de compra superiores a $30.000.oo pesos, la comisi&oacute;n de pago igual al 3.5% de total, 900 COP o $2.900 si es inferior y los cargos de env&iacute;o">PAY-U</span>
+							        <input name="forma-pago" id="Payu" value="Payu" type="radio" data-toggle="collapse" data-parent="#accordion" data-target="#collapse3"/><span data-toggle="tooltip" data-placement="top" title="Este pago es permitido &uacute;nicamente para montos de compra superiores a $30.000.oo pesos, la comisi&oacute;n de pago igual al 3.5% de total, 900 COP o $2.900 si es inferior y los cargos de env&iacute;o">Tarjeta y PSE</span>
 							       </h4>
 							    </div>
 							    <div id="collapse3" class="panel-collapse collapse">

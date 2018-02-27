@@ -97,6 +97,8 @@ class CheckoutController extends Controller
 	
 	public function confpago(Request $request)
 	{
+		$api_key= env('API_PAYU_KEY','ERROR');
+		$mer_id	= env('MER_PAY_ID','ERROR');
 		$dir 	= $request->input('dir_entrega');
 		$depto	= $request->input('depto');
 		$mun	= $request->input('mun');
@@ -121,8 +123,7 @@ class CheckoutController extends Controller
 		$last_id = $idven->CodigoVenta;
 		//echo $last_id, exit(-1);
 		//Signature
-		//$strsig = "5eiu9cu1hjo9kuhdajsj1k1luq~505232~".$last_id."~".$ctota."~COP";
-		$strsig = "4Vj8eK4rloUd272L48hsrarnUA~508029~".$last_id."~".round($ctota, 0)."~COP";
+		$strsig = $api_key."~".$mer_id."~".$last_id."~".round($ctota, 0)."~COP";
 		//$strsig = "4Vj8eK4rloUd272L48hsrarnUA~508029~555527~".round($ctota, 0)."~COP";
 		$signature  = sha1($strsig);
 		//End signature

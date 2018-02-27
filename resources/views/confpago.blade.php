@@ -50,7 +50,7 @@
     					@elseif ($arrcp['forpa'] == 'efectivo')
     						{!! Form::open(['url' => 'ins_ven','method' => 'post']) !!}
     					@else
-    						{!! Form::open(['url' => 'https://sandbox.gateway.payulatam.com/ppp-web-gateway','method' => 'post']) !!}    					
+    						{!! Form::open(['url' => 'https://checkout.payulatam.com/ppp-web-gateway-payu/','method' => 'post']) !!}    					
     					@endif  					
 			                
 				            <div class="col-md-5 col-xs-12 col-lg-5 col-md-offset-4">
@@ -132,12 +132,11 @@
 							{{ Form::hidden('buyerEmail', Auth::user()->email) }}
 							{{ Form::hidden('shippingAddress', $arrcp['dir']) }}
 							{{ Form::hidden('shippingCity', $arrcp['mun']) }}
-							{{ Form::hidden('shippingCountry', "Colombia") }}
+							{{ Form::hidden('shippingCountry', "CO") }}
 							{{ Form::hidden('telephone', $arrcp['tel']) }}
-							{{ Form::hidden('test', 0) }}
+							{{-- Form::hidden('test', 0) --}}
 							{{ Form::hidden('responseUrl', "http://softecol.com/tienda/public/response_Payu") }}
 							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/conf_Payu") }}
-							{{ Form::hidden('algorithmSignature', "SHA") }}
 							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
@@ -180,7 +179,6 @@
 							{{ Form::hidden('test', 1) }}
 							{{ Form::hidden('responseUrl', "http://softecol.com/tienda/public/response_Payu") }}
 							{{ Form::hidden('confirmationUrl', "http://softecol.com/tienda/public/conf_Payu") }}
-							{{ Form::hidden('algorithmSignature', "SHA") }}
 							{{ Form::hidden('lafirma', $arrcp['lafirma']) }}
 							{{ Form::hidden('extra1', $arrcp['ctbrt']) }}
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}

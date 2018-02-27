@@ -1480,6 +1480,10 @@ a.get-cart {
 	height: 60px;
 }
 
+#headersop{
+	display: none;
+}
+
 .top-header-right {
    display:none;
 }
