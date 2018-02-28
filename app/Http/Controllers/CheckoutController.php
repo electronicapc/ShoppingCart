@@ -213,7 +213,7 @@ class CheckoutController extends Controller
 		//$mail->Username = 'postmaster@electronicapc.hol.es';                 // SMTP username
 		$mail->Username = 'gunsnjrc_999@hotmail.com';                 // SMTP username
 		//$mail->Password = 'Super1982@';                           // SMTP password
-		$mail->Password = 'NOVEMBERRAIN';                           // SMTP password
+		$mail->Password = 'Supernels@n...';                           // SMTP password
 		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 		$mail->Port = 587;                                    // TCP port to connect to
 		
@@ -233,12 +233,11 @@ class CheckoutController extends Controller
 		$mail->Body    = $message;
 		$mail->AltBody = $message;
 		
-		/*if(!$mail->send()) {
-			echo 'Message could not be sent.';
-			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		if(!$mail->send()) {
+			Log::notice('Existio un error de envio de correo: '.$mail->ErrorInfo);
 		} else {
-			echo 'Message has been sent';
-		}*/
+			Log::notice('Se envio un mensaje de compra efectivo/cons a: '.$request->input('buyerEmail'));
+		}
 		//Fin de rutina de mail
 		//Descargamos el carrito en tabla
 		$datcar = Session::get('cart');
