@@ -193,52 +193,8 @@ class CheckoutController extends Controller
 		//Rutina de envio de Correos
 		//\Mail::to($request->input('buyerEmail'))->send(new ConfirmarCompra($totmail));
 		
-		//Rutina de prueba mail
-		
-		require app_path('Mail/class.phpmailer.php');
-		require app_path('Mail/class.smtp.php');
-		
-		$message = file_get_contents('../resources/views/emails/compra.blade.php');
-		//$message = str_replace('%testusername%', $username, $message);
-		//$message = str_replace('%testpassword%', $password, $message);
-		
-		$mail = new \PHPMailer;
-		
-		//$mail->SMTPDebug = 3;                               // Enable verbose debug output
-		
-		$mail->isSMTP();                                      // Set mailer to use SMTP
-		//$mail->Host = 'smtp.mailgun.org';  // Specify main and backup SMTP servers
-		$mail->Host = 'smtp.live.com';  // Specify main and backup SMTP servers
-		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		//$mail->Username = 'postmaster@electronicapc.hol.es';                 // SMTP username
-		$mail->Username = 'gunsnjrc_999@hotmail.com';                 // SMTP username
-		//$mail->Password = 'Super1982@';                           // SMTP password
-		$mail->Password = 'Supernels@n...';                           // SMTP password
-		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-		$mail->Port = 587;                                    // TCP port to connect to
-		
-		//$mail->setFrom('ventas@electronicapc.hol.es', 'Softecol');
-		$mail->setFrom('servicio@softecol.com', 'Softecol');
-		$mail->addAddress($request->input('buyerEmail'), $request->input('buyerFullName'));     // Add a recipient
-		$mail->addAddress('electronicapcolombia@gmail.com');               // Name is optional
-		$mail->addReplyTo('electronicapcolombia@gmail.com', 'Information');
-		$mail->addCC('gunsnjrc@yahoo.com');
-		$mail->addBCC('gunsnjrc_999@hotmail.com');
-		
-		$mail->addAttachment('pdf/'.$request->input('referenceCode').'.pdf');         // Add attachments
-		//$mail->addAttachment('pdf/1.pdf');    // Optional name
-		$mail->isHTML(true);                                  // Set email format to HTML
-		
-		$mail->Subject = 'Nueva Compra de productos en Softecol';
-		$mail->Body    = $message;
-		$mail->AltBody = $message;
-		
-		if(!$mail->send()) {
-			Log::notice('Existio un error de envio de correo: '.$mail->ErrorInfo);
-		} else {
-			Log::notice('Se envio un mensaje de compra efectivo/cons a: '.$request->input('buyerEmail'));
-		}
-		//Fin de rutina de mail
+		$correo = $this->sendmail($request->input('buyerEmail'),$request->input('buyerFullName'),$request->input('referenceCode'));
+		//Fin envio
 		//Descargamos el carrito en tabla
 		$datcar = Session::get('cart');
 		foreach ($datcar as $key =>$value)
@@ -428,6 +384,97 @@ class CheckoutController extends Controller
 		{
 			Log::notice('Existio un error de concordancia en la firma enviada desde Payu:  Codigo de referencia de compra->'.$reference_sale.' Valor reportado-> '.$value.' Metodo de pago->'.$payment_method.'Fecha de tx->'.$transaction_date.'Firma reportada ->'.$sign.'Firma creada ->'.$firmacreada);
 		}
+	}
+	public function sendmail($buyeremail,$buyername,$referenceCode)
+	{
+		//Rutina de prueba mail
+		/*
+		require app_path('Mail/class.phpmailer.php');
+		require app_path('Mail/class.smtp.php');
+		
+		$message = file_get_contents('../resources/views/emails/compra.blade.php');
+		//$message = str_replace('%testusername%', $username, $message);
+		$mail = new \PHPMailer;
+		//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+		$mail->isSMTP();                                      // Set mailer to use SMTP
+		//$mail->Host = 'smtp.mailgun.org';  // Specify main and backup SMTP servers
+		$mail->Host = 'smtp.live.com';  // Specify main and backup SMTP servers
+		$mail->SMTPAuth = true;                               // Enable SMTP authentication
+		//$mail->Username = 'postmaster@electronicapc.hol.es';                 // SMTP username
+		$mail->Username = 'gunsnjrc_999@hotmail.com';                 // SMTP username
+		//$mail->Password = 'Super1982@';                           // SMTP password
+		$mail->Password = 'Supernels@n...';                           // SMTP password
+		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+		$mail->Port = 587;                                    // TCP port to connect to
+		//$mail->setFrom('ventas@electronicapc.hol.es', 'Softecol');
+		$mail->setFrom('servicio@softecol.com', 'Softecol');
+		$mail->addAddress($buyeremail, $buyername);     // Add a recipient
+		$mail->addAddress('electronicapcolombia@gmail.com');               // Name is optional
+		$mail->addReplyTo('electronicapcolombia@gmail.com', 'Information');
+		$mail->addCC('gunsnjrc@yahoo.com');
+		$mail->addBCC('gunsnjrc_999@hotmail.com');
+		
+		$mail->addAttachment('pdf/'.$referenceCode.'.pdf');         // Add attachments
+		//$mail->addAttachment('pdf/1.pdf');    // Optional name
+		$mail->isHTML(true);                                  // Set email format to HTML
+		
+		$mail->Subject = 'Nueva Compra de productos en Softecol';
+		$mail->Body    = $message;
+		$mail->AltBody = $message;
+		
+		//if(!$mail->send()) {
+		//	Log::notice('Existio un error de envio de correo: '.$mail->ErrorInfo);
+			return true;
+		//} else {
+		//	Log::notice('Se envio un mensaje de compra efectivo/cons a: '.$request->input('buyerEmail'));
+		//}*/
+		
+		$to = $buyeremail;
+		$subject = "Nueva compra de productos Softecol";
+		$from = "servicio@softecol.com";
+		$myAttachment = chunk_split(base64_encode(file_get_contents( 'pdf/'.$referenceCode.'.pdf')));
+		
+		$headers = "From: \"Softecol\" <servicio@softecol.com>\r\n" .
+				"Repy-To: servicio@softecol.com\r\n" .
+				"CC: gunsnjrc@gmail.com\r\n" .
+				"MIME-Version: 1.0\r\n" .
+				"Content-Type: multipart/mixed; boundary= \"1a2a3a\"\r\n";
+		$body = "--1a2a3a\r\n" .
+				"Content-Type: multipart/alternative; boundary= \"4a5a6a\"\r\n" .
+				"--4a5a6a\r\n" .
+				"Content-Type: text/plain; charset=\"iso-8859-1\"\r\n" .
+				"Content-Transfer-Encoding: 7bit\r\n" .
+				"The attachment contains the log-files .\r\n" .
+				"--4a5a6a\r\n" .
+				"Content-Type: text/html; charset=\"iso-8859-1\"\r\n" .
+				"<html>
+ 					<head>
+  					<title>Report of last months log files</title>
+ 					</head>
+ 					<body>
+						</pre>
+							<span style=\"color: red;\"><strong>Please keep in mind :</strong></span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+						<pre>
+ 					</body>
+				</html>\r\n" .
+				"--1a2a3a\r\n" .
+				"Content-Type: application/zip; name=\"ReciboVenta.pdf\"\r\n" .
+				"Content-Transfer-Encoding: base64\r\n" .
+				"Content-Disposition: attachment\r\n" .
+				$myAttachment. "\r\n" .
+				"--1a2a3a--";
+		
+				$success = mail($to, $subject, $body, $headers);
+				if ($success) 
+				{					
+					Log::notice('Se envio un mensaje de compra efectivo/cons a: '.$buyeremail);
+				}else {
+					
+					Log::notice('Existio un error de envio de correo: '.$mail->ErrorInfo);
+				}
+		
+	
+		//Fin de rutina de mail
 	}
 	
 }
