@@ -444,16 +444,16 @@ class CheckoutController extends Controller
 				"--4a5a6a\r\n" .
 				"Content-Type: text/plain; charset=\"iso-8859-1\"\r\n" .
 				"Content-Transfer-Encoding: 7bit\r\n" .
-				"The attachment contains the log-files .\r\n" .
+				"El adjunto contiene el resumen de la compra .\r\n" .
 				"--4a5a6a\r\n" .
 				"Content-Type: text/html; charset=\"iso-8859-1\"\r\n" .
 				"<html>
  					<head>
-  					<title>Report of last months log files</title>
+  					<title>Resumen de compra:</title>
  					</head>
  					<body>
 						</pre>
-							<span style=\"color: red;\"><strong>Please keep in mind :</strong></span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+							<span><strong>Gracias por preferirnos!</strong></span>Adjunto encontrar&aacute; el resumen de su compra. Recuerde que dependiendo de su m&eacute;todo de pago ser&aacute; contactado para verificar detalles de entrega. Esperamos volver a tenerlo en nuestra tienda. www.softecol.com
 						<pre>
  					</body>
 				</html>\r\n" .
@@ -472,9 +472,6 @@ class CheckoutController extends Controller
 					
 					Log::notice('Existio un error de envio de correo: '.$mail->ErrorInfo);
 				}
-		
-	
 		//Fin de rutina de mail
 	}
-	
 }
