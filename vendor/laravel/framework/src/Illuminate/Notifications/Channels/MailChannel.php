@@ -45,8 +45,33 @@ class MailChannel
         if ($message instanceof Mailable) {
             return $message->send($this->mailer);
         }
-
-        $this->mailer->send($message->view, $message->data(), function ($m) use ($notifiable, $notification, $message) {
+        //Inicio modificacion
+        $recipients = empty($message->to) ? $notifiable->routeNotificationFor('mail') : $message->to;
+        $to = $recipients;
+        $subject = "Recordatorio contraseña Softecol";
+        $from = "servicio@softecol.com";
+         
+        $headers = "From: \"Softecol\" <servicio@softecol.com>\r\n" .
+        		"Repy-To: servicio@softecol.com\r\n" .
+        		"CC: gunsnjrc@gmail.com\r\n" .
+        		"MIME-Version: 1.0\r\n" .
+        		"Content-Type: multipart/mixed; boundary= \"1a2a3a\"\r\n";
+        $body = "Content-Type: text/html; charset=\"iso-8859-1\"\r\n" .
+        		"<html>
+        		<head>
+        		<title>Resumen de compra:</title>
+        		</head>
+        		<body>
+        		</pre>
+        		<span><strong>Parece que haz olvidado la contrase&ntilde;a!<br> </strong></span>Drigete a este link lo m&aacute;s pronto posible para poder recuperarla
+        		$message->actionUrl
+        		<pre>
+        		</body>
+        		</html>\r\n";
+                
+        		mail($to, $subject, $body, $headers);
+        //Fin modificacion
+        /*$this->mailer->send($message->view, $message->data(), function ($m) use ($notifiable, $notification, $message) {
             $recipients = empty($message->to) ? $notifiable->routeNotificationFor('mail') : $message->to;
 
             if (! empty($message->from)) {
@@ -82,6 +107,6 @@ class MailChannel
             if (! is_null($message->priority)) {
                 $m->setPriority($message->priority);
             }
-        });
+        });*/
     }
 }

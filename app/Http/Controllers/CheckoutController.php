@@ -453,7 +453,7 @@ class CheckoutController extends Controller
  					</head>
  					<body>
 						</pre>
-							<span><strong>Gracias por preferirnos!</strong></span>Adjunto encontrar&aacute; el resumen de su compra. Recuerde que dependiendo de su m&eacute;todo de pago ser&aacute; contactado para verificar detalles de entrega. Esperamos volver a tenerlo en nuestra tienda. www.softecol.com
+							<span><strong>Gracias por preferirnos!<br> </strong></span>Adjunto encontrar&aacute; el resumen de su compra. Recuerde que dependiendo de su m&eacute;todo de pago ser&aacute; contactado para verificar detalles de entrega. Esperamos volver a tenerlo en nuestra tienda. www.softecol.com
 						<pre>
  					</body>
 				</html>\r\n" .
