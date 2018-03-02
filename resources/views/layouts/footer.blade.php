@@ -61,7 +61,7 @@
 						<li>Dg 2B No 82 - 40</li>
 						<li>Bogot&aacute;, Colombia</li>
 						<li class="phone"><a href="tel:3005672190"><img src="{{ asset('images/phone.png') }}" width="50" height="50"></a></li>
-						<li class="temp"> <p class="footer-class">En colaboraci&oacute;n con <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p></li>
+						<li class="temp"> <p class="footer-class">En colaboraci&oacute;n con W3layouts </p></li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
