@@ -131,7 +131,7 @@
 						</div>
 							<div class="panel-body">
 								<p>Recuerde que si el pago seleccionado es mediante consignaci&oacute;n se debe anexar copia de esta mediante 
-							        correo el&eacute;ctronico a electronicapcolombia@gmail.com o mensajer&iacute;a instantanea al n&uacute;mero 300 5672190
+							        correo el&eacute;ctronico a servicio@softecol.com o mensajer&iacute;a instantanea al n&uacute;mero 300 5672190
 							        indicando el n&uacute;mero de referencia de la compra, que ser&aacute; enviado al correo el&eacute;ctronico registrado para proceder con el envio.
 							        Si el pago es contra-entrega en efectivo recibir&aacute; una llamada de confirmaci&oacute;n el d&iacute;a de la entrega confirmando disponibilidad de pago.
 								</p>

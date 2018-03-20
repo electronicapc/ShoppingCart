@@ -84,11 +84,12 @@
 							      </h4>
 							    </div>
 							    <div id="collapse1" class="panel-collapse collapse in">
-							      <div class="panel-body"><p>PUEDE REALIZAR CONSIGNACI&oacute;N EN LOS SIGUIENTES BANCOS:		  
-																		BANCOLOMBIA:					  
+							      <div class="panel-body"><p>PUEDE REALIZAR CONSIGNACI&oacute;N EN LOS SIGUIENTES BANCOS:<br>		  
+																		DAVIVIENDA:					  
 																		Cta Ahorros						 
-																		042-06735-401                    	
-																		NELSON REYES                      </p></div>
+																		057000-6770210935                    	
+																		NELSON REYES<br>
+																		Nequi y DaviPlata: 3005672190                     </p></div>
 							    </div>
 							  </div>
 							  <div class="panel panel-default">
