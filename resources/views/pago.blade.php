@@ -205,7 +205,9 @@
   $(document).ready(function() {
 	  $("#depto").change(function(){
 	  var depto = $( "#depto" ).val();
-     if (depto == "BOGOTA") 
+	  var total = $( "#totalct" ).val();
+
+     if (depto == "BOGOTA" && total < 500000) 
      {
      	$("#efectivo").removeAttr("disabled");
 	 }
