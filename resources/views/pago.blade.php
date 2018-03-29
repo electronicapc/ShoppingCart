@@ -244,8 +244,8 @@
 		var total = parseFloat($( "#totalct" ).val());
 		if (total > 1100000)
 		{
-			var envioct	= 0;
-			var enviocb	= 0;
+			var envioct	= 0.00;
+			var enviocb	= 0.00;
 		}
 		else
 		{		
@@ -296,8 +296,8 @@
 		var total = parseFloat($( "#totalct" ).val());
 		if (total > 1100000)
 		{
-			var envioct	= 0;
-			var enviocb	= 0;
+			var envioct	= 0.00;
+			var enviocb	= 0.00;
 		}
 		else
 		{
