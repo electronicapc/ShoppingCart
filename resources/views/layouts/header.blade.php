@@ -14,7 +14,7 @@
 					</ul>
 					<ul class="support">
 						<li class="van"><a href="#"><label> </label></a></li>
-						<li><a href="#">Entrega gratis<span class="live"> compras mayores a $ 1.000.000 COP</span></a></li>
+						<li><a href="#">Entrega gratis<span class="live"> compras mayores a $ 1.100.000 COP</span></a></li>
 					</ul>
 					<div class="clearfix"> </div>
 				</div>

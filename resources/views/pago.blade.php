@@ -239,9 +239,17 @@
 		//alert(consigna);
 		var city = $("#depto").val();
 		//alert(city);
-		var envioct	= 11000;
-		var enviocb	= 5500;
 		var total = parseFloat($( "#totalct" ).val());
+		if (total > 1100000)
+		{
+			var envioct	= 0;
+			var enviocb	= 0;
+		}
+		else
+		{		
+			var envioct	= 11000;
+			var enviocb	= 5500;
+		}
 		if ((consigna == "Consignacion") && (city == 'BOGOTA' || city == 'Seleccionar'))
 		{
 			var consigc	= 0.00;
@@ -283,9 +291,17 @@
 		//alert(consigna);
 		var city = $("#depto").val();
 		//alert(city);
-		var envioct	= 11000;
-		var enviocb	= 5500;
 		var total = parseFloat($( "#totalct" ).val());
+		if (total > 1100000)
+		{
+			var envioct	= 0;
+			var enviocb	= 0;
+		}
+		else
+		{
+			var envioct	= 11000;
+			var enviocb	= 5500;
+		}
 		if ((consigna == "Consignacion") && (city == 'BOGOTA' || city == 'Seleccionar'))
 		{
 			var consigc	= 0.00;
