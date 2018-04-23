@@ -368,7 +368,7 @@
 		{
 			//var costpp	= (total * 0.035) + 900;
 			var ivat	= (total - ((total*100)/119));
-			var costpp	= (((total * 0.035) + 900) * 0.19) + ((total * 0.035) + 900) + ((total * 0.015) + (total * 0.00414) + (ivat * 0.15));
+			var costpp	= (((total * 0.035) + 900) * 0.19) + ((total * 0.035) + 900) + ((total * 0.015) + (total * 0.00414));// + (ivat * 0.15));
 			costpp		= Math.floor(costpp);
 			if(costpp < 2901)
 			{
@@ -389,7 +389,7 @@
 			if (consigna == "Payu" && city != 'BOGOTA')
 			{
 				var ivat	= (total - ((total*100)/119));
-				var costpp	= (((total * 0.035) + 900) * 0.19) + ((total * 0.035) + 900) + ((total * 0.015) + (total * 0.00414) + (ivat * 0.15));
+				var costpp	= (((total * 0.035) + 900) * 0.19) + ((total * 0.035) + 900) + ((total * 0.015) + (total * 0.00414));// + (ivat * 0.15));
 				costpp		= Math.floor(costpp);
 				if(costpp < 2901)
 				{
