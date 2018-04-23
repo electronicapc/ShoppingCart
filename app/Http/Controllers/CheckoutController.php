@@ -295,11 +295,11 @@ class CheckoutController extends Controller
 		echo "\n".$signature;
 		echo $estadoTx;*/
 		
-		if (strtoupper($signature) == strtoupper($firmacreada) && $estadoTx != "aprobada" && $estadoTx != "desconocido")
+		if (strtoupper($signature) == strtoupper($firmacreada) && $estadoTx != "aprobada" && $estadoTx != "desconocido" && $estadoTx != "pendiente")
 		{
 			return redirect('/checkout')->with('respay', $data);
 		}
-		else if((strtoupper($signature) == strtoupper($firmacreada)) && $estadoTx == "aprobada" )
+		else if((strtoupper($signature) == strtoupper($firmacreada)) && ($estadoTx == "aprobada" || $estadoTx == "pendiente") )
 		{
 			$pdf = \PDF::loadView('genpdf',['data' => $data])->save('pdf/'.$referenceCode.'.pdf');
 			sleep(3);
@@ -333,6 +333,7 @@ class CheckoutController extends Controller
 		$tax				= $request->input('tax');
 		$transaction_date	= $request->input('transaction_date');
 		$email_buyer		= $request->input('email_buyer');
+		$name_buyer			= $request->input('nickname_buyer');
 		$pse_bank			= $request->input('pse_bank');
 		$test               = $request->input('test');
 		$description        = $request->input('description');
@@ -368,7 +369,8 @@ class CheckoutController extends Controller
 			$venap->save();
 								
 			$totmail  = array('refcod' => $reference_sale,'response_message_pol' => $response_mess_pol,'valbru' => $extra1,'gasfin' => $extra2,'gasenv' => $extra3,'ivacli' => $tax,'totcli' => $value,'fectx' => $transaction_date,'shipping_address' => $shipping_address,'phone'=>$phone,'billing_city'=>$billing_city,'ip'=>$ip,'shipping_city'=>$shipping_city,'pay_method_name'=>$pay_method_name,'metpag'=>3);
-			\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+			//\Mail::to($email_buyer)->send(new ConfirmarCompra($totmail));
+			$correo = $this->sendmail($email_buyer,$name_buyer,$reference_sale);
 		}
 		else if(strtoupper($sign) == strtoupper($firmacreada) && $state_pol == 6 )
 		{
