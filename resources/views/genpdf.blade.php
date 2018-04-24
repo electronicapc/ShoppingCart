@@ -28,11 +28,12 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-5">
-		<h1><a href=" "><img alt="" width="100" height="100" src="{{asset('images/logo.png') }}" />Softecol</a></h1>
+		<h1><a href=" "><img alt="" width="100" height="100" src="{{asset('images/logo.jpg') }}" />Softecol</a></h1>
 		</div>
 		<div class="col-xs-5 text-left">
-		<h4>Comprobante de compromiso de compra</h4>
+		<h4>Comprobante de compromiso de compra/ Factura de venta</h4>
 		<h1>Compra No.: {{$data['refcli'] }}</h1>
+		<h4>Fecha: {{$data['today'] }}</h4>
 		</div>
 	</div>
 
@@ -43,9 +44,10 @@
 				<h4>De: <a href="#">Softecol</a></h4>
 				</div>
 				<div class="panel-body">Direcci&oacute;n: Dg 2B No. 82-30<br>
-					Tel&eacute;fono: 300 5672190<br>
-					Email: electronicapcolombia@gmail.com<br>
-					Bogot&aacute; - Colombia
+					Tel&eacute;fono: 305 7159818<br>
+					Email: servicio@softecol.com<br>
+					Bogot&aacute; - Colombia<br>
+					Regimen Simplificado
 				</div>
 			</div>
 		</div>
@@ -56,6 +58,7 @@
 				<h4>Para : <a href="#">{{$data['nomcli'] }}</a></h4>
 				</div>
 				<div class="panel-body">
+					NIT/CC : {{$data['idcli'] }}<br>
 					Email : {{$data['emacli'] }}<br>
 					Direcci&oacute;n Entrega: {{$data['dircli'] }}<br>
 					Ciudad entrega: {{$data['ciucli'] }}<br>
@@ -131,7 +134,7 @@
 						</div>
 							<div class="panel-body">
 								<p>Recuerde que si el pago seleccionado es mediante consignaci&oacute;n se debe anexar copia de esta mediante 
-							        correo el&eacute;ctronico a servicio@softecol.com o mensajer&iacute;a instantanea al n&uacute;mero 300 5672190
+							        correo el&eacute;ctronico a servicio@softecol.com o mensajer&iacute;a instantanea al n&uacute;mero 305 7159818
 							        indicando el n&uacute;mero de referencia de la compra, que ser&aacute; enviado al correo el&eacute;ctronico registrado para proceder con el envio.
 							        Si el pago es contra-entrega en efectivo recibir&aacute; una llamada de confirmaci&oacute;n el d&iacute;a de la entrega confirmando disponibilidad de pago.
 								</p>

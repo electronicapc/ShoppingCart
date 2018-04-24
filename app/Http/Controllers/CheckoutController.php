@@ -176,13 +176,14 @@ class CheckoutController extends Controller
 				'dircli'   	=> $request->input('shippingAddress'),
 				'ciucli'   	=> $request->input('shippingCity'),
 				'telcli'   	=> $request->input('telephone'),
-				'refcli'   	=> $request->input('referenceCode'),
 				'valbru'   	=> $request->input('valbru'),
 				'gasfin'   	=> $request->input('gasfin'),
 				'gasenv'   	=> $request->input('gasenv'),
 				'ivacli'   	=> $request->input('tax'),
 				'totcli'   	=> $request->input('amount'),
 				'forpa'   	=> $request->input('forpa'),
+				'idcli'   	=> Auth::user()->documento,
+				'today'		=> Carbon::now('America/Bogota'),
 				'tiptx'		=> $tiptx
 		];
 		//Inicio COntruccion PDF
@@ -280,6 +281,8 @@ class CheckoutController extends Controller
 				//'nomcli'   		=> 'nesiton reyes',
 				'emacli'   		=> $mailcl,
 				'dircli'   		=> Auth::user()->address,
+				'idcli'   		=> Auth::user()->documento,
+				'today'			=> Carbon::now('America/Bogota'),
 				'ciucli'   		=> 'Confirmada por correo',
 				'telcli'   		=> 'Confirmado por correo',
 				'refcli'   		=> $referenceCode,
