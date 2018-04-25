@@ -28,7 +28,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-5">
-		<h1><a href=" "><img alt="" width="100" height="100" src="{{asset('images/logo.jpg') }}" />Softecol</a></h1>
+		<h1><a href=" "><img alt="" width="100" height="100" src="{{asset('images/logo.png') }}" />Softecol</a></h1>
 		</div>
 		<div class="col-xs-5 text-left">
 		<h4>Comprobante de compromiso de compra/ Factura de venta</h4>
@@ -41,7 +41,7 @@
 		<div class="col-xs-5">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-				<h4>De: <a href="#">Softecol</a></h4>
+					<h5>De: <a href="#">Softecol</a></h5>
 				</div>
 				<div class="panel-body">Direcci&oacute;n: Dg 2B No. 82-30<br>
 					Tel&eacute;fono: 305 7159818<br>
@@ -51,43 +51,41 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-6 text-left">
+		<div class="col-xs-5 text-left">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-			
-				<h4>Para : <a href="#">{{$data['nomcli'] }}</a></h4>
+				<div class="panel-heading">			
+					<h5>Para : <a href="#">{{$data['nomcli'] }}</a></h5>
 				</div>
 				<div class="panel-body">
 					NIT/CC : {{$data['idcli'] }}<br>
 					Email : {{$data['emacli'] }}<br>
 					Direcci&oacute;n Entrega: {{$data['dircli'] }}<br>
 					Ciudad entrega: {{$data['ciucli'] }}<br>
-					Telefono Contacto: {{$data['telcli'] }}<br>
+					Tel&eacute;fono Contacto: {{$data['telcli'] }}	
 				</div>
 			</div>
-
 		</div>
   </div>
-  <h3>Detalle de compra</h3>
+  <h3 style="margin-top: 0px;">Detalle de compra</h3>
   <div class="row">
 	<div class="">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>
-								<h4>Servicio</h4>
+								<h5>Servicio</h5>
 							</th>
 							<th>
-								<h4>Descripci&oacute;n</h4>
+								<h5>Descripci&oacute;n</h5>
 							</th>
 							<th>
-								<h4>Hrs / Cantidad</h4>
+								<h5>Hrs / Cantidad</h5>
 							</th>
 							<th>
-								<h4>Tarifa / Precio</h4>
+								<h5>Tarifa / Precio</h5>
 							</th>
 							<th>
-								<h4>Sub-Total</h4>
+								<h5>Sub-Total</h5>
 							</th>
 						</tr>
 					</thead>
