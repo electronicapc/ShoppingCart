@@ -99,7 +99,7 @@
 							      </h4>
 							    </div>
 							    <div id="collapse2" class="panel-collapse collapse">
-							      <div class="panel-body"><p>ASEGURESE DE DILIGENCIAR CORRECTAMENTE LOS DATOS DE ENTREGA Y TENER EL DINERO DISPONIBLE</p></div>
+							      <div class="panel-body"><p>ASEGURESE DE DILIGENCIAR CORRECTAMENTE LOS DATOS DE ENTREGA Y TENER EL DINERO DISPONIBLE *Aplican condiciones y restricciones</p></div>
 							    </div>
 							  </div>
 							  <div class="panel panel-default">
