@@ -477,6 +477,6 @@ class CheckoutController extends Controller
 					
 					Log::notice('Existio un error de envio de correo: '.$mail->ErrorInfo);
 				}
-		//Fin de rutina de mail
+		//Fin de rutina de mail.
 	}
 }
