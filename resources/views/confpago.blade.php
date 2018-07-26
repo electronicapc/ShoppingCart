@@ -142,6 +142,7 @@
 							{{ Form::hidden('extra2', $arrcp['ctfin']) }}
 							{{ Form::hidden('extra3', $arrcp['ctenv']) }}
 							<!-- Variables de pagpo contraentrega PayU -->
+							{{ Form::hidden('shippingValue', $arrcp['ctenv']) }}
 							{{ Form::hidden('kilogramWeight', 1) }}
 							{{ Form::hidden('shipmentPackageHeightDimension', 14) }}
 							{{ Form::hidden('shipmentPackageWidthDimension', 8) }}
