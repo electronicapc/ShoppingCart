@@ -16,7 +16,9 @@ class ShopController extends Controller
     public function index()
     {
         $lists 	= Categoria::all();
-        $produc	= Producto::where('destacado', 'SI')->get();
+        $produc	= Producto::where('destacado', 'SI')
+        		->where('activo', 'SI')
+        		->get();
     	//return view('index')->with('lists', $lists->toArray());
     	//dd($produc); 
         return view('index')->with('lists', $lists)
@@ -61,7 +63,10 @@ class ShopController extends Controller
     		$sort = 'desc';
     	}
     	$lists 		= Categoria::all();
-       	$categories	= Producto::where('categoria', $id)->orderBy('precpu',$sort)->paginate(15);
+       	$categories	= Producto::where('categoria', $id)
+       				->where('activo', 'SI')
+       				->orderBy('precpu',$sort)
+       				->paginate(15);
        	return view('categorias')->with('lists', $lists)
        							 ->with('categorias', $categories);
     }
@@ -70,7 +75,9 @@ class ShopController extends Controller
     public function showprod($id)
     {
     	$lists 		= Categoria::all();
-    	$products	= Producto::where('id', $id)->get()->first();;
+    	$products	= Producto::where('id', $id)
+    				->get()
+    				->first();
     	return view('single')->with('lists', $lists)
     						 ->with('productos', $products);
     }
